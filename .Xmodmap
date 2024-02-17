@@ -1,0 +1,24 @@
+keycode 108 = Mode_switch
+
+keycode 38 = a A aacute Aacute
+keycode 40 = e E eacute Eacute
+keycode 42 = i I iacute Iacute
+keycode 39 = o O oacute Oacute
+keycode 41 = u U uacute Uacute
+keycode 46 = n N ntilde Ntilde
+keycode 34 = slash question questiondown
+keycode 20 = exclam 8 exclamdown
+
+keycode 94 = Shift_L
+keycode 24 = colon semicolon
+clear lock
+keycode 66 = underscore minus
+keycode 48 = Return Return
+keycode 52 = quotedbl apostrophe
+keycode 51 = Escape Escape
+keycode 36 = backslash bar
+keycode 9 = dollar asciitilde
+keycode 54 = j J Down
+keycode 55 = k K Up
+keycode 44 = h H Left
+keycode 33 = l L Right
