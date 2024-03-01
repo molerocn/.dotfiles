@@ -12,9 +12,9 @@ numlockx on &
 blueberry-tray &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 /usr/lib/xfce4/notifyd/xfce4-notifyd &
-# firefox &
-picom --experimental-backends &
+picom --config ~/.local/bin/picom.conf &
 run volumeicon &
 xmodmap ~/.Xmodmap &
 parcellite --no-icon &
-nitrogen --restore &
+firefox &
+todoist &

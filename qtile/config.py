@@ -5,12 +5,14 @@ from libqtile.command import lazy
 from libqtile import hook, bar
 
 MOD, ALT, SHIFT, CONTROL = "mod4", "mod1", "shift", "control"
-MC, MS, M = [MOD, CONTROL], [MOD, SHIFT], [MOD]
+MC, MS, MA, M, A = [MOD, CONTROL], [MOD, SHIFT], [MOD, ALT], [MOD], [ALT]
 HOME = os.path.expanduser("~")
-PYHASHER = f"python {HOME}/pyhasher/main.py &"
+PYHASHER = f"python {HOME}/personal/pyhasher/main.py &"
 TERMINAL = "alacritty"
+DEVORAK = "setxkbmap us -variant dvp && xmodmap ~/.Xmodmap"
 BROWSER = "firefox"
 WORKSPACES_KEYBINDINGS = ["h", "t", "n", "s", "c", "r"]
+WHATSAPP = "firefox https://web.whatsapp.com &"
 
 dgroups_key_binder = None
 dgroups_app_rules = []
@@ -20,7 +22,6 @@ follow_mouse_focus = False
 bring_front_click = False
 cursor_warp = False
 auto_fullscreen = True
-focus_on_window_activation = "focus" 
 wmname = "LG3D"
 
 # Functions -----------------------------------------------------------------
@@ -40,11 +41,14 @@ def volume_up(qtile):
 def volume_down(qtile):
     qtile.cmd_spawn("amixer -D pulse sset Master 5%-")
 
+def random_wallpaper():
+    os.system(f"feh --randomize --bg-fill {HOME}/Pictures/background/*")
+
 @hook.subscribe.startup_once
 def start_once():
-    home = os.path.expanduser("~")
-    autostart_script = "/.config/qtile/autostart.sh"
-    subprocess.call([home + autostart_script])
+    random_wallpaper()
+    lazy.group[WORKSPACES_KEYBINDINGS[1]].toscreen()
+    subprocess.call([HOME + "/.config/qtile/autostart.sh"])
 
 @hook.subscribe.client_new
 def set_floating(window):
@@ -54,7 +58,12 @@ def set_floating(window):
 
 # Keybindings ---------------------------------------------------------------
 
-groups = [Group(name=name, layout="bsp", label=name) for name in WORKSPACES_KEYBINDINGS]
+firefox_match = Match(wm_class="firefox")
+todoist_match = Match(wm_class="todoist")
+obsidian_match = Match(wm_class="obsidian")
+layout_matches = [[firefox_match], [], [todoist_match], [obsidian_match], [], []]
+groups = [Group(name=name, layout="bsp", matches=matches, label=name) for name,
+    matches in zip(WORKSPACES_KEYBINDINGS, layout_matches)]
 
 keys = [key for key_array in [[Key(M, i.name, lazy.group[i.name].toscreen()),
             Key(MC, i.name, lazy.window.togroup(i.name)),
@@ -68,6 +77,7 @@ keys.extend([
     Key(M, "l", lazy.layout.right()),
     Key(MS, "f", lazy.window.toggle_fullscreen()),
     Key(MS, "q", lazy.window.kill()),
+    Key(A, "q", lazy.window.kill()),
     Key(MS, "i", lazy.restart()),
     Key(MC, "l", lazy.layout.grow_right(), lazy.layout.grow(), lazy.layout.increase_ratio(), lazy.layout.delete()),
     Key(MC, "g", lazy.layout.grow_left(), lazy.layout.shrink(), lazy.layout.decrease_ratio(), lazy.layout.add()),
@@ -77,17 +87,23 @@ keys.extend([
     Key(MS, "j", lazy.layout.shuffle_down()),
     Key(MS, "g", lazy.layout.shuffle_left()),
     Key(MS, "l", lazy.layout.shuffle_right()),
-    Key(MS, "space", lazy.window.toggle_floating()),
+    Key(M, "m", lazy.window.toggle_floating()),
+    Key(M, "space", lazy.next_layout()),
 ])
 
 keys.extend([
     Key(M, "Return", lazy.spawn(TERMINAL)),
-    Key(M, "a", lazy.function(lambda _: os.system(PYHASHER))),
+    Key(A, "s", lazy.function(lambda _: os.system(PYHASHER))),
     Key(M, "x", lazy.spawn("archlinux-logout")),
     Key(M, "d", lazy.spawn("dmenu_run")),
     Key(M, "b", lazy.spawn("firefox")),
     Key(M, "e", lazy.spawn("thunar")),
-    Key(M, "p", capture_and_copy),
+    Key(MA, "n", lazy.function(lambda _: random_wallpaper())),
+    Key(MA, "d", lazy.function(lambda _: os.system(DEVORAK))),
+    Key(MA, "s", lazy.function(lambda _: os.system("setxkbmap es"))),
+    Key(M, "o", lazy.function(lambda _: os.system("~/.local/bin/open_code.sh &"))),
+    Key(M, "w", lazy.function(lambda _: os.system(WHATSAPP))),
+    Key(MS, "p", capture_and_copy),
     Key(M, "v", volume_up),
     Key(MS, "v", volume_down),
 ])
@@ -100,7 +116,6 @@ windows = ["confirm", "dialog", "download", "error", "file_progress",
 float_rules = [*Floating.default_float_rules]
 float_rules.extend([Match(wm_class=window) for window in windows])
 floating_layout = Floating(float_rules = float_rules, fullscreen_border_width = 0, border_width = 0)
-        
 
 b_active, b_inactive = ["#0c4a6e", "#0c4a6e"], ["#030712", "#030712"]
 layout_theme = { "margin": 0, "border_width": 1, "border_focus": b_active, "border_normal": b_inactive }

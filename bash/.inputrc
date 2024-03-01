@@ -1,1 +1,2 @@
 "\C-f": "\C-u~/.local/bin/tmux-sessionizer\n"
+"\C-b": "tmux a\n"
