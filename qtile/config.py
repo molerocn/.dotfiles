@@ -47,7 +47,6 @@ def random_wallpaper():
 @hook.subscribe.startup_once
 def start_once():
     random_wallpaper()
-    lazy.group[WORKSPACES_KEYBINDINGS[1]].toscreen()
     subprocess.call([HOME + "/.config/qtile/autostart.sh"])
 
 @hook.subscribe.client_new
@@ -58,12 +57,7 @@ def set_floating(window):
 
 # Keybindings ---------------------------------------------------------------
 
-firefox_match = Match(wm_class="firefox")
-todoist_match = Match(wm_class="todoist")
-obsidian_match = Match(wm_class="obsidian")
-layout_matches = [[firefox_match], [], [todoist_match], [obsidian_match], [], []]
-groups = [Group(name=name, layout="bsp", matches=matches, label=name) for name,
-    matches in zip(WORKSPACES_KEYBINDINGS, layout_matches)]
+groups = [Group(name=name, layout="bsp", label=name) for name in WORKSPACES_KEYBINDINGS]
 
 keys = [key for key_array in [[Key(M, i.name, lazy.group[i.name].toscreen()),
             Key(MC, i.name, lazy.window.togroup(i.name)),
@@ -94,6 +88,7 @@ keys.extend([
 keys.extend([
     Key(M, "Return", lazy.spawn(TERMINAL)),
     Key(A, "s", lazy.function(lambda _: os.system(PYHASHER))),
+    Key(A, "a", lazy.window.toggle_fullscreen()),
     Key(M, "x", lazy.spawn("archlinux-logout")),
     Key(M, "d", lazy.spawn("dmenu_run")),
     Key(M, "b", lazy.spawn("firefox")),

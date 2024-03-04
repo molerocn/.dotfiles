@@ -17,4 +17,3 @@ run volumeicon &
 xmodmap ~/.Xmodmap &
 parcellite --no-icon &
 firefox &
-todoist &
