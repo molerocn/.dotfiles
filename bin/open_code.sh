@@ -1,22 +1,20 @@
 #!/bin/bash
 
-DIRECTORIOS=("$HOME/data")
+DIRECTORIOS=("$HOME/data" "$HOME/personal" "$HOME/university" "$HOME/projects")
 
-carpetas=()
+proyectos=()
 for dir in "${DIRECTORIOS[@]}"; do
-    carpetas+=($(find "$dir" -maxdepth 1 -mindepth 1 -type d -exec basename {} \;))
+    while IFS= read -r -d '' proyecto; do
+        proyectos+=("$proyecto")
+    done < <(find "$dir" -maxdepth 1 -mindepth 1 -type d -print0)
 done
 
-seleccion=$(printf "%s\n" "${carpetas[@]}" | dmenu -i -p "Select a project: ")
+seleccion=$(printf "%s\n" "${proyectos[@]}" | rofi -dmenu -i -p "Select a project")
 
 if [ -n "$seleccion" ]; then
-    for dir in "${DIRECTORIOS[@]}"; do
-        if [[ -d "$dir/$seleccion" ]]; then
-            cd "$dir/$seleccion"
-            code --reuse-window .
-            exit 0
-        fi
-    done
+    cd "$seleccion"
+    code --reuse-window .
+    exit 0
 else
     echo "No project selected"
 fi

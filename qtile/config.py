@@ -1,6 +1,7 @@
 from libqtile.layout import MonadTall, MonadWide, Matrix, Bsp, Floating, RatioTile, Max
+from libqtile.widget import Memory, Volume, CurrentLayout, Clock, Systray, GroupBox, Spacer
 from libqtile.config import Group, Match, Key, Screen
-import os, subprocess, statusbar
+import os, subprocess 
 from libqtile.command import lazy
 from libqtile import hook, bar
 
@@ -9,8 +10,7 @@ MC, MS, MA, M, A = [MOD, CONTROL], [MOD, SHIFT], [MOD, ALT], [MOD], [ALT]
 HOME = os.path.expanduser("~")
 PYHASHER = f"python {HOME}/personal/pyhasher/main.py &"
 TERMINAL = "alacritty"
-DEVORAK = "setxkbmap us -variant dvp && xmodmap ~/.Xmodmap"
-BROWSER = "firefox"
+DEVORAK = "setxkbmap us -variant dvp && xmodmap ~/.Xmodmap &"
 WORKSPACES_KEYBINDINGS = ["h", "t", "n", "s", "c", "r"]
 WHATSAPP = "firefox https://web.whatsapp.com &"
 
@@ -41,6 +41,10 @@ def volume_up(qtile):
 def volume_down(qtile):
     qtile.cmd_spawn("amixer -D pulse sset Master 5%-")
 
+@lazy.function
+def kill_other_windows(qtile):
+    [window.kill() for window in qtile.current_group.windows if window != qtile.current_window]
+
 def random_wallpaper():
     os.system(f"feh --randomize --bg-fill {HOME}/Pictures/background/*")
 
@@ -57,7 +61,10 @@ def set_floating(window):
 
 # Keybindings ---------------------------------------------------------------
 
-groups = [Group(name=name, layout="bsp", label=name) for name in WORKSPACES_KEYBINDINGS]
+obsidian_match = Match(wm_class="obsidian")
+todoist_match = Match(wm_class="Todoist")
+group_matches = [[], [], [todoist_match], [obsidian_match], [], []]
+groups = [Group(name=name, layout="bsp", label=name, matches=matches) for name, matches in zip(WORKSPACES_KEYBINDINGS, group_matches)]
 
 keys = [key for key_array in [[Key(M, i.name, lazy.group[i.name].toscreen()),
             Key(MC, i.name, lazy.window.togroup(i.name)),
@@ -87,7 +94,7 @@ keys.extend([
 
 keys.extend([
     Key(M, "Return", lazy.spawn(TERMINAL)),
-    Key(A, "s", lazy.function(lambda _: os.system(PYHASHER))),
+    Key(MA, "s", lazy.function(lambda _: os.system(PYHASHER))),
     Key(A, "a", lazy.window.toggle_fullscreen()),
     Key(M, "x", lazy.spawn("archlinux-logout")),
     Key(M, "d", lazy.spawn("dmenu_run")),
@@ -96,8 +103,9 @@ keys.extend([
     Key(MA, "n", lazy.function(lambda _: random_wallpaper())),
     Key(MA, "d", lazy.function(lambda _: os.system(DEVORAK))),
     Key(MA, "s", lazy.function(lambda _: os.system("setxkbmap es"))),
-    Key(M, "o", lazy.function(lambda _: os.system("~/.local/bin/open_code.sh &"))),
+    Key(M, "f", lazy.function(lambda _: os.system("~/.local/bin/open_code.sh &"))),
     Key(M, "w", lazy.function(lambda _: os.system(WHATSAPP))),
+    Key(MA, "t", kill_other_windows),
     Key(MS, "p", capture_and_copy),
     Key(M, "v", volume_up),
     Key(MS, "v", volume_down),
@@ -117,5 +125,5 @@ layout_theme = { "margin": 0, "border_width": 1, "border_focus": b_active, "bord
 q_layouts = [MonadTall, MonadWide, Matrix, Bsp, Floating, RatioTile, Max]
 layouts = [layout(**layout_theme) for layout in q_layouts]
 
-widgets_list = statusbar.Statusbar().get_default_widgets()
+widgets_list = [GroupBox(highlight_method="block", rounded=False), Spacer(), Systray(), Memory(), Volume(), CurrentLayout(), Clock(format="%B %d - %H:%M")]
 screens = [Screen(bottom=bar.Bar(widgets=widgets_list, size=20, opacity=1))]

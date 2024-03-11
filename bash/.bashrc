@@ -51,7 +51,7 @@ alias sbash="clear; source ~/.bashrc"
 alias tree="tree -C -I 'node_modules'"
 alias update="sudo pacman -Syu"
 alias upgrade="sudo pamac upgrade"
-alias evim="nvim ~/.config/nvim"
+alias evim="cd ~/.config/nvim; nvim ."
 
 alias restart="qtile-cmd -o cmd -f restart"
 
