@@ -14,14 +14,13 @@ completions=(git composer ssh)
 aliases=(general)
 plugins=(git bashmarks)
 
-function codev() {
-  local dir
-  dir=$(find ~/personal ~/projects ~/work -maxdepth 1 -type d | fzf +m) && cd "$dir" && code --reuse-window . || return
-}
-
-# create a new directory and enter it
 function create() {
   mkdir -p "$@" && cd "$@"
+}
+
+function mkzip() {
+  local carpeta_nombre=$(basename "$1")
+  zip -r "${carpeta_nombre}.zip" "$1"
 }
 
 source "$OSH"/oh-my-bash.sh
@@ -63,6 +62,7 @@ alias copythis="xclip -selection clipboard"
 
 alias dev="code --reuse-window"
 alias herigone="python ~/personal/herigone/main.py"
+alias catzip="unzip -l"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"

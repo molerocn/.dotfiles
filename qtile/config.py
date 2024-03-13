@@ -94,7 +94,7 @@ keys.extend([
 
 keys.extend([
     Key(M, "Return", lazy.spawn(TERMINAL)),
-    Key(MA, "s", lazy.function(lambda _: os.system(PYHASHER))),
+    Key(A, "s", lazy.function(lambda _: os.system(PYHASHER))),
     Key(A, "a", lazy.window.toggle_fullscreen()),
     Key(M, "x", lazy.spawn("archlinux-logout")),
     Key(M, "d", lazy.spawn("dmenu_run")),

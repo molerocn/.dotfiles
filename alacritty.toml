@@ -2,8 +2,8 @@
 
 # Default colors
 [colors.primary]
-# hard contrast background = = '#1d2021'
-background = '#1d2021'
+# background = '#1F2426'
+# background = '#000000'
 # soft contrast background = = '#32302f'
 foreground = '#ebdbb2'
 
@@ -150,11 +150,6 @@ key = "End"
 mode = "~Alt"
 mods = "Shift"
 
-[[keyboard.bindings]]
-action = "SpawnNewInstance"
-key = "L"
-mods = "Control|Shift"
-
 [scrolling]
 history = 5000
 
@@ -168,5 +163,5 @@ general = "Alacritty"
 instance = "Alacritty"
 
 [window.padding]
-x = 3
+x = 10
 y = 10

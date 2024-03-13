@@ -12,7 +12,7 @@ numlockx on &
 blueberry-tray &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 /usr/lib/xfce4/notifyd/xfce4-notifyd &
-# picom --config ~/.local/bin/picom.conf &
+picom --config ~/.local/bin/picom.conf &
 run volumeicon &
 xmodmap ~/.Xmodmap &
 parcellite --no-icon &
