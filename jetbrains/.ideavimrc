@@ -1,0 +1,58 @@
+set linenumber
+set number
+set relativenumber
+set surround
+set highlightedyank
+set nerdtree
+" scrolloff of 8 lines
+set scrolloff=8
+let g:highlightedyank_highlight_duration = "40"
+let mapleader = " "
+
+" harpoon
+nmap <C-h> <Action>(GoToTab1)
+nmap <C-t> <Action>(GoToTab2)
+nmap <C-n> <Action>(GoToTab3)
+nmap <C-m> <Action>(GoToTab4)
+
+nmap <C-p> <Action>(GotoFile)
+nmap <C-e> <Esc>:NERDTreeFind<CR>
+nmap <C-b> <Action>(HideAllWindows)
+
+" git
+nmap <leader>gs <Action>(CheckinProject)
+nmap <leader>gl <Action>(Git.Log)
+nmap <leader>gp <Action>(Git.Pull)
+
+" trouble
+nmap <leader>tr <Action>(ActivateProblemsViewToolWindow)
+nmap [d <Action>(GotoPreviousError)
+nmap ]d <Action>(GotoNextError)
+
+" lsp
+nmap <leader>ca <Action>(ShowIntentionActions)
+nmap <leader>re <Action>(RenameElement)
+nmap <leader>ps <Action>(FindInPath)
+nmap gr <Action>(FindUsages)
+
+" save action
+nnoremap <C-s> <Esc>:wa<CR>
+inoremap <C-s> <Esc>:wa<CR>
+
+" custom
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+nnoremap <C-l> <Esc>A;<Esc>
+inoremap <C-l> <Esc>A;<Esc>
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+nnoremap n nzzzv
+nnoremap N Nzzzv
+xnoremap p pgvy
+vnoremap <leader>y "+y
+nnoremap <Tab> ;
+nnoremap + <C-a>
+nnoremap - <C-x>
+
+" snippets
+nnoremap <leader>rc ipackage <CR><CR>public class Template {<CR><CR><Tab>public Template() {<CR>}<CR><BS><CR>}<C-c>:%s/Template/

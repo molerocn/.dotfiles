@@ -120,7 +120,7 @@ float_rules = [*Floating.default_float_rules]
 float_rules.extend([Match(wm_class=window) for window in windows])
 floating_layout = Floating(float_rules = float_rules, fullscreen_border_width = 0, border_width = 0)
 
-b_active, b_inactive = ["#0c4a6e", "#0c4a6e"], ["#030712", "#030712"]
+b_active, b_inactive = ["#ebdbb2", "#ebdbb2"], ["#030712", "#030712"]
 layout_theme = { "margin": 0, "border_width": 1, "border_focus": b_active, "border_normal": b_inactive }
 q_layouts = [MonadTall, MonadWide, Matrix, Bsp, Floating, RatioTile, Max]
 layouts = [layout(**layout_theme) for layout in q_layouts]
