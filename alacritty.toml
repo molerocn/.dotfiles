@@ -2,7 +2,7 @@
 
 # Default colors
 [colors.primary]
-# background = '#1F2426'
+background = '#1F2426'
 # background = '#000000'
 # soft contrast background = = '#32302f'
 foreground = '#ebdbb2'
@@ -49,7 +49,7 @@ shape = "Block"
 TERM = "xterm-256color"
 
 [font]
-size = 11
+size = 10.5
 
 [font.bold]
 family = "Cascadia Code"
@@ -163,5 +163,5 @@ general = "Alacritty"
 instance = "Alacritty"
 
 [window.padding]
-x = 10
-y = 10
+x = 0
+y = 0

@@ -16,7 +16,7 @@ nmap <C-n> <Action>(GoToTab3)
 nmap <C-m> <Action>(GoToTab4)
 
 nmap <C-p> <Action>(GotoFile)
-nmap <C-e> <Esc>:NERDTreeFind<CR>
+nmap <A-e> <Esc>:NERDTreeFind<CR>
 nmap <C-b> <Action>(HideAllWindows)
 
 " git

@@ -57,12 +57,13 @@ alias restart="qtile-cmd -o cmd -f restart"
 alias devorak="xmodmap ~/.Xmodmap"
 alias audio="sh ~/.local/bin/audio.sh"
 
-alias settings="cd ~/.config/qtile; nvim ."
+alias settings="cd ~/.config/qtile; nvim config.py"
 alias copythis="xclip -selection clipboard"
 
 alias dev="code --reuse-window"
 alias herigone="python ~/personal/herigone/main.py"
 alias catzip="unzip -l"
+alias tkill="tmux kill-server"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
