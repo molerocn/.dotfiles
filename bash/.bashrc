@@ -65,6 +65,7 @@ alias dev="code --reuse-window"
 alias herigone="python ~/personal/herigone/main.py"
 alias catzip="unzip -l"
 alias tkill="tmux kill-server"
+alias howmuch="du -h --max-depth=1"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
