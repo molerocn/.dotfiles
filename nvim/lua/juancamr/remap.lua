@@ -21,15 +21,15 @@ keymap.set("i", "<C-BS>", "<C-w>")
 keymap.set("i", "<C-h>", "<C-w>")
 keymap.set("n", "<C-k>", "<cmd>cprev<CR>zz")
 keymap.set("n", "<C-j>", "<cmd>cnext<CR>zz")
-keymap.set("i", "<C-r>", "<nop>")
-keymap.set("n", "<A-e>", "<cmd>Ex<CR>")
-keymap.set("n", "<leader>q", "<Esc><cmd>q<CR>")
+-- keymap.set("n", "<A-e>", "<cmd>Ex<CR>")
+
 -- save
-keymap.set("n", "<C-s>", "<cmd>wa<CR>")
-keymap.set("i", "<C-s>", "<Esc><cmd>wa<CR>")
-keymap.set("v", "<C-s>", "<Esc><cmd>wa<CR>")
+keymap.set({"n", "v", "i"}, "<C-s>", "<Esc><cmd>w<CR>")
+-- keymap.set({"n", "v", "i"}, "<C-s>", "<nop>")
+keymap.set({"n", "i"}, "<C-l>", "<Esc>A;<Esc>")
+keymap.set("i", "<C-r>", "<Esc>O")
+keymap.set("n", "<leader>d", "Vd<cmd>w<CR>")
 
 -- custom snippets
 keymap.set("n", "<leader>rc",
     "iconst Template = () => {<CR>return (<CR><div>Hello from Template</div><CR>);<CR>};<CR><CR>export default Template;<Esc>=gg[[:%s/Template/")
-keymap.set({ "n", "i" }, "<C-l>", "<Esc>A;<Esc>")

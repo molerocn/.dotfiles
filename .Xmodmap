@@ -1,4 +1,4 @@
-keycode 107 = Mode_switch
+keycode 108 = Mode_switch
 
 ! spanish keymaps
 keycode 38 = a A aacute Aacute
@@ -15,18 +15,27 @@ keycode 54 = j J Down
 keycode 55 = k K Up
 keycode 44 = h H Left
 keycode 33 = l L Right
+keycode 30 = g G Home
+keycode 32 = r R End
+keycode 31 = c C Escape
 
 ! remap caps lock to control
 clear lock
 clear control
 keycode 66 = Control_L
-keycode 37 = NoSymbol
+keycode 37 = underscore minus
 add control = Control_L Control_R
 
-! custom keymaps
-keycode 94 = Shift_L
-keycode 9 = dollar asciitilde
-keycode 48 = Return Return
-keycode 51 = underscore minus 
+! revert keymaps
 keycode 52 = quotedbl apostrophe
 keycode 24 = colon semicolon
+keycode 48 = Return Return
+
+! custom keymaps for spanish keyboard
+keycode 94 = Shift_L
+keycode 9 = dollar asciitilde
+keycode 51 = minus 
+keycode 36 = backslash bar
+
+! custom keymaps for laptop
+! keycode 36 = minus

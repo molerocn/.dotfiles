@@ -2,13 +2,13 @@
 rm ~/.bashrc
 rm ~/.inputrc
 rm -rf ~/.config/qtile
-rm ~/.config/alacritty/alacritty.yml; rm ~/.config/alacritty/alacritty.toml
+rm -rf ~/.config/alacritty
 
 ln -s ~/.dotfiles/bash/.bashrc ~/.bashrc
 ln -s ~/.dotfiles/bash/.inputrc ~/.inputrc
 ln -s ~/.dotfiles/.tmux.conf ~/.tmux.conf
 ln -s ~/.dotfiles/.Xmodmap ~/.Xmodmap
-ln -s ~/.dotfiles/alacritty.toml ~/.config/alacritty/alacritty.toml
+ln -s ~/.dotfiles/alacritty ~/.config/alacritty/
 
 mkdir ~/.local/bin
 ln -s ~/.dotfiles/bin/tmux-sessionizer ~/.local/bin/tmux-sessionizer

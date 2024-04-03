@@ -1,8 +1,8 @@
 local M = {}
 
-M.treesitter_languages = { "javascript", "typescript", "python", "lua", "cpp" }
+M.treesitter_languages = { "javascript", "typescript", "python", "lua", "cpp", "markdown", "astro"}
 
-M.lsp_servers = { "clangd", "lua_ls", "pyright", "tsserver" }
+M.lsp_servers = { "clangd", "lua_ls", "pyright", "tsserver", "astro" }
 
 M.lazy_load = function(plugin)
   local vim = vim

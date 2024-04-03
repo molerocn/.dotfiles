@@ -38,6 +38,7 @@ nmap gr <Action>(FindUsages)
 " save action
 nnoremap <C-s> <Esc>:wa<CR>
 inoremap <C-s> <Esc>:wa<CR>
+vnoremap <C-s> <Esc>:wa<CR>
 
 " custom
 vnoremap J :m '>+1<CR>gv=gv
@@ -50,9 +51,6 @@ nnoremap n nzzzv
 nnoremap N Nzzzv
 xnoremap p pgvy
 vnoremap <leader>y "+y
-nnoremap <Tab> ;
-nnoremap + <C-a>
-nnoremap - <C-x>
 
 " snippets
 nnoremap <leader>rc ipackage <CR><CR>public class Template {<CR><CR><Tab>public Template() {<CR>}<CR><BS><CR>}<C-c>:%s/Template/

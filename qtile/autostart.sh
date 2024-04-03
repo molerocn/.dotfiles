@@ -12,8 +12,12 @@ numlockx on &
 blueberry-tray &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 /usr/lib/xfce4/notifyd/xfce4-notifyd &
-# picom --config ~/.local/bin/picom.conf &
 run volumeicon &
 xmodmap ~/.Xmodmap &
 parcellite --no-icon &
 firefox &
+alacritty -e tmux &
+# anki-woodrow.anki &
+xgamma -gamma 0.8
+picom --config ~/.local/bin/picom.conf &
+# shutter --min_at_startup &

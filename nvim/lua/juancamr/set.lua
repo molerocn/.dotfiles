@@ -22,6 +22,13 @@ opt.isfname:append("@-@")
 opt.updatetime = 50
 opt.colorcolumn = "80"
 opt.splitright = true
+
+-- disable copilot in md and txt
+vim.cmd[[let g:copilot_filetypes = {
+                              \ 'markdown': v:false,
+                              \ 'text': v:false,
+                              \ }]]
+
 -- opt.cursorline = true
 -- opt.fillchars = { eob = " ", vert = " " }
 -- vim.cmd([[highlight StatusLine guibg=#171B22 guifg=white]])
