@@ -1,8 +1,14 @@
 local M = {}
 
-M.treesitter_languages = { "javascript", "typescript", "python", "lua", "cpp", "markdown", "astro"}
+M.treesitter_languages = { "javascript", "typescript", "python", "lua", "cpp", "markdown", "astro" }
 
-M.lsp_servers = { "clangd", "lua_ls", "pyright", "tsserver", "astro" }
+M.lsp_servers = { "clangd", "lua_ls", "pyright", "tsserver", "astro", "gopls" }
+
+M.get_filename = function()
+  local str = debug.getinfo(2, "S").source:sub(2)
+  return str:match("^.*/(.*).lua$") or str
+end
+
 
 M.lazy_load = function(plugin)
   local vim = vim

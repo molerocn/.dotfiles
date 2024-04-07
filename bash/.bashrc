@@ -39,41 +39,19 @@ function mind() {
 source "$OSH"/oh-my-bash.sh
 source /usr/share/fzf/key-bindings.bash
 
-alias gaa="git add ."
-alias gic="git commit -m"
-alias gst="git status"
-alias gs="git status"
-alias gsnt="git status"
-alias gstn="git status"
 alias glog="git log --oneline --decorate --graph --all"
 alias gce="git commit --amend --no-edit"
-alias g="git"
-alias py="python"
-
 alias vim="nvim"
-alias ivm="nvim"
-alias vmi="nvim"
-alias mvi="nvim"
-alias imv="nvim"
-alias vim.="nvim ."
-alias ivm.="nvim ."
-alias vmi.="nvim ."
-alias mvi.="nvim ."
-
 alias ebash="nvim ~/.bashrc"
 alias sbash="clear; source ~/.bashrc"
 alias tree="tree -C -I 'node_modules'"
 alias update="sudo pacman -Syu"
 alias upgrade="sudo pamac upgrade"
-alias d="cd"
 alias restart="qtile cmd-obj -o cmd -f restart"
-
+alias d="cd"
 alias devorak="xmodmap ~/.Xmodmap"
 alias audio="sh ~/.local/bin/audio.sh"
-
-alias config="nvim ~/.dotfiles/qtile/config.py";
 alias copythis="xclip -selection clipboard"
-
 alias herigone="python ~/personal/herigone/main.py"
 alias catzip="unzip -l"
 alias tkill="tmux kill-server"
@@ -83,11 +61,18 @@ alias mountpoints="lsblk"
 alias mountusb="sudo mount /dev/sdb1 /mnt/usb; cd /mnt/usb"
 alias backspace="xmodmap -e 'keycode 22 = NoSymbol'"
 alias note="nvim ~/Documents/apuntes.md"
+alias dark="sed -i -e 's/github_light/github_dark_default/' ~/.config/alacritty/alacritty.toml"
+alias light="sed -i -e 's/github_dark_default/github_light/' ~/.config/alacritty/alacritty.toml"
 
 # anki
 alias aprompt="python ~/.dotfiles/bin/anki_prompt.py"
 alias catprompt="cat ~/Documents/anki/anki_prompt.txt"
 alias aresponse="python ~/.dotfiles/bin/anki_response.py"
+
+# workspaces
+alias personal="cd ~/personal"
+alias projects="cd ~/projects"
+alias university="cd ~/university"
 
 # pdf
 alias pdprompt="python ~/.dotfiles/bin/pdf_reader.py"
@@ -96,24 +81,23 @@ alias pdprompt="python ~/.dotfiles/bin/pdf_reader.py"
 export BUN_INSTALL="$HOME/.bun"
 export PATH=$BUN_INSTALL/bin:$PATH
 
-# java
-# export PATH=$HOME/.jdks/openjdk-21.0.2/bin:$PATH
-
 # go
 export PATH=$PATH:/usr/local/go/bin
 
 # anaconda
 [ -f /opt/anaconda/etc/profile.d/conda.sh ] && source /opt/anaconda/etc/profile.d/conda.sh
 
-# # theming
-# alacritty_config="$HOME/.config/alacritty/alacritty.toml"
-# current_hour=$(date +"%H")
-# if [ "$current_hour" -ge 17 ] && [ "$current_hour" -le 23 ] || [ "$current_hour" -ge 0 ] && [ "$current_hour" -le 6 ]; then
-#     if grep -q 'github_light' "$alacritty_config"; then
-#         sed -i -e 's/github_light/gruvbox_dark' "$alacritty_config"
-#     fi
+# # >>> conda initialize >>>
+# # !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/usr/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
 # else
-#     if grep -q 'gruvbox_dark' "$alacritty_config"; then
-#         sed -i -e 's/gruvbox_dark/github_light' "$alacritty_config" 
+#     if [ -f "/usr/etc/profile.d/conda.sh" ]; then
+#         . "/usr/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/usr/bin:$PATH"
 #     fi
 # fi
+# unset __conda_setup
+# # <<< conda initialize <<<

@@ -93,7 +93,7 @@ keys.extend([
     Key(MA, "t", lazy.function(lambda qtile: [window.kill() for window in qtile.current_group.windows if window != qtile.current_window])),
     Key(M, "v", lazy.function(lambda qtile: manage_volume(qtile, 1))),
     Key(MS, "v", lazy.function(lambda qtile: manage_volume(qtile, -1))),
-    Key(MS, "p", lazy.function(lambda _: capture_and_copy())),
+    Key(M, "p", lazy.function(lambda _: capture_and_copy())),
 ])
 
 # Layouts ---------------------------------------------------------------------
@@ -105,10 +105,10 @@ float_rules = [*Floating.default_float_rules]
 float_rules.extend([Match(wm_class=window) for window in windows])
 floating_layout = Floating(float_rules = float_rules, fullscreen_border_width = 0, border_width = 0)
 
-b_active, b_inactive = ["#ebdbb2", "#ebdbb2"], ["#030712", "#030712"]
+b_active, b_inactive = ["#4863A0", "#4863A0"], ["#030712", "#030712"]
 layout_theme = { "margin": 0, "border_width": 1, "border_focus": b_active, "border_normal": b_inactive }
 q_layouts = [MonadTall, MonadWide, Matrix, Bsp, Floating, RatioTile, Max]
 layouts = [layout(**layout_theme) for layout in q_layouts]
 
-widgets_list = [GroupBox(highlight_method="block", rounded=False, font="Cascadia Code"), Spacer(), Systray(), CPU(), Memory(), Volume(), CurrentLayout(), Clock(format="%A, %B %d - %H:%M")]
+widgets_list = [GroupBox(highlight_method="block", rounded=False, font="Cascadia Code", disable_drag=True, toggle=False), Spacer(), Systray(), CPU(), Memory(), Volume(), CurrentLayout(), Clock(format="%A, %B %d - %H:%M")]
 screens = [Screen(bottom=bar.Bar(widgets=widgets_list, size=20, opacity=1))]

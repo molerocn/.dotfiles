@@ -19,11 +19,11 @@ keycode 30 = g G Home
 keycode 32 = r R End
 keycode 31 = c C Escape
 
-! remap caps lock to control
+! remap caps lock to escape
 clear lock
 clear control
 keycode 66 = Control_L
-keycode 37 = underscore minus
+keycode 37 = underscore Escape 
 add control = Control_L Control_R
 
 ! revert keymaps
@@ -34,8 +34,8 @@ keycode 48 = Return Return
 ! custom keymaps for spanish keyboard
 keycode 94 = Shift_L
 keycode 9 = dollar asciitilde
-keycode 51 = minus 
+keycode 51 = minus
 keycode 36 = backslash bar
 
 ! custom keymaps for laptop
-! keycode 36 = minus
+! keycode 36 = minus 

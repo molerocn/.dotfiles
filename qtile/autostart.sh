@@ -16,8 +16,7 @@ run volumeicon &
 xmodmap ~/.Xmodmap &
 parcellite --no-icon &
 firefox &
-alacritty -e tmux &
-# anki-woodrow.anki &
+alacritty &
+alacritty -e tmux new-session -s personal -c ~/personal \; send-keys -t personal:1 "vim ." C-m &
 xgamma -gamma 0.8
-picom --config ~/.local/bin/picom.conf &
-# shutter --min_at_startup &
+# picom --config ~/.local/bin/picom.conf &
