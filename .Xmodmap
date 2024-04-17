@@ -27,15 +27,20 @@ keycode 37 = underscore Escape
 add control = Control_L Control_R
 
 ! revert keymaps
-keycode 52 = quotedbl apostrophe
-keycode 24 = colon semicolon
+keycode 52 = colon semicolon
+keycode 24 = quotedbl apostrophe 
 keycode 48 = Return Return
 
 ! custom keymaps for spanish keyboard
+clear shift
 keycode 94 = Shift_L
+keycode 61 = Shift_R
+keycode 62 = z Z z Z
+add shift = Shift_L Shift_R
 keycode 9 = dollar asciitilde
 keycode 51 = minus
 keycode 36 = backslash bar
 
 ! custom keymaps for laptop
 ! keycode 36 = minus 
+

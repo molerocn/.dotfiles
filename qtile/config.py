@@ -1,3 +1,4 @@
+from logging import log
 from libqtile.layout import MonadTall, MonadWide, Matrix, Bsp, Floating, RatioTile, Max
 from libqtile.widget import Memory, Volume, CurrentLayout, Clock, GroupBox, Spacer, CPU, Systray
 from libqtile.config import Group, Match, Key, Screen
@@ -8,8 +9,8 @@ import os, subprocess
 
 MOD, ALT, SHIFT, CONTROL = "mod4", "mod1", "shift", "control"
 MC, MS, MA, M, A = [MOD, CONTROL], [MOD, SHIFT], [MOD, ALT], [MOD], [ALT]
-WORKSPACES_KEYBINDINGS = ["h", "t", "n", "s", "c"]
-WORKSPACES_KEYBINDINGS_LEFT_HAND = ["a", "o", "e", "u", "q"]
+WORKSPACES_KEYBINDINGS = ["h", "t", "n", "s", "c", "r"]
+WORKSPACES_KEYBINDINGS_LEFT_HAND = ["a", "o", "e", "u", "q", "r"]
 HOME = os.path.expanduser("~")
 
 dgroups_key_binder = None
@@ -49,8 +50,11 @@ def set_floating(window):
 # Keybindings ---------------------------------------------------------------
 
 alacritty_match = Match(wm_class="Alacritty")
+obsidian_match = Match(wm_class="obsidian")
+spotify_match = Match(wm_class="spotify")
 anki_match = Match(wm_class="Anki")
-group_matches = [[], [alacritty_match], [], [anki_match], []]
+pomodoro_match = Match(wm_class="gnome-pomodoro")
+group_matches = [[], [alacritty_match, obsidian_match], [spotify_match], [anki_match, pomodoro_match], [], []]
 groups = [Group(name=str(index+1), label=str(index+1), layout="bsp", matches=matches) for index, matches in enumerate(group_matches)]
 keys = []
 for group, keymap, keymap_left_hand in zip(groups, WORKSPACES_KEYBINDINGS, WORKSPACES_KEYBINDINGS_LEFT_HAND):
@@ -85,8 +89,9 @@ keys.extend([
     Key(MA, "s", lazy.function(lambda _: os.system(f"python {HOME}/personal/pyhasher/main.py &"))),
    
     Key(M, "Return", lazy.spawn("alacritty")),
+    Key(MS, "Return", lazy.spawn("mousepad")),
     Key(M, "x", lazy.spawn("archlinux-logout")),
-    Key(M, "d", lazy.spawn("dmenu_run")),
+    Key(A, "space", lazy.spawn("rofi -show drun")),
     Key(M, "b", lazy.spawn("firefox")),
     Key(MA, "n", lazy.function(lambda _: random_wallpaper())),
     Key(M, "f", lazy.function(lambda _: os.system("~/.local/bin/open_code.sh &"))),

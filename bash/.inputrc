@@ -1,3 +1,0 @@
-"\C-f": "\C-u~/.local/bin/tmux-sessionizer\n"
-"\C-b": "\C-utmux a\n"
-"\C-o": "\C-utmux select-window -t 1\n"

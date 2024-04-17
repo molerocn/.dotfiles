@@ -39,10 +39,13 @@ nmap gr <Action>(FindUsages)
 nnoremap <C-s> <Esc>:wa<CR>
 inoremap <C-s> <Esc>:wa<CR>
 vnoremap <C-s> <Esc>:wa<CR>
+nnoremap s :wa<CR>
 
 " custom
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
+vnoremap R :m '<-2<CR>gv=gv
+vnoremap N :m '>+1<CR>gv=gv
+vronemap K k
+vnoremap J j
 nnoremap <C-l> <Esc>A;<Esc>
 inoremap <C-l> <Esc>A;<Esc>
 nnoremap <C-d> <C-d>zz
@@ -51,6 +54,5 @@ nnoremap n nzzzv
 nnoremap N Nzzzv
 xnoremap p pgvy
 vnoremap <leader>y "+y
-
-" snippets
-nnoremap <leader>rc ipackage <CR><CR>public class Template {<CR><CR><Tab>public Template() {<CR>}<CR><BS><CR>}<C-c>:%s/Template/
+nnoremap <leader>f ofor (int i = 0; i < ; i++)<Esc>F;i
+inoremap <C-r> <Esc>O

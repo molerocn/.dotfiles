@@ -5,6 +5,7 @@ chatgpt_prompt = """Tu deber es convertir los apuntes que te daré a un tipo de 
 (adelante/atras) flashcards de anki. Necesito que priorices la información mas
 importante, asegurate de que las preguntas y respuestas (adelante/atras) no
 sean muy extensas y que se entiendan.
+Ignora la seccion de resumen, preguntas de active recall, metadadatos y tags, solamente el contenido de Apuntes principales
 
 Criterio de formato:
 
@@ -12,7 +13,7 @@ Criterio de formato:
 - Cada fila de "front" column debe contener una pregunta.
 - El "Back" column debe contener la respuesta.
 - El "Tag" column debe contener el tag que te proporcionare para todas las filas.
-- Debe haber 5 filas o 5 flashcards.
+- Debe haber <count> flashcards.
 - No agregues las palabras Front, Back y Tag estos son solo para referencia, 
 unicamente necesito el contenido de las flashcards.
 
@@ -25,12 +26,14 @@ Apuntes: "<apuntes>"
 Tag: <tag>"""
 
 try:
-    tag = sys.argv[1]
+    questions = sys.argv[1]
+    tag = sys.argv[2]
     apuntes = pyperclip.paste()
 
     chatgpt_prompt = chatgpt_prompt.replace("<tag>", tag)
     chatgpt_prompt = chatgpt_prompt.replace("<apuntes>", apuntes)
+    chatgpt_prompt = chatgpt_prompt.replace("<count>", questions)
     pyperclip.copy(chatgpt_prompt)
 
 except:
-    print("No tag provided")
+    print("No tag or count of questions provided")
