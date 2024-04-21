@@ -1,17 +1,34 @@
-# Enable the subsequent settings only in interactive sessions
-case $- in
-*i*) ;;
-*) return ;;
-esac
+export ZSH=/usr/share/oh-my-zsh/
+ZSH_THEME="robbyrussell"
 
-export OSH='/home/juancamr/.oh-my-bash'
-export PATH="$PATH:$HOME/bin"
-export TERM="xterm-256color"
-OSH_THEME="robbyrussell"
-OMB_USE_SUDO=true
-completions=(git composer ssh)
-aliases=(general)
-plugins=(git bashmarks)
+plugins=(git)
+
+if [ -f $ZSH/oh-my-zsh.sh ]; then
+  source $ZSH/oh-my-zsh.sh
+fi
+
+export PAGER='most'
+
+if [ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+  source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
+setopt GLOB_DOTS
+unsetopt SHARE_HISTORY
+
+[[ $- != *i* ]] && return
+
+export HISTCONTROL=ignoreboth:erasedups
+
+if [ -d "$HOME/.bin" ] ;
+  then PATH="$HOME/.bin:$PATH"
+fi
+
+if [ -d "$HOME/.local/bin" ] ;
+  then PATH="$HOME/.local/bin:$PATH"
+fi
+
+source /usr/share/fzf/key-bindings.zsh
 
 function create() {
   mkdir -p "$@" && cd "$@"
@@ -36,8 +53,7 @@ function mind() {
     git push origin main
 }
 
-source "$OSH"/oh-my-bash.sh
-source /usr/share/fzf/key-bindings.bash
+alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 
 alias glog="git log --oneline --decorate --graph --all"
 alias gce="git commit --amend --no-edit"
@@ -92,18 +108,3 @@ export PATH=$PATH:/usr/local/go/bin
 
 # anaconda
 [ -f /opt/anaconda/etc/profile.d/conda.sh ] && source /opt/anaconda/etc/profile.d/conda.sh
-
-# # >>> conda initialize >>>
-# # !! Contents within this block are managed by 'conda init' !!
-# __conda_setup="$('/usr/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-# if [ $? -eq 0 ]; then
-#     eval "$__conda_setup"
-# else
-#     if [ -f "/usr/etc/profile.d/conda.sh" ]; then
-#         . "/usr/etc/profile.d/conda.sh"
-#     else
-#         export PATH="/usr/bin:$PATH"
-#     fi
-# fi
-# unset __conda_setup
-# # <<< conda initialize <<<
