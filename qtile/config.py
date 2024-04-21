@@ -85,6 +85,7 @@ keys.extend([
     Key(MS, "Return", lazy.spawn("mousepad")),
     Key(M, "x", lazy.spawn("archlinux-logout")),
     Key(M, "d", lazy.spawn("dmenu_run")),
+    Key(A, "Space", lazy.spawn("dmenu_run")),
     Key(M, "b", lazy.spawn("firefox")),
     Key(MA, "n", lazy.function(lambda _: random_wallpaper())),
     Key(M, "f", lazy.function(lambda _: os.system("~/.local/bin/open_code.sh &"))),

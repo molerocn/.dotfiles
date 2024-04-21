@@ -19,7 +19,7 @@ run volumeicon &
 xmodmap ~/.Xmodmap &
 parcellite --no-icon &
 firefox &
-# alacritty -e tmux new-session -s index -c ~/ \; send-keys -t index:1 "vim ." C-m \; send-keys -t index:1 ":q" C-m &
+gnome-pomodoro --no-default-window &
+alacritty -e tmux &
 # xgamma -gamma 0.8
-gnome-pomodoro &
 ```
