@@ -69,6 +69,7 @@ alias down="cd ~/Downloads"
 alias doc="cd ~/Documents"
 alias pic="cd ~/Pictures"
 alias vid="cd ~/Videos"
+alias pom="gnome-pomodoro"
 
 # anki
 alias apro="python ~/.dotfiles/bin/anki_prompt.py"
