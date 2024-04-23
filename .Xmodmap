@@ -35,12 +35,11 @@ keycode 48 = Return Return
 clear shift
 keycode 94 = Shift_L
 keycode 61 = Shift_R
-keycode 62 = z Z z Z
 add shift = Shift_L Shift_R
+keycode 62 = z Z z Z
 keycode 9 = dollar asciitilde
 keycode 51 = minus
 keycode 36 = backslash bar
 
 ! custom keymaps for laptop
-! keycode 36 = minus 
-
+keycode 36 = minus 

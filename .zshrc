@@ -53,6 +53,8 @@ function mind() {
     git push origin main
 }
 
+bindkey -s '^E' 'vim .\r'
+
 alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 
 alias glog="git log --oneline --decorate --graph --all"
