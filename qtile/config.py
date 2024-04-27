@@ -6,9 +6,8 @@ from libqtile import hook, bar
 import os, subprocess 
 
 MOD, ALT, SHIFT, CONTROL = "mod4", "mod1", "shift", "control"
-MC, MS, MA, M, A = [MOD, CONTROL], [MOD, SHIFT], [MOD, ALT], [MOD], [ALT]
-WORKSPACES_KEYBINDINGS = ["h", "t", "n", "s", "c", "r"]
-WORKSPACES_KEYBINDINGS_LEFT_HAND = ["a", "o", "e", "u", "q", "r"]
+MC, MS, MA, M, A, AS = [MOD, CONTROL], [MOD, SHIFT], [MOD, ALT], [MOD], [ALT], [ALT, SHIFT]
+WORKSPACES_KEYBINDINGS = ["Tab", "comma", "n", "s", "c"]
 HOME = os.path.expanduser("~")
 
 dgroups_key_binder = None
@@ -47,13 +46,13 @@ def set_floating(window):
 
 # Keybindings ---------------------------------------------------------------
 
-groups = [Group(name=str(index+1), label=str(index+1), layout="bsp") for index in range(6)]
+alacritty_match = Match(wm_class="Alacritty")
+group_matches = [[], [alacritty_match], [], [], []]
+groups = [Group(name=str(index+1), label=str(index+1), layout="bsp", matches=matches) for index, matches in enumerate(group_matches)]
 keys = []
-for group, keymap, keymap_left_hand in zip(groups, WORKSPACES_KEYBINDINGS, WORKSPACES_KEYBINDINGS_LEFT_HAND):
-    keys.extend([ Key(M, keymap, lazy.group[group.name].toscreen()),
-                 Key(M, keymap_left_hand, lazy.group[group.name].toscreen()),
-                 Key(MC, keymap, lazy.window.togroup(group.name)),
-                 Key(MS, keymap, lazy.window.togroup(group.name), lazy.group[group.name].toscreen())])
+for group, keymap, in zip(groups, WORKSPACES_KEYBINDINGS):
+    keys.extend([ Key(A, keymap, lazy.group[group.name].toscreen()),
+                 Key(AS, keymap, lazy.window.togroup(group.name), lazy.group[group.name].toscreen())])
 
 lay = lazy.layout
 movements = [["k", lay.up(), lay.shuffle_up()], ["j", lay.down(), lay.shuffle_down()], ["g", lay.left(), lay.shuffle_left()], ["l", lay.right(), lay.shuffle_right()]]
@@ -63,7 +62,6 @@ keys.extend([Key(MS, movement[0], movement[2]) for movement in movements])
 keys.extend([
     Key(M, "period", lazy.window.toggle_fullscreen()),
     Key(A, "q", lazy.window.kill()),
-    Key(A, "Tab", lazy.group.focus_back()),
     Key(MS, "q", lazy.window.kill()),
     Key(MS, "i", lazy.restart()),
     Key(MC, "l", lazy.layout.grow_right(), lazy.layout.grow(), lazy.layout.increase_ratio(), lazy.layout.delete()),
@@ -76,20 +74,16 @@ keys.extend([
 
 keys.extend([
     # apps
-    Key(MA, "e", lazy.function(lambda _: os.system("firefox --new-window https://excalidraw.com &"))),
-    Key(MA, "c", lazy.function(lambda _: os.system("firefox --new-window https://app.todoist.com/app/today &"))),
-    Key(MA, "h", lazy.function(lambda _: os.system("firefox ~/university/boards/horario.png &"))),
-    Key(MA, "s", lazy.function(lambda _: os.system(f"python {HOME}/personal/pyhasher/main.py &"))),
+    Key(MC, "c", lazy.function(lambda _: os.system("firefox --new-window https://app.todoist.com/app/today &"))),
+    Key(MC, "s", lazy.function(lambda _: os.system(f"python {HOME}/personal/pyhasher/main.py &"))),
    
     Key(M, "Return", lazy.spawn("alacritty")),
     Key(MS, "Return", lazy.spawn("mousepad")),
     Key(M, "x", lazy.spawn("archlinux-logout")),
     Key(M, "d", lazy.spawn("dmenu_run")),
-    Key(A, "Space", lazy.spawn("dmenu_run")),
     Key(M, "b", lazy.spawn("firefox")),
     Key(MA, "n", lazy.function(lambda _: random_wallpaper())),
     Key(M, "f", lazy.function(lambda _: os.system("~/.local/bin/open_code.sh &"))),
-    Key(MA, "t", lazy.function(lambda qtile: [window.kill() for window in qtile.current_group.windows if window != qtile.current_window])),
     Key(M, "v", lazy.function(lambda qtile: manage_volume(qtile, 1))),
     Key(MS, "v", lazy.function(lambda qtile: manage_volume(qtile, -1))),
     Key(M, "p", lazy.function(lambda _: capture_and_copy())),

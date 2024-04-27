@@ -28,8 +28,6 @@ if [ -d "$HOME/.local/bin" ] ;
   then PATH="$HOME/.local/bin:$PATH"
 fi
 
-source /usr/share/fzf/key-bindings.zsh
-
 function create() {
   mkdir -p "$@" && cd "$@"
 }
@@ -53,7 +51,8 @@ function mind() {
     git push origin main
 }
 
-bindkey -s '^E' 'vim .\r'
+bindkey -s '^E' 'nvim .\r'
+bindkey -s '^F' '~/.local/bin/tmux-sessionizer \r'
 
 alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 
