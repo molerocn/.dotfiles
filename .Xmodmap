@@ -21,8 +21,9 @@ keycode 31 = c C Escape
 
 ! remap caps lock to escape
 clear lock
+clear control
 keycode 66 = Control_L
-keycode 37 = underscore minus 
+keycode 37 = Super_L
 add control = Control_L Control_R
 
 ! revert keymaps
@@ -37,7 +38,7 @@ keycode 61 = Shift_R
 add shift = Shift_L Shift_R
 keycode 62 = z Z z Z
 keycode 9 = dollar asciitilde
-keycode 51 = Escape Escape
+keycode 51 = minus underscore
 keycode 36 = backslash bar
 keycode 133 = Super_L Escape
 

@@ -30,12 +30,9 @@ def capture_and_copy():
 def manage_volume(qtile, direction: int):
     qtile.cmd_spawn(f"amixer -D pulse sset Master 5%{'+' if direction == 1 else '-'}")
 
-def random_wallpaper():
-    os.system(f"feh --randomize --bg-fill {HOME}/Pictures/background/*")
-
 @hook.subscribe.startup_once
 def start_once():
-    random_wallpaper()
+    os.system(f"feh --randomize --bg-fill {HOME}/Pictures/background/*")
     subprocess.call([HOME + "/.config/qtile/autostart.sh"])
 
 @hook.subscribe.client_new
@@ -69,21 +66,13 @@ keys.extend([
     Key(MC, "k", lazy.layout.grow_up(), lazy.layout.grow(), lazy.layout.decrease_nmaster()),
     Key(MC, "j", lazy.layout.grow_down(), lazy.layout.shrink(), lazy.layout.increase_nmaster()),
     Key(M, "m", lazy.window.toggle_floating()),
-    # Key(M, "space", lazy.next_layout()),
 ])
 
 keys.extend([
-    # apps
-    Key(MC, "c", lazy.function(lambda _: os.system("firefox --new-window https://app.todoist.com/app/today &"))),
-    Key(MC, "s", lazy.function(lambda _: os.system(f"python {HOME}/personal/pyhasher/main.py &"))),
-   
     Key(M, "Return", lazy.spawn("alacritty")),
-    Key(MS, "Return", lazy.spawn("mousepad")),
     Key(M, "x", lazy.spawn("archlinux-logout")),
     Key(M, "d", lazy.spawn("dmenu_run")),
     Key(M, "b", lazy.spawn("firefox")),
-    Key(MA, "n", lazy.function(lambda _: random_wallpaper())),
-    Key(M, "f", lazy.function(lambda _: os.system("~/.local/bin/open_code.sh &"))),
     Key(M, "v", lazy.function(lambda qtile: manage_volume(qtile, 1))),
     Key(MS, "v", lazy.function(lambda qtile: manage_volume(qtile, -1))),
     Key(M, "p", lazy.function(lambda _: capture_and_copy())),
@@ -96,12 +85,19 @@ layout_theme = { "margin": 0, "border_width": 1, "border_focus": b_active, "bord
 q_layouts = [MonadTall, MonadWide, Matrix, Bsp, Floating, RatioTile, Max]
 layouts = [layout(**layout_theme) for layout in q_layouts]
 
-windows = ["confirm", "dialog", "download", "error", "file_progress",
-           "notification", "splash", "toolbar", "archlinux-logout",
-           "Thunar", "pavucontrol", "shutter"]
+windows = ["confirm", "dialog", "download", "error", "file_progress", "notification", "splash", "toolbar", "archlinux-logout", "pavucontrol", "shutter"]
 float_rules = [*Floating.default_float_rules]
 float_rules.extend([Match(wm_class=window) for window in windows])
 floating_layout = Floating(float_rules = float_rules, **layout_theme)
 
-widgets_list = [GroupBox(highlight_method="block", rounded=False, font="Cascadia Code", disable_drag=True, toggle=False), WindowName(), CPU(), Memory(), Volume(), CurrentLayout(), Clock(format="%A, %B %d - %H:%M"), Systray()]
+widgets_list = [
+    GroupBox(highlight_method="block", rounded=False, font="Cascadia Code", disable_drag=True, toggle=False),
+    WindowName(),
+    CPU(),
+    Memory(),
+    Volume(),
+    CurrentLayout(),
+    Clock(format="%A, %B %d - %H:%M"),
+    Systray()
+]
 screens = [Screen(bottom=bar.Bar(widgets=widgets_list, size=20, opacity=1))]
