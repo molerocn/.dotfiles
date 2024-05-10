@@ -7,7 +7,9 @@ import os, subprocess
 
 MOD, ALT, SHIFT, CONTROL = "mod4", "mod1", "shift", "control"
 MC, MS, MA, M, A, AS = [MOD, CONTROL], [MOD, SHIFT], [MOD, ALT], [MOD], [ALT], [ALT, SHIFT]
-WORKSPACES_KEYBINDINGS = ["Tab", "comma", "n", "s", "c"]
+rh_kbds_wkps = ["h", "t", "n", "s", "c"]
+lh_kbds_wkps = ["a", "o", "e", "u", "q"]
+
 HOME = os.path.expanduser("~")
 
 dgroups_key_binder = None
@@ -47,9 +49,10 @@ alacritty_match = Match(wm_class="Alacritty")
 group_matches = [[], [alacritty_match], [], [], []]
 groups = [Group(name=str(index+1), label=str(index+1), layout="bsp", matches=matches) for index, matches in enumerate(group_matches)]
 keys = []
-for group, keymap, in zip(groups, WORKSPACES_KEYBINDINGS):
-    keys.extend([ Key(A, keymap, lazy.group[group.name].toscreen()),
-                 Key(AS, keymap, lazy.window.togroup(group.name), lazy.group[group.name].toscreen())])
+for group, keymap_rh, keymap_lh in zip(groups, rh_kbds_wkps, lh_kbds_wkps):
+    keys.extend([ Key(M, keymap_rh, lazy.group[group.name].toscreen()),
+                Key(M, keymap_lh, lazy.group[group.name].toscreen()),
+                 Key(MS, keymap_rh, lazy.window.togroup(group.name), lazy.group[group.name].toscreen())])
 
 lay = lazy.layout
 movements = [["k", lay.up(), lay.shuffle_up()], ["j", lay.down(), lay.shuffle_down()], ["g", lay.left(), lay.shuffle_left()], ["l", lay.right(), lay.shuffle_right()]]
@@ -91,7 +94,7 @@ float_rules.extend([Match(wm_class=window) for window in windows])
 floating_layout = Floating(float_rules = float_rules, **layout_theme)
 
 widgets_list = [
-    GroupBox(highlight_method="block", rounded=False, font="Cascadia Code", disable_drag=True, toggle=False),
+    GroupBox(highlight_method="block", rounded=False, disable_drag=True, toggle=False, use_mouse_wheel=False),
     WindowName(),
     CPU(),
     Memory(),

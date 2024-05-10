@@ -7,6 +7,7 @@ if [ -f $ZSH/oh-my-zsh.sh ]; then
   source $ZSH/oh-my-zsh.sh
 fi
 
+source /usr/share/fzf/key-bindings.zsh
 export PAGER='most'
 
 if [ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
@@ -53,6 +54,7 @@ function mind() {
 
 bindkey -s '^E' 'nvim .\r'
 bindkey -s '^F' '~/.local/bin/tmux-sessionizer \r'
+bindkey -r "^S"
 
 alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 
@@ -66,7 +68,7 @@ alias update="sudo pacman -Syu"
 alias upgrade="sudo pamac upgrade"
 alias restart="qtile cmd-obj -o cmd -f restart"
 alias d="cd"
-alias dvorak="setxkbmap us -variant dvp; xmodmap ~/.Xmodmap"
+alias layout="setxkbmap us -variant dvp; xmodmap ~/.Xmodmap"
 alias audio="sh ~/.local/bin/audio.sh"
 alias copythis="xclip -selection clipboard"
 alias herigone="python ~/personal/herigone/main.py"
@@ -109,3 +111,27 @@ export PATH=$PATH:/usr/local/go/bin
 
 # anaconda
 [ -f /opt/anaconda/etc/profile.d/conda.sh ] && source /opt/anaconda/etc/profile.d/conda.sh
+alias get='sudo pacman -S'
+
+# fnm
+export PATH="/home/juancamr/.local/share/fnm:$PATH"
+eval "`fnm env`"
+
+# bun completions
+[ -s "/home/juancamr/.bun/_bun" ] && source "/home/juancamr/.bun/_bun"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/usr/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/usr/etc/profile.d/conda.sh" ]; then
+        . "/usr/etc/profile.d/conda.sh"
+    else
+        export PATH="/usr/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
