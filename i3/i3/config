@@ -1,0 +1,84 @@
+set $mod Mod4
+set $alt Mod1
+
+font pango:DejaVu Sans Mono 8
+
+floating_modifier $mod
+bindsym $mod+period fullscreen
+bindsym $alt+q kill
+
+# launchers
+bindsym $alt+space exec dmenu_run
+bindsym $mod+Return exec alacritty
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl --min-val=2 -q set 3%-
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl -q set 3%+
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# change orientation
+bindsym $mod+g split h
+bindsym $mod+v split v
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# switch to workspace
+bindsym $alt+3 workspace 1
+bindsym $alt+4 workspace 2
+bindsym $alt+5 workspace 3
+bindsym $alt+6 workspace 4
+
+# move focused container to workspace
+bindsym $alt+Shift+3 move container to workspace 1
+bindsym $alt+Shift+4 move container to workspace 2
+bindsym $alt+Shift+5 move container to workspace 3
+bindsym $alt+Shift+6 move container to workspace 4
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# autostart
+exec --no-startup-id feh --bg-fill ~/Pictures/background/background.jpg
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        bindsym l resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym j resize shrink height 10 px or 10 ppt
+        bindsym h resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+bar {
+        status_command i3status
+}

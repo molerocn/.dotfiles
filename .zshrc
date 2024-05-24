@@ -97,6 +97,7 @@ alias vid="cd ~/Videos"
 alias pom="gnome-pomodoro"
 alias a="l"
 alias get="sudo apt install"
+alias xsession="loginctl terminate-user juancamr"
 
 # anki
 alias apro="python ~/.dotfiles/bin/anki_prompt.py"

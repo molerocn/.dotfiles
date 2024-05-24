@@ -8,7 +8,6 @@ import os, subprocess
 MOD, ALT, SHIFT, CONTROL = "mod4", "mod1", "shift", "control"
 MC, MS, MA, M, A, AS = [MOD, CONTROL], [MOD, SHIFT], [MOD, ALT], [MOD], [ALT], [ALT, SHIFT]
 rh_kbds_wkps = ["h", "t", "n", "s", "c"]
-lh_kbds_wkps = ["a", "o", "e", "u", "q"]
 
 HOME = os.path.expanduser("~")
 
@@ -34,7 +33,6 @@ def manage_volume(qtile, direction: int):
 
 @hook.subscribe.startup_once
 def start_once():
-    os.system(f"feh --randomize --bg-fill {HOME}/Pictures/background/*")
     subprocess.call([HOME + "/.config/qtile/autostart.sh"])
 
 @hook.subscribe.client_new
@@ -49,10 +47,15 @@ alacritty_match = Match(wm_class="Alacritty")
 group_matches = [[], [alacritty_match], [], [], []]
 groups = [Group(name=str(index+1), label=str(index+1), layout="bsp", matches=matches) for index, matches in enumerate(group_matches)]
 keys = []
-for group, keymap_rh, keymap_lh in zip(groups, rh_kbds_wkps, lh_kbds_wkps):
-    keys.extend([ Key(M, keymap_rh, lazy.group[group.name].toscreen()),
-                Key(M, keymap_lh, lazy.group[group.name].toscreen()),
-                 Key(MS, keymap_rh, lazy.window.togroup(group.name), lazy.group[group.name].toscreen())])
+for group, keymap in zip(groups, rh_kbds_wkps):
+    keys.extend([
+                    Key(A, keymap, lazy.group[group.name].toscreen()),
+                    Key(AS, keymap, lazy.window.togroup(group.name), lazy.group[group.name].toscreen())
+                ])
+# for group, keymap_rh, keymap_lh in zip(groups, rh_kbds_wkps, lh_kbds_wkps):
+#     keys.extend([ Key(M, keymap_rh, lazy.group[group.name].toscreen()),
+#                  Key(MS, keymap_rh, lazy.window.togroup(group.name), lazy.group[group.name].toscreen())])
+#                 Key(M, keymap_lh, lazy.group[group.name].toscreen()),
 
 lay = lazy.layout
 movements = [["k", lay.up(), lay.shuffle_up()], ["j", lay.down(), lay.shuffle_down()], ["g", lay.left(), lay.shuffle_left()], ["l", lay.right(), lay.shuffle_right()]]
@@ -74,7 +77,7 @@ keys.extend([
 keys.extend([
     Key(M, "Return", lazy.spawn("alacritty")),
     Key(M, "x", lazy.spawn("archlinux-logout")),
-    Key(M, "d", lazy.spawn("dmenu_run")),
+    Key(A, "space", lazy.spawn("dmenu_run")),
     Key(M, "b", lazy.spawn("firefox")),
     Key(M, "v", lazy.function(lambda qtile: manage_volume(qtile, 1))),
     Key(MS, "v", lazy.function(lambda qtile: manage_volume(qtile, -1))),
