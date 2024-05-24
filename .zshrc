@@ -98,6 +98,7 @@ alias pom="gnome-pomodoro"
 alias a="l"
 alias get="sudo apt install"
 alias xsession="loginctl terminate-user juancamr"
+alias neofetch="neofetch --ascii_distro arch"
 
 # anki
 alias apro="python ~/.dotfiles/bin/anki_prompt.py"

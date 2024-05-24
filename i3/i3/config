@@ -19,6 +19,8 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+b exec firefox
 bindsym $mod+e exec thunar
 bindsym $mod+x exec archlinux-logout
+bindsym $mod+v exec --no-startup-id ~/.local/bin/adjust_volume.sh up
+bindsym $mod+Shift+v exec --no-startup-id ~/.local/bin/adjust_volume.sh down
 
 # change focus
 bindsym $mod+g focus left
@@ -34,7 +36,7 @@ bindsym $mod+Shift+l move right
 
 # change orientation
 bindsym $mod+h split h
-bindsym $mod+v split v
+bindsym $mod+z split v
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
