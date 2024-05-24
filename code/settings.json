@@ -1,0 +1,66 @@
+{
+  "editor.fontFamily": "Cascadia Code",
+  "terminal.integrated.defaultProfile.windows": "Command Prompt",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 15,
+  "editor.lineNumbers": "relative",
+  "workbench.editor.openPositioning": "last",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.rulers": [80],
+  "editor.minimap.enabled": false,
+  "editor.autoClosingQuotes": "never",
+  "editor.autoClosingBrackets": "never",
+  "terminal.integrated.persistentSessionReviveProcess": "never",
+  "workbench.startupEditor": "none",
+  "workbench.sideBar.location": "left",
+  "git.decorations.enabled": false,
+  "extensions.ignoreRecommendations": true,
+  "vim.highlightedyank.enable": true,
+  "vim.highlightedyank.duration": 40,
+  "vim.leader": ",",
+  "vim.scroll": 25,
+  "editor.cursorSurroundingLines": 8,
+  "mojo.modularHomePath": "/home/juancamr/.modular",
+  "vim.insertModeKeyBindingsNonRecursive": [
+    { "before": ["<Esc>"], "after": ["$"] },
+    { "before": ["<C-l>"], "after": ["<Esc>", "A", ";", "<Esc>"] },
+    { "before": ["<C-s>"], "after": ["<Esc>", ":", "w", "<CR>"] },
+    { "before": ["<C-r>"], "after": ["<Esc>", "k", "o"] }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    { "before": ["<Tab>"], "after": [";"] },
+    { "before": [" "], "after": [","] },
+    { "before": ["K"], "commands": [{ "command": "editor.action.showHover" }] },
+    { "before": ["g", "r"], "commands": [{ "command": "references-view.findReferences" }] },
+    { "before": ["<leader>", "c", "a"], "commands": [{ "command": "editor.action.codeAction" }] },
+    { "before": ["<leader>", "d"], "after": ["V", "D", ":", "w", "<CR>"]},
+    { "before": ["<leader>", "r", "e"], "commands": [{ "command": "editor.action.rename" }] },
+    { "before": ["<leader>", "p", "s"], "commands": [{ "command": "workbench.action.findInFiles" }] },
+    { "before": ["<Esc>"], "after": ["$"] },
+    { "before": ["u"], "commands": [{ "command": "undo" }] },
+    { "before": ["<C-r>"], "commands": [{ "command": "redo" }] },
+    { "before": ["<C-s>"], "after": [":", "w", "<CR>"] },
+    { "before": ["s"], "after": [":", "w", "<CR>"] },
+
+    // harpoon
+    { "before": ["<C-h>"], "commands": [{ "command": "workbench.action.openEditorAtIndex1" }] },
+    { "before": ["<C-t>"], "commands": [{ "command": "workbench.action.openEditorAtIndex2" }] },
+    { "before": ["<C-n>"], "commands": [{ "command": "workbench.action.openEditorAtIndex3" }] },
+    { "before": ["<C-m>"], "commands": [{ "command": "workbench.action.openEditorAtIndex4" }] }
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    { "before": ["p"], "after": ["p", "g", "v", "y"] },
+    { "before": ["P"], "commands": ["editor.action.moveLinesUpAction"], "args": { "by": "line", "value": 1 } },
+    { "before": ["E"], "commands": ["editor.action.moveLinesDownAction"], "args": { "by": "line", "value": 1 } },
+    { "before": ["<leader>", "y"], "commands": [{ "command": "editor.action.clipboardCopyAction" }], "after": ["y"] },
+    { "before": ["<leader>", "c", "e"], "commands": [{ "command": "github.copilot.interactiveEditor.explain" }] },
+    { "before": ["<Esc>"], "after": ["$"] },
+    { "before": ["W"], "after": ["<nop>"] }
+  ],
+  "[astro]": { "editor.defaultFormatter": "astro-build.astro-vscode" },
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "terminal.integrated.defaultProfile.linux": "bash",
+}

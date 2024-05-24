@@ -1,4 +1,4 @@
-export ZSH=/usr/share/oh-my-zsh/
+export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="robbyrussell"
 
 plugins=(git)
@@ -7,12 +7,10 @@ if [ -f $ZSH/oh-my-zsh.sh ]; then
   source $ZSH/oh-my-zsh.sh
 fi
 
-source /usr/share/fzf/key-bindings.zsh
 export PAGER='most'
 
-if [ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-  source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/fzf/key-bindings.zsh
 
 setopt GLOB_DOTS
 unsetopt SHARE_HISTORY
@@ -52,7 +50,15 @@ function mind() {
     git push origin main
 }
 
+function vimf() {
+    selected=$(find . -type d \( -name node_modules -o -name .git -o -name __pycache__ \) -prune -o -type f -print | fzf)
+    if [[ -n "$selected" ]]; then
+        nvim "$selected"
+    fi
+}
+
 bindkey -s '^E' 'nvim .\r'
+bindkey -s '^G' 'vimf\r'
 bindkey -s '^F' '~/.local/bin/tmux-sessionizer \r'
 bindkey -r "^S"
 
@@ -89,6 +95,8 @@ alias doc="cd ~/Documents"
 alias pic="cd ~/Pictures"
 alias vid="cd ~/Videos"
 alias pom="gnome-pomodoro"
+alias a="l"
+alias get="sudo apt install"
 
 # anki
 alias apro="python ~/.dotfiles/bin/anki_prompt.py"
@@ -109,29 +117,24 @@ export PATH=$BUN_INSTALL/bin:$PATH
 # go
 export PATH=$PATH:/usr/local/go/bin
 
-# anaconda
-[ -f /opt/anaconda/etc/profile.d/conda.sh ] && source /opt/anaconda/etc/profile.d/conda.sh
-alias get='sudo pacman -S'
-
-# fnm
-export PATH="/home/juancamr/.local/share/fnm:$PATH"
-eval "`fnm env`"
-
 # bun completions
 [ -s "/home/juancamr/.bun/_bun" ] && source "/home/juancamr/.bun/_bun"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/usr/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/home/juancamr/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/usr/etc/profile.d/conda.sh" ]; then
-        . "/usr/etc/profile.d/conda.sh"
+    if [ -f "/home/juancamr/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/juancamr/miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/usr/bin:$PATH"
+        export PATH="/home/juancamr/miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+export PATH="$PATH:/opt/nvim-linux64/bin"
+export MODULAR_HOME="/home/juancamr/.modular"
+export PATH="/home/juancamr/.modular/pkg/packages.modular.com_mojo/bin:$PATH"
