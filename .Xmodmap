@@ -1,31 +1,7 @@
-keycode 24 = apostrophe quotedbl
-keycode 52 = colon semicolon
-
-! caps lock to control
-clear lock
+keycode 94 = Shift_L Shift_L
+keycode 51 = Return Return
+keycode 36 = backslash bar 
+keycode 9 = dollar asciitilde
 clear control
-keycode 66 = Control_L
-add control = Control_L Control_R
-
-! new layer
-keycode 37 = Mode_switch
-
-! movement
-keycode 31 = c C Up
-keycode 46 = n N Right
-keycode 45 = t T Down
-keycode 44 = h H Left
-keycode 30 = g G Home
-keycode 32 = r R End
-keycode 65 = space space Escape
-
-! spanish
-keycode 38 = a A aacute Aacute
-keycode 40 = e E eacute Eacute
-keycode 42 = i I iacute Iacute
-keycode 39 = o O oacute Oacute
-keycode 41 = u U uacute Uacute
-keycode 47 = s S ntilde Ntilde
-keycode 34 = slash question questiondown
-keycode 20 = exclam 8 exclamdown
-
+keycode 37 = Escape
+add control = Control_L

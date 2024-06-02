@@ -7,7 +7,7 @@ set nerdtree
 " scrolloff of 8 lines
 set scrolloff=8
 let g:highlightedyank_highlight_duration = "40"
-let mapleader = " "
+let mapleader = ","
 
 " harpoon
 nmap <C-h> <Action>(GoToTab1)
@@ -16,7 +16,7 @@ nmap <C-n> <Action>(GoToTab3)
 nmap <C-m> <Action>(GoToTab4)
 
 nmap <C-p> <Action>(GotoFile)
-nmap <A-e> <Esc>:NERDTreeFind<CR>
+nmap <leader>v <Esc>:NERDTreeFind<CR>
 nmap <C-b> <Action>(HideAllWindows)
 
 " git
@@ -36,16 +36,15 @@ nmap <leader>ps <Action>(FindInPath)
 nmap gr <Action>(FindUsages)
 
 " save action
-nnoremap <C-s> <Esc>:wa<CR>
-inoremap <C-s> <Esc>:wa<CR>
-vnoremap <C-s> <Esc>:wa<CR>
-nnoremap s :wa<CR>
+nnoremap <C-s> <Esc>:w<CR>
+inoremap <C-s> <Esc>:w<CR>
+vnoremap <C-s> <Esc>:w<CR>
+nnoremap s :w<CR>
+vnoremap s <Esc>:w<CR>
 
 " custom
-vnoremap R :m '<-2<CR>gv=gv
-vnoremap N :m '>+1<CR>gv=gv
-vronemap K k
-vnoremap J j
+vnoremap <C-k> :m '<-2<CR>gv=gv
+vnoremap <C-j> '>+1<CR>gv=gv
 nnoremap <C-l> <Esc>A;<Esc>
 inoremap <C-l> <Esc>A;<Esc>
 nnoremap <C-d> <C-d>zz
@@ -54,5 +53,4 @@ nnoremap n nzzzv
 nnoremap N Nzzzv
 xnoremap p pgvy
 vnoremap <leader>y "+y
-nnoremap <leader>f ofor (int i = 0; i < ; i++)<Esc>F;i
-inoremap <C-r> <Esc>O
+nnoremap <leader>d VD:w<CR>
