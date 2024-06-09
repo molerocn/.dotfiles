@@ -49,6 +49,7 @@ nnoremap <C-l> <Esc>A;<Esc>
 inoremap <C-l> <Esc>A;<Esc>
 nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
+nnoremap <C-z> <Esc>:q<CR>
 nnoremap n nzzzv
 nnoremap N Nzzzv
 xnoremap p pgvy
