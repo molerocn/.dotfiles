@@ -43,8 +43,8 @@ nnoremap s :w<CR>
 vnoremap s <Esc>:w<CR>
 
 " custom
-vnoremap <C-k> :m '<-2<CR>gv=gv
-vnoremap <C-j> '>+1<CR>gv=gv
+vnoremap M :m '<-2<CR>gv=gv
+vnoremap W '>+1<CR>gv=gv
 nnoremap <C-l> <Esc>A;<Esc>
 inoremap <C-l> <Esc>A;<Esc>
 nnoremap <C-d> <C-d>zz
@@ -55,3 +55,5 @@ nnoremap N Nzzzv
 xnoremap p pgvy
 vnoremap <leader>y "+y
 nnoremap <leader>d VD:w<CR>
+nnoremap cio ci"
+nnoremap cie ci(
