@@ -3,6 +3,7 @@ ZSH_THEME="robbyrussell"
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
 alias get='sudo apt install'
+alias put='sudo dpkg -i'
 
 # conda initialize
 __conda_setup="$('/home/juancamr/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
@@ -21,6 +22,7 @@ unset __conda_setup
 [ -s "/home/juancamr/.bun/_bun" ] && source "/home/juancamr/.bun/_bun"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="$PATH:$HOME/.local/go/bin"
 
 function vimf() {
     selected=$(find . -type d \( -name node_modules -o -name .git -o -name __pycache__ \) -prune -o -type f -print | fzf)
@@ -29,10 +31,10 @@ function vimf() {
     fi
 }
 
-bindkey -s '^E' '\025nvim .\r'
-bindkey -s '^G' 'vimf\r'
-bindkey -s '^F' '~/.local/bin/tmux-sessionizer \r'
-bindkey -s '^B' 'tmux a\r'
+bindkey -s '^E' '^U\025nvim .\r'
+bindkey -s '^G' '^Uvimf\r'
+bindkey -s '^F' '^U~/.local/bin/tmux-sessionizer \r'
+bindkey -s '^B' '^Utmux a\r'
 bindkey -r '^S'
 bindkey -r '^R'
 
@@ -53,3 +55,6 @@ unset __conda_setup
 
 alias docsql='mysql -u root -h 172.17.0.2 -p'
 alias notepad="gnome-text-editor"
+alias sc="source ~/.zshrc"
+alias esc="nvim ~/.zshrc"
+export PATH=$HOME/.local/bin:$PATH
