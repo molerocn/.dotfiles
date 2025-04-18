@@ -20,16 +20,17 @@
   { "key": "ctrl+n", "command": "selectNextCodeAction", "when": "codeActionMenuVisible" },
 
   // navigate between panels --------------------------------------------------
-  { "key": "ctrl+g", "command": "workbench.action.navigateLeft" },
-  { "key": "ctrl+l", "command": "-workbench.action.chat.clear", "when": "hasChatProvider && inChat" },
+  {
+    "key": "ctrl+l",
+    "command": "-workbench.action.chat.clear",
+    "when": "hasChatProvider && inChat"
+  },
   { "key": "ctrl+shift+l", "command": "workbench.action.navigateRight", "when": "!panelFocus" },
 
   // open ---------------------------------------------------------------------
   // settings JSON
   { "key": "ctrl+,", "command": "-workbench.action.openSettings" },
   { "key": "ctrl+,", "command": "workbench.action.openSettingsJson" },
-  // terminal
-  { "key": "ctrl+/", "command": "-editor.action.commentLine", "when": "editorTextFocus && !editorReadonly" },
   {
     "key": "ctrl+p",
     "command": "workbench.action.quickOpen",
@@ -53,16 +54,16 @@
   { "key": "ctrl+shift+l", "command": "-selectAllSearchEditorMatches", "when": "inSearchEditor" },
   { "key": "ctrl+shift+l", "command": "workbench.action.closeEditorsToTheRight" }, 
   { "key": "shift+alt+t", "command": "workbench.action.closeOtherEditors" },
-  {
-    "key": "ctrl+tab",
-    "command": "-workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup",
-    "when": "!activeEditorGroupEmpty"
-  },
-  {
-    "key": "ctrl+shift+tab",
-    "command": "-workbench.action.quickOpenNextRecentlyUsedEditorInGroup",
-    "when": "!activeEditorGroupEmpty"
-  },
+  // {
+  //   "key": "ctrl+tab",
+  //   "command": "-workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup",
+  //   "when": "!activeEditorGroupEmpty"
+  // },
+  // {
+  //   "key": "ctrl+shift+tab",
+  //   "command": "-workbench.action.quickOpenNextRecentlyUsedEditorInGroup",
+  //   "when": "!activeEditorGroupEmpty"
+  // },
 
   // copilot
   {
@@ -123,11 +124,6 @@
     "key": "ctrl+c",
     "command": "cancelRenameInput",
     "when": "editorFocus && renameInputVisible"
-  },
-  {
-    "key": "ctrl+y",
-    "command": "editor.action.inlineSuggest.commit",
-    "when": "inlineSuggestionHasIndentationLessThanTabSize && inlineSuggestionVisible && !editorHoverFocused && !editorTabMovesFocus"
   },
   {
     "key": "ctrl+shift+t",
@@ -236,15 +232,11 @@
     "command": "-workbench.action.focusEighthEditorGroup"
   },
   {
-    "key": "ctrl+/",
-    "command": "workbench.action.togglePanel"
-  },
-  {
     "key": "ctrl+j",
     "command": "-workbench.action.togglePanel"
   },
   {
-    "key": "alt+t",
+    "key": "ctrl+oem_2",
     "command": "terminal.focus"
   },
   {
@@ -294,12 +286,8 @@
     }
   },
   {
-    "key": "alt+l",
+    "key": "ctrl+shift+a",
     "command": "git.stageAll"
-  },
-  {
-    "key": "alt+u",
-    "command": "git.unstageAll"
   },
   {
     "key": "ctrl+alt+c",
@@ -487,4 +475,55 @@
     "command": "-workbench.action.terminal.openNativeConsole",
     "when": "!terminalFocus"
   },
+  {
+    "key": "ctrl+y",
+    "command": "acceptSelectedSuggestion",
+    "when": "suggestWidgetHasFocusedSuggestion && suggestWidgetVisible && textInputFocus"
+  },
+  {
+    "key": "d",
+    "command": "explorer.newFolder",
+    "when": "filesExplorerFocus && foldersViewVisible && !inputFocus"
+  },
+  {
+    "key": "alt+w",
+    "command": "workbench.action.closeActiveEditor"
+  },
+  {
+    "key": "ctrl+f",
+    "command": "projectManager.listProjects"
+  },
+  {
+    "key": "shift+alt+p",
+    "command": "-projectManager.listProjects"
+  },
+  {
+    "key": "ctrl+oem_2",
+    "command": "-editor.action.commentLine",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+g",
+    "command": "-workbench.action.terminal.goToRecentDirectory",
+    "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+  },
+  {
+    "key": "ctrl+g",
+    "command": "-workbench.action.gotoLine"
+  },
+  {
+    "key": "ctrl+g",
+    "command": "runCommands",
+    "args":{
+      "commands": [
+        "workbench.action.focusActiveEditorGroup",
+        "workbench.action.closePanel"
+      ],
+    },
+  },
+  {
+    "key": "ctrl+oem_3",
+    "command": "-workbench.action.terminal.toggleTerminal",
+    "when": "terminal.active"
+  }
 ]
