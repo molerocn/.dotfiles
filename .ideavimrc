@@ -44,7 +44,9 @@ vnoremap s <Esc>:w<CR>
 
 " custom
 vnoremap M :m '<-2<CR>gv=gv
-vnoremap W '>+1<CR>gv=gv
+vnoremap B :m '>+1<CR>gv=gv
+vnoremap W <nop>
+nnoremap <Tab> ;
 nnoremap <C-l> <Esc>A;<Esc>
 inoremap <C-l> <Esc>A;<Esc>
 nnoremap <C-d> <C-d>zz
@@ -56,4 +58,8 @@ xnoremap p pgvy
 vnoremap <leader>y "+y
 nnoremap <leader>d VD:w<CR>
 nnoremap cio ci"
+nnoremap dio di"
+nnoremap vio vi"
 nnoremap cie ci(
+nnoremap die di(
+nnoremap vie vi(
