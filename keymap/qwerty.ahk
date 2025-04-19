@@ -1,7 +1,10 @@
 CapsLock::Control
 VKE2::Shift
-}::Enter
+SC028::Enter
+}::SendText("-")
++}::SendText("_")
 Enter::\
++Enter::SendText("|")
 
 !w::#^Left
 !e::#^Right
@@ -102,8 +105,6 @@ x::q
 ++::SendText("^")
 SC01A::/
 +SC01A::?
-SC028::SendText("-")
-+SC028::SendText("_")
 
 ; common shortcuts
 ^v::^v
