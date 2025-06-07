@@ -7,13 +7,18 @@ set nerdtree
 " scrolloff of 8 lines
 set scrolloff=8
 let g:highlightedyank_highlight_duration = "40"
-let mapleader = ","
+let mapleader = " "
 
 " harpoon
-nmap <C-h> <Action>(GoToTab1)
-nmap <C-t> <Action>(GoToTab2)
-nmap <C-n> <Action>(GoToTab3)
-nmap <C-m> <Action>(GoToTab4)
+nmap <C-e> <action>(HarpoonerToggleQuickMenu)
+nmap <leader>a <action>(HarpoonerAddFile)
+
+nmap <C-h> <action>(HarpoonerOpenFile0)
+nmap <C-t> <action>(HarpoonerOpenFile1)
+nmap <C-n> <action>(HarpoonerOpenFile2)
+nmap <C-m> <action>(HarpoonerOpenFile3)
+nmap <leader>4 <action>(HarpoonerOpenFile4)
+nmap <leader>6 <action>(HarpoonerOpenFile5)
 
 nmap <C-p> <Action>(GotoFile)
 nmap <leader>v <Esc>:NERDTreeFind<CR>
@@ -33,6 +38,7 @@ nmap ]d <Action>(GotoNextError)
 nmap <leader>ca <Action>(ShowIntentionActions)
 nmap <leader>re <Action>(RenameElement)
 nmap <leader>ps <Action>(FindInPath)
+nmap <leader>f <Action>(ReformatCode)
 nmap gr <Action>(FindUsages)
 
 " save action
@@ -46,9 +52,6 @@ vnoremap s <Esc>:w<CR>
 vnoremap M :m '<-2<CR>gv=gv
 vnoremap B :m '>+1<CR>gv=gv
 vnoremap W <nop>
-nnoremap <Tab> ;
-nnoremap <C-l> <Esc>A;<Esc>
-inoremap <C-l> <Esc>A;<Esc>
 nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
 nnoremap <C-z> <Esc>:q<CR>
@@ -60,6 +63,11 @@ nnoremap <leader>d VD:w<CR>
 nnoremap cio ci"
 nnoremap dio di"
 nnoremap vio vi"
+nnoremap yio yi"
 nnoremap cie ci(
 nnoremap die di(
 nnoremap vie vi(
+nnoremap yie yi(
+
+set visualbell
+set noerrorbells
