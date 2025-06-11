@@ -3,36 +3,21 @@ ZSH_THEME="robbyrussell"
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
 source /usr/share/doc/fzf/examples/key-bindings.zsh
-alias get='sudo apt install'
-alias put='sudo dpkg -i'
-
-# bun completions
-[ -s "/home/juancamr/.bun/_bun" ] && source "/home/juancamr/.bun/_bun"
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-export PATH="$PATH:$HOME/.local/go/bin"
-
-function vimf() {
-    selected=$(find . -type d \( -name node_modules -o -name .git -o -name __pycache__ \) -prune -o -type f -print | fzf)
-    if [[ -n "$selected" ]]; then
-        nvim "$selected"
-    fi
-}
 
 bindkey -s '^E' '^U\025nvim .\r'
-bindkey -s '^G' '^Uvimf\r'
 bindkey -s '^F' '^U~/.local/bin/tmux-sessionizer \r'
 bindkey -s '^B' '^Utmux a\r'
-bindkey -r '^S'
-# bindkey -r '^R'
-#
+# bindkey -r '^S'
 
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# functions
+function cfile() {
+    archivo=$(find . -type f | fzf)
+    copy < "$archivo"
+}
 
 export ANKI_WAYLAND=1
 
+# aliases
 alias docsql='mysql -u root -h 172.17.0.2 -p'
 alias notepad="gnome-text-editor"
 alias sc="source ~/.zshrc"
@@ -50,4 +35,5 @@ alias paste="wl-paste"
 alias gic="git commit -m"
 alias edge="microsoft-edge-stable"
 alias isthere="sudo dpkg -l | grep "
-alias get="sudo apt install -y "
+alias get='sudo apt install -y'
+alias course="python3 ~/.local/bin/courses.py"
