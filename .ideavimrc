@@ -60,14 +60,12 @@ nnoremap N Nzzzv
 xnoremap p pgvy
 vnoremap <leader>y "+y
 nnoremap <leader>d VD:w<CR>
-nnoremap cio ci"
-nnoremap dio di"
-nnoremap vio vi"
-nnoremap yio yi"
-nnoremap cie ci(
-nnoremap die di(
-nnoremap vie vi(
-nnoremap yie yi(
+nnoremap cie ci"
+nnoremap die di"
+nnoremap vie vi"
+nnoremap yie yi"
+nnoremap <C-l> <Esc>A;<Esc>
+inoremap <C-l> <Esc>A;<Esc>
 
 set visualbell
 set noerrorbells

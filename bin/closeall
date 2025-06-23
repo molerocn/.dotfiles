@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+pkill anki
+pkill obsidian
+pkill android-studio
+pkill youtube-music
+pkill thunderbird
+pkill zotero
+pkill zoom
+pkill firefox
+pkill chrome
+pkill edge

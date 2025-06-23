@@ -21,54 +21,62 @@ let filtersDiv = null;
 let searchDiv = null;
 let brandDiv = null;
 
-const navs = ['d', 'h', 't', 'n', 'm', 'w', 'v'];
+const navs = ['d', 'b', 'h', 't', 'n', 'm', 'w', 'v'];
 let isVisible = true
 let chatDivDefaultWidth = 0;
 let sidebarDivDefaultWidth = 0;
 
 // singleton
 function setup_change_event() {
-    if (divs === null) {
-        divs = document.querySelectorAll('div');
-    }
-    if (chatDiv === null) {
-        chatDiv = Array.from(divs).find(el =>
-            el.getAttribute('aria-label') === 'Chat list');
-    }
+    divs = document.querySelectorAll('div');
+    chatDiv = Array.from(divs).find(el =>
+        el.getAttribute('aria-label') === 'Chat list');
+    isChangeSetup = true
 }
 
 function setup_hide_event() {
-    if (divs === null) {
-        divs = document.querySelectorAll('div');
+    if (!isChangeSetup) {
+        setup_change_event()
     }
-    if (chatDiv === null) {
-        chatDiv = Array.from(divs).find(el =>
-            el.getAttribute('aria-label') === 'Chat list');
+    sidebarDiv = chatDiv.parentElement.parentElement.parentElement.parentElement.parentElement;
+    filtersDiv = Array.from(divs).find(el =>
+        el.getAttribute('aria-label') === 'chat-list-filters');
+    searchDiv = Array.from(divs).find(el =>
+        el.getAttribute('aria-label') === 'Search input textbox');
+    searchDiv = searchDiv.parentElement.parentElement.parentElement.parentElement;
+    buttons = document.querySelectorAll('button');
+    brandDiv = Array.from(buttons).find(el =>
+        el.getAttribute('aria-label') === 'Menu');
+    brandDiv = brandDiv.parentElement.parentElement.parentElement.parentElement.parentElement;
+
+    isHideSetup = true;
+}
+
+// navigation functions
+function navigateToChat(idx) {
+    if (!isChangeSetup) {
+        setup_change_event();
     }
-    if (sidebarDiv === null) {
-        sidebarDiv = chatDiv.parentElement.parentElement.parentElement.parentElement.parentElement;
-    }
-    if (filtersDiv === null) {
-        filtersDiv = Array.from(divs).find(el =>
-            el.getAttribute('aria-label') === 'chat-list-filters');
-    }
-    if (searchDiv === null) {
-        searchDiv = Array.from(divs).find(el =>
-            el.getAttribute('aria-label') === 'Search input textbox');
-        searchDiv = searchDiv.parentElement.parentElement.parentElement.parentElement;
-    }
-    if (buttons === null) {
-        buttons = document.querySelectorAll('button');
-    }
-    if (brandDiv === null) {
-        brandDiv = Array.from(buttons).find(el =>
-            el.getAttribute('aria-label') === 'Menu');
-        brandDiv = brandDiv.parentElement.parentElement.parentElement.parentElement.parentElement;
+
+    if (chatDiv) {
+        const chat = chatDiv.children[idx].children[0].children[0];
+        chat.focus()
+
+        const enterEvent = new KeyboardEvent('keydown', {
+            key: 'Enter',
+            code: 'Enter',
+            keyCode: 13,
+            which: 13,
+            bubbles: true,
+            cancelable: true
+        });
+
+        chat.dispatchEvent(enterEvent);
     }
 }
 
-
 document.addEventListener('keydown', function(e) {
+    // TODO: agregar evento para poder buscar dentro del chat
 
     if (e.ctrlKey && e.key === 'f') {
         e.preventDefault();
@@ -82,9 +90,11 @@ document.addEventListener('keydown', function(e) {
         return;
     }
 
-    if (e.altKey && e.key === 's') {
+    if (e.altKey && e.key === 's' && !e.ctrlKey) {
         e.preventDefault();
-        setup_hide_event();
+        if (!isHideSetup) {
+            setup_hide_event();
+        }
 
         if (chatDivDefaultWidth === 0) {
             chatDivDefaultWidth = chatDiv.offsetWidth;
@@ -111,26 +121,12 @@ document.addEventListener('keydown', function(e) {
 
     // cambiar entre cada chat igual que en mi terminal
     for (let i = 0; i < navs.length; i++) {
+        // TODO: usar keycode en vez de letra KeyK en vez de k
         if (e.altKey && e.key === navs[i]) {
             e.preventDefault();
-            setup_change_event();
-
-            if (chatDiv) {
-                const chat = chatDiv.children[i].children[0].children[0];
-                chat.focus()
-
-                const enterEvent = new KeyboardEvent('keydown', {
-                    key: 'Enter',
-                    code: 'Enter',
-                    keyCode: 13,
-                    which: 13,
-                    bubbles: true,
-                    cancelable: true
-                });
-
-                chat.dispatchEvent(enterEvent);
-            }
+            navigateToChat(i);
             return;
         }
     }
 }, false);
+

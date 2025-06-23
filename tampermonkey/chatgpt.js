@@ -10,6 +10,8 @@
 // ==/UserScript==
 
 let buttonCloseSidebar = null;
+let chats = null;
+const navs = ['h', 't', 'n', 'm', 'w', 'v'];
 
 document.addEventListener('keydown', function(e) {
 
@@ -38,4 +40,15 @@ document.addEventListener('keydown', function(e) {
         return;
     }
 
+    for (let i = 0; i < navs.length; i++) {
+        if (e.altKey && e.key === navs[i]) {
+            e.preventDefault();
+            if (chats === null) {
+                const history = document.getElementById("history");
+                chats = history.querySelectorAll("a");
+            }
+
+            chats[i].click();
+        }
+    }
 });
