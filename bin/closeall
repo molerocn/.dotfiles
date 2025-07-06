@@ -10,3 +10,4 @@ pkill zoom
 pkill firefox
 pkill chrome
 pkill edge
+pkill zen

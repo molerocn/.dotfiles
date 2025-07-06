@@ -51,6 +51,9 @@ alias turnoff="closeall; shutdown now"
 alias launcher="wofi --normal-window --dmenu --width 400 --height 200 --xoffset 760 --yoffset 440 -S drun"
 alias puml="java -jar ~/Downloads/plantuml.jar"
 
+alias light="sed -i 's/github_dark_default/github_light/' ~/.config/alacritty/alacritty.toml"
+alias dark="sed -i 's/github_light/github_dark_default/' ~/.config/alacritty/alacritty.toml"
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 #[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 ## Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
