@@ -1,11 +1,10 @@
+export JAVA_HOME=/usr/lib/jvm/java-21-openjdk
 export ZSH="$HOME/.oh-my-zsh"
 export PATH=$HOME/.local/bin:$PATH
 
 ZSH_THEME="robbyrussell"
-# ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(
     git
-    # zsh-syntax-highlighting
     zsh-autosuggestions
 )
 source $ZSH/oh-my-zsh.sh
@@ -16,15 +15,6 @@ bindkey -s '^F' '^U~/.local/bin/tmux-sessionizer \r'
 bindkey -s '^B' '^Utmux a\r'
 bindkey -r '^S'
 bindkey '^ ' autosuggest-accept
-
-# functions
-# function cfile() {
-#     file=$(fd . --type f | fzf)
-#     wl-copy < "$file"
-#     return 1
-# }
-
-export ANKI_WAYLAND=1
 
 # aliases
 alias docsql='mysql -u root -h 172.17.0.2 -p'
@@ -50,17 +40,26 @@ alias material="nautilus ~/personal/segunda_mente/Universidad/zMaterial/"
 alias turnoff="closeall; shutdown now"
 alias launcher="wofi --normal-window --dmenu --width 400 --height 200 --xoffset 760 --yoffset 440 -S drun"
 alias puml="java -jar ~/Downloads/plantuml.jar"
-
 alias light="sed -i 's/github_dark_default/github_light/' ~/.config/alacritty/alacritty.toml"
 alias dark="sed -i 's/github_light/github_dark_default/' ~/.config/alacritty/alacritty.toml"
+alias open="xdg-open"
+alias kandroid="pkill studio; pkill qemu; pkill java"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-#[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-## Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-## Initialization code that may require console input (password prompts, [y/n]
-## confirmations, etc.) must go above this block; everything else may go below.
-#if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-#fi
+function obsmat() {
+  local pdf_file
+  pdf_file=$(find ~/Downloads -maxdepth 1 -type f -iname "*.pdf" -printf "%T@ %p\n" | \
+             sort -nr | \
+             cut -d' ' -f2- | \
+             fzf --prompt="PDF: ")
 
-export TSTRUCT_TOKEN="tstruct_eyJ2ZXJzaW9uIjoxLCJkYXRhIjp7InVzZXJJRCI6NzEwNzMyMTQsInVzZXJFbWFpbCI6ImNhcmxvcy5tb2xlcm8ubkBnbWFpbC5jb20iLCJ0ZWFtSUQiOjE0OTY0Nzc4OTUsInRlYW1OYW1lIjoiY2FybG9zLm1vbGVyby5uQGdtYWlsLmNvbSdzIHRlYW0iLCJyZW5ld2FsRGF0ZSI6IjIwMjUtMDYtMjRUMjE6NDY6NTAuOTA5MDUzMjUyWiIsImNyZWF0ZWRBdCI6IjIwMjUtMDYtMTdUMjE6NDY6NTAuOTA5MDU0MDg1WiJ9LCJzaWduYXR1cmUiOiIzQmFSOURydkdBeGp2VHpqeUZJSXFMZTQ3ZkdJNkdQSUlON1RPckZoSjcxbkh0bWYwZ1p0ZXVzM0JOampaYmtYcFhJdjJpbHBMbkdBY082OGJZV3VDdz09In0="
+  [[ -z "$pdf_file" ]] && return 1
+
+  local dest_dir_base=~/personal/segunda_mente/Universidad/zMaterial/
+  local folder
+  folder=$(find "$dest_dir_base" -maxdepth 1 -mindepth 1 -type d | fzf --prompt="course: ")
+
+  [[ -z "$folder" ]] && return 1
+
+  cp "$pdf_file" "$folder"
+}
+

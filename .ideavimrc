@@ -67,5 +67,6 @@ nnoremap yie yi"
 nnoremap <C-l> <Esc>A;<Esc>
 inoremap <C-l> <Esc>A;<Esc>
 
+set ignorecase
 set visualbell
 set noerrorbells
