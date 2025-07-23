@@ -1,8 +1,6 @@
 {
   "workbench.editor.showTabs": "single",
   "editor.cursorStyle": "block",
-  "editor.autoClosingBrackets": "never",
-  "editor.autoClosingQuotes": "never",
   "workbench.activityBar.location": "hidden",
   "window.menuBarVisibility": "hidden",
 

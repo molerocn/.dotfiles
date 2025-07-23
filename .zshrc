@@ -13,7 +13,9 @@ source /usr/share/doc/fzf/examples/key-bindings.zsh
 bindkey -s '^E' '^U\025nvim .\r'
 bindkey -s '^F' '^U~/.local/bin/tmux-sessionizer \r'
 bindkey -s '^B' '^Utmux a\r'
-bindkey -r '^S'
+bindkey -s '^O' '^Uobsi \r'
+bindkey -s '^S' '^Uankiex \r'
+# bindkey -r '^S'
 bindkey '^ ' autosuggest-accept
 
 # aliases
@@ -44,22 +46,4 @@ alias light="sed -i 's/github_dark_default/github_light/' ~/.config/alacritty/al
 alias dark="sed -i 's/github_light/github_dark_default/' ~/.config/alacritty/alacritty.toml"
 alias open="xdg-open"
 alias kandroid="pkill studio; pkill qemu; pkill java"
-
-function obsmat() {
-  local pdf_file
-  pdf_file=$(find ~/Downloads -maxdepth 1 -type f -iname "*.pdf" -printf "%T@ %p\n" | \
-             sort -nr | \
-             cut -d' ' -f2- | \
-             fzf --prompt="PDF: ")
-
-  [[ -z "$pdf_file" ]] && return 1
-
-  local dest_dir_base=~/personal/segunda_mente/Universidad/zMaterial/
-  local folder
-  folder=$(find "$dest_dir_base" -maxdepth 1 -mindepth 1 -type d | fzf --prompt="course: ")
-
-  [[ -z "$folder" ]] && return 1
-
-  cp "$pdf_file" "$folder"
-}
-
+alias ankiex="/usr/bin/python3 ~/.local/bin/anki_import.py"

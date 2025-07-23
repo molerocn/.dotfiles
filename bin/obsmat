@@ -1,0 +1,37 @@
+#!/bin/bash
+
+vault_root=~/personal/segunda_mente/
+zmaterial_path="$vault_root/Universidad/zMaterial"
+
+# Seleccionar PDF más reciente desde ~/Downloads
+pdf_file=$(find ~/Downloads -maxdepth 1 -type f -iname "*.pdf" -printf "%T@ %p\n" | \
+    sort -nr | \
+    cut -d' ' -f2- | \
+    fzf --prompt="PDF: ")
+
+[[ -z "$pdf_file" ]] && exit 1
+
+# Listar carpetas relativas desde zMaterial (sin incluir segunda_mente/)
+all_dirs=$(find "$zmaterial_path" -mindepth 1 -maxdepth 1 -type d)
+relative_dirs=$(printf "%s\n" "$all_dirs" | sed "s|$vault_root||" | sort)
+selected=$(printf "%s\n" "$relative_dirs" | fzf --prompt="course: ")
+[[ -z "$selected" ]] && exit 1
+
+# Ruta absoluta a carpeta seleccionada
+folder="$vault_root$selected"
+
+# Copiar el PDF con su mismo nombre
+filename=$(basename "$pdf_file")
+cp "$pdf_file" "$folder"
+
+# Ruta relativa al vault para Advanced URI
+rel_path="$selected/$filename"
+
+# Codificar doblemente
+encoded_path=$(python3 -c "import urllib.parse; print(urllib.parse.quote(urllib.parse.quote('$rel_path')))")
+
+# Abrir en Obsidian en una pestaña nueva, sin logs
+xdg-open "obsidian://advanced-uri?filepath=$encoded_path&newtab=true" >/dev/null 2>&1
+
+clear
+

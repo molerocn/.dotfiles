@@ -1,0 +1,72 @@
+#!/bin/bash
+
+vault=~/personal/segunda_mente/
+
+while true; do
+    # Recopilar todas las carpetas válidas
+    all_dirs=$(find "$vault" -type d \
+        -not -path '*/.git*' \
+        -not -path '*/.obsidian*' \
+        -not -path '*/.*' \
+        -not -path '*/zAssets*' \
+        -not -path '*/zMaterial*')
+
+    # Mostrar rutas relativas ordenadas (todas las carpetas)
+    selected=$(printf "%s\n" "$all_dirs" | sed "s|$vault||" | sort | fzf --prompt="folder: ")
+    [[ -z "$selected" ]] && exit 1
+
+    folder="$vault$selected"
+
+    # Mostrar contenido: archivos .md (sin extensión) y subcarpetas
+    clear
+    echo "Contenido de '$selected':"
+    {
+        # Mostrar carpetas
+        find "$folder" -mindepth 1 -maxdepth 1 -type d -printf "%f/\n"
+        # Mostrar archivos .md sin extensión
+        find "$folder" -mindepth 1 -maxdepth 1 -type f -name "*.md" -printf "%f\n" | sed 's/\.md$//'
+    } | sort
+
+    # Prompt
+    echo -n "Note: "
+    read -r input
+
+    # Si empieza con 'folder '
+    if [[ "$input" =~ ^[Ff]older[[:space:]]+(.+) ]]; then
+        subfolder="${BASH_REMATCH[1]}"
+        mkdir -p "$folder/$subfolder"
+        continue
+
+    # Si escribe "delete"
+    elif [[ "$input" =~ ^[Dd]elete$ ]]; then
+        echo "U sure '$selected'? (y/N): "
+        read -r confirm
+        if [[ "$confirm" =~ ^[Yy]$ ]]; then
+            rm -rf "$folder"
+            continue
+        else
+            continue
+        fi
+
+    elif [[ "$input" =~ ^[Bb]ack$ ]]; then
+        continue
+
+    else
+        # Crear nota
+        newfile="$folder/$input.md"
+        touch "$newfile"
+
+        # Construir ruta relativa (sin .md)
+        rel_path="$selected/$input"
+        
+        # Codificar dos veces usando Python (requiere python3)
+        encoded_path=$(python3 -c "import urllib.parse; print(urllib.parse.quote(urllib.parse.quote('$rel_path')))")
+
+        # Llamar Advanced URI vía xdg-open
+        xdg-open "obsidian://advanced-uri?filepath=$encoded_path&openmode=true" >/dev/null 2>&1
+        clear
+
+        break
+    fi
+done
+
