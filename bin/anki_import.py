@@ -113,6 +113,8 @@ if __name__ == "__main__":
         escribir_cards_txt(resultado, ruta_salida=output)
         os.system(f"nvim {output}")
         refactorizar_cards_txt(output, prefijo)
-        os.system(f"cat {output} | wl-copy")
-        os.system(f"anki {output}")
-
+        os.system(f"cat {output}")
+        respuesta = input("Deseas continuar? (y/n): ")
+        if respuesta == "y":
+            os.system(f"cat {output} | wl-copy") # pequenio backup
+            os.system(f"anki {output}")

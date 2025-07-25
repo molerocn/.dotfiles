@@ -64,7 +64,7 @@ while true; do
 
         # Llamar Advanced URI vía xdg-open
         xdg-open "obsidian://advanced-uri?filepath=$encoded_path&openmode=true" >/dev/null 2>&1
-        clear
+        echo "Abriendo apunte en obsidian..."
 
         break
     fi
