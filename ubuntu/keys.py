@@ -2,7 +2,7 @@ import os
 import sys
 from io import open
 
-dvorak_maps = ["a", "apostrophe", "o", ["comma", "w"], "e", "period"]
+dvorak_maps = ["a", "apostrophe", "o", ["comma", "comma"], "e", "period"]
 custom_maps = ["a", "q", "o", "w", "e", "l"]
 qwerty_maps = ["a", "q", "s", "w", "d", "e"]
 colemak_maps = ["a", "q", "r", "w", "s", "f"]

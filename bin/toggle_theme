@@ -1,0 +1,21 @@
+#!/bin/bash
+
+current_scheme=$(gsettings get org.gnome.desktop.interface color-scheme)
+
+restart_anki() {
+    if pgrep -x "anki" > /dev/null; then
+        pkill -9 anki
+        sleep 1
+        anki &
+    fi
+}
+
+if [[ "$current_scheme" == "'prefer-dark'" ]]; then
+    sed -i 's/github_dark_default/github_light/' ~/.config/alacritty/alacritty.toml
+    gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
+    restart_anki
+else
+    sed -i 's/github_light/github_dark_default/' ~/.config/alacritty/alacritty.toml
+    gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+    restart_anki
+fi

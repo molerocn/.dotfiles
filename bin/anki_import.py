@@ -1,85 +1,25 @@
 import subprocess
-import re
 import os
+import re
+import sys
 
+is_first_time = True
 
-def extraer_bloques_con_br(ruta_archivo):
-    with open(ruta_archivo, 'r', encoding='utf-8') as archivo:
-        lineas = archivo.readlines()
-
-    bloques = []
-    bloque_actual = []
-
-    for linea in lineas:
-        linea_sin_nl = linea.rstrip('\n')
-
-        # Detectar si es línea principal (empieza sin indentación con "-" o número seguido de punto)
-        if re.match(r'^\s*[-\d]+\.\s|\s*-\s', linea_sin_nl) and not linea.startswith((' ', '\t')):
-            if bloque_actual:
-                bloques.append('<br>'.join(bloque_actual))
-                bloque_actual = []
-
-            texto = re.sub(r'^\s*([-]|\d+\.)\s*', '', linea_sin_nl)
-            bloque_actual.append(texto)
-
-        elif linea.startswith((' ', '\t')):
-            texto = linea_sin_nl.lstrip()
-            bloque_actual.append(texto)
-
-    if bloque_actual:
-        bloques.append('<br>'.join(bloque_actual))
-
-    return bloques
-
-
-def escribir_cards_txt(lista, ruta_salida):
-    with open(ruta_salida, 'w', encoding='utf-8') as archivo:
-        for i, item in enumerate(lista):
-            # Condición especial solo para el primer elemento
-            if i == 0 and '<br>' not in item:
-                archivo.write('\n')  # salto de línea antes del primer bloque si no es lista
-
-            if '<br>' in item:
-                partes = item.split('<br>', 1)
-                header = partes[0].strip()
-                sublista = partes[1].strip()
-
-                # Convertir primera letra del header a minúscula
-                if header:
-                    header = header[0].lower() + header[1:] + "?"
-
-                archivo.write(header + '\n')
-                archivo.write(sublista)
-            else:
-                archivo.write(item.strip())
-
-            if i < len(lista) - 1:
-                if '<br>' in lista[i+1]:
-                    archivo.write('\n\n')  # dos saltos de línea entre bloques
-                else:
-                    archivo.write('\n\n\n')  # dos saltos de línea entre bloques
-
-
-def refactorizar_cards_txt(ruta_archivo, prefijo):
-
-    with open(ruta_archivo, 'r', encoding='utf-8') as archivo:
-        contenido = archivo.read()
-
-    # Separar bloques por doble salto de línea o más
-    bloques_raw = re.split(r'\n{2,}', contenido.strip())
-
-    # Refactorizar bloques
-    bloques_refactorizados = []
-    for bloque in bloques_raw:
-        lineas = [linea.strip() for linea in bloque.strip().splitlines() if linea.strip()]
-        if lineas:
-            bloques_refactorizados.append(f"{prefijo} " + '|'.join(lineas))
-
-    # Reescribir el archivo
-    with open(ruta_archivo, 'w', encoding='utf-8') as archivo:
-        for bloque in bloques_refactorizados:
-            archivo.write(bloque + '\n')
-
+def seleccionar_deck_con_fzf():
+    comando = r"""
+    cd ~/personal/segunda_mente && \
+    find . -type d \
+    -not -path "*/.git*" \
+    -not -path "*/.obsidian*" \
+    -not -path "*/__pycache__*" \
+    -not -path "*/.*" \
+    | sed 's|^\./||' \
+    | grep -v '^$' \
+    | sed 's|/|::|g' \
+    | fzf
+    """
+    resultado = subprocess.run(comando, shell=True, stdout=subprocess.PIPE, text=True)
+    return resultado.stdout.strip()
 
 def seleccionar_archivo_md():
     comando_fzf = r"""
@@ -96,25 +36,133 @@ def seleccionar_archivo_md():
     return os.path.expanduser(ruta_completa) if ruta_completa else None
 
 
-# Variables de entrada y salida
+def normalizar_indentacion(linea):
+    return linea.replace('\t', '    ')
+
+
+def procesar_md_respetando_indentacion_desde_lineas(lineas):
+    tarjetas = []
+    clave_actual = None
+    lista_actual = []
+
+    for linea in lineas:
+        original = linea.rstrip('\n')
+        original = normalizar_indentacion(original)
+
+        match_linea_simple = re.match(r'^\s*-\s*(.*?)\s*::\s*(.+)$', original)
+        if match_linea_simple:
+            clave = match_linea_simple.group(1).strip()
+            valor = match_linea_simple.group(2).strip()
+            tarjetas.append(f"{clave}|{valor}")
+            continue
+
+        match_inicio_lista = re.match(r'^\s*-\s*(.*?)\s*::\s*$', original)
+        if match_inicio_lista:
+            if clave_actual and lista_actual:
+                tarjetas.append(f"{clave_actual}|" + '<br>'.join(lista_actual))
+                lista_actual = []
+            clave_actual = match_inicio_lista.group(1).strip()
+            continue
+
+        match_item_lista = re.match(r'^(\s*)(-|\d+\.)\s+(.+)', original)
+        if clave_actual and match_item_lista:
+            espacios = match_item_lista.group(1)
+            bullet = match_item_lista.group(2)
+            item = match_item_lista.group(3).strip()
+
+            nivel_espacios = len(espacios) // 4
+
+            # El primer subnivel (nivel_espacios == 1) no lleva indentación
+            if nivel_espacios <= 1:
+                lista_actual.append(f"{bullet} {item}")
+            else:
+                indent = '&nbsp;' * ((nivel_espacios - 1) * 4)
+                lista_actual.append(f"{indent}{bullet} {item}")
+
+    # nivel_indentacion = len(espacios) // 4
+    # espacios = espacios[4:] if nivel_indentacion > 0 else ''
+    # lista_actual.append(f"{espacios}{bullet} {item}")
+
+    if clave_actual and lista_actual:
+        tarjetas.append(f"{clave_actual}|" + '<br>'.join(lista_actual))
+
+    return tarjetas
+
+
+def guardar_tarjetas(tarjetas, ruta_salida, deck):
+    with open(ruta_salida, 'a', encoding='utf-8') as archivo:
+        if is_first_time:
+            archivo.write(f"#separator:pipe\n#html:true\n#deck:{deck}\n")
+        for tarjeta in tarjetas:
+            count = tarjeta.count("$")
+            if count >= 2:
+                for i in range(count):
+                    if i == 0 or i % 2 == 0:
+                        tarjeta = tarjeta.replace("$", "\\(", 1)
+                    else:
+                        tarjeta = tarjeta.replace("$", "\\)", 1)
+            archivo.write(f"{tarjeta}\n")
+
+
 if __name__ == "__main__":
-    entrada = seleccionar_archivo_md()
-    output = os.path.expanduser("~/Documents/cards.txt")
+    try:
+        output = os.path.expanduser("~/Documents/cards.txt")
+        open(output, 'w').close()
 
-    if entrada:
-        # Obtener nombre del archivo sin extensión
-        nombre_archivo = os.path.splitext(os.path.basename(entrada))[0]
+        if len(sys.argv) > 1:
+            # Modo con argumento: usar portapapeles y elegir deck
+            deck_name = seleccionar_deck_con_fzf()
+            if not deck_name:
+                print("No se seleccionó ningún deck.")
+                exit(1)
 
-        # Extraer prefijo (hasta el primer espacio o hasta el punto final si aplica)
-        match = re.match(r'^([^\s]+)', nombre_archivo)
-        prefijo = match.group(1) if match else ''
+            proceso = subprocess.run("wl-paste", shell=True, stdout=subprocess.PIPE, text=True)
+            contenido = proceso.stdout
 
-        resultado = extraer_bloques_con_br(entrada)
-        escribir_cards_txt(resultado, ruta_salida=output)
-        os.system(f"nvim {output}")
-        refactorizar_cards_txt(output, prefijo)
-        os.system(f"cat {output}")
-        respuesta = input("Deseas continuar? (y/n): ")
-        if respuesta == "y":
-            os.system(f"cat {output} | wl-copy") # pequenio backup
+            if not contenido.strip():
+                print("El portapapeles está vacío.")
+                exit(1)
+
+            lineas = contenido.splitlines()
+            tarjetas = procesar_md_respetando_indentacion_desde_lineas(lineas)
+            guardar_tarjetas(tarjetas, output, deck_name)
+
+            os.system("clear")
+            os.system(f"cat {output}")
+            continuar = input("¿Deseas continuar? (y/n): ").strip().lower()
+            if continuar != 'y':
+                exit()
+
             os.system(f"anki {output}")
+
+        else:
+            # Modo original con selección de archivo
+            while True:
+                entrada = seleccionar_archivo_md()
+                if not entrada:
+                    print("No se seleccionó ningún archivo.")
+                    exit()
+
+                with open(entrada, 'r', encoding='utf-8') as archivo:
+                    lineas = archivo.readlines()
+
+                tarjetas = procesar_md_respetando_indentacion_desde_lineas(lineas)
+
+                relativa = entrada.split("segunda_mente/")[-1]
+                partes = relativa.split(os.sep)[:-1]
+                deck = "::".join(partes)
+
+                guardar_tarjetas(tarjetas, output, deck)
+
+                os.system("clear")
+                os.system(f"cat {output}")
+                continuar = input("¿Deseas agregar otro archivo? (y/n): ").strip().lower()
+                is_first_time = False
+
+                if continuar != 'y':
+                    break
+
+            os.system(f"anki {output}")
+    except KeyboardInterrupt:
+        print("")
+

@@ -1,6 +1,7 @@
 export JAVA_HOME=/usr/lib/jvm/java-21-openjdk
 export ZSH="$HOME/.oh-my-zsh"
 export PATH=$HOME/.local/bin:$PATH
+export ANKI_WAYLAND=1
 
 ZSH_THEME="robbyrussell"
 plugins=(
@@ -13,7 +14,7 @@ source /usr/share/doc/fzf/examples/key-bindings.zsh
 bindkey -s '^E' '^U\025nvim .\r'
 bindkey -s '^F' '^U~/.local/bin/tmux-sessionizer \r'
 bindkey -s '^B' '^Utmux a\r'
-bindkey -s '^O' '^Uobsi \r'
+bindkey -s '^O' '^Ucreate_note \r'
 bindkey -s '^S' '^Uankiex \r'
 # bindkey -r '^S'
 bindkey '^ ' autosuggest-accept
@@ -28,8 +29,6 @@ alias at="ls -lahtr"
 alias vim="nvim"
 alias mountwin="sudo mount /dev/nvme0n1p3 /mnt/win"
 alias win="cd /mnt/win"
-alias opull="cd ~/personal/segunda_mente/; git pull origin main"
-alias opush="cd ~/personal/segunda_mente/; git pull origin main; git add .; git commit -m '$(date "+%Y-%m-%d %H:%M:%S")'; git push origin main"
 alias copy="wl-copy"
 alias paste="wl-paste"
 alias gic="git commit -m"
@@ -47,3 +46,5 @@ alias dark="sed -i 's/github_light/github_dark_default/' ~/.config/alacritty/ala
 alias open="xdg-open"
 alias kandroid="pkill studio; pkill qemu; pkill java"
 alias ankiex="/usr/bin/python3 ~/.local/bin/anki_import.py"
+
+export SYNC_USER1=carlos.molero.n@gmail.com:09241688jc

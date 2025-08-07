@@ -54,7 +54,7 @@ while true; do
     else
         # Crear nota
         newfile="$folder/$input.md"
-        touch "$newfile"
+        printf "\n\n---\n\n" > "$newfile"
 
         # Construir ruta relativa (sin .md)
         rel_path="$selected/$input"

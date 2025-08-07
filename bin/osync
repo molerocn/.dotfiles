@@ -1,9 +1,0 @@
-#!/bin/bash
-
-cd ~/personal/segunda_mente/
-git pull origin main
-git add .
-git commit -m 'laptop - $(date "+%Y-%m-%d %H:%M:%S")'
-git push origin main
-
-notify-send "Obsidian" "Apuntes sincronizados"

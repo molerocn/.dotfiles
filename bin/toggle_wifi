@@ -1,0 +1,10 @@
+#!/bin/bash
+estado=$(nmcli radio wifi)
+if [ "$estado" = "enabled" ]; then
+    notify-send "Wifi toggle" "El Wifi se apago correctamente"
+    nmcli radio wifi off
+else
+    notify-send "Wifi toggle" "Wifi ON"
+    nmcli radio wifi on
+fi
+
