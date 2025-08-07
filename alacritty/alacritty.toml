@@ -34,7 +34,7 @@ x = 0
 y = 0
 
 [general]
-import = [ "~/.config/alacritty/themes/github_dark_default.toml"]
+import = [ "~/.config/alacritty/themes/github_light.toml"]
 
 [window]
 decorations = "None"

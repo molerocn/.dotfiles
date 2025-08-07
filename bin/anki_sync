@@ -2,7 +2,7 @@
 
 # notify-send "Anki" "Comenzando sincronización..."
 
-nmcli radio wifi on
+nmcli radio wifi on && nmcli connection up "XNet 5G"
 sleep 5
 curl localhost:8765 -X POST -d '{
   "action": "sync",
