@@ -12,3 +12,4 @@ pkill chrome
 pkill edge
 pkill zen
 pkill gnome-pomodoro
+pkill evince

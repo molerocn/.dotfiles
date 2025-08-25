@@ -11,9 +11,10 @@ ln -s ~/personal/.dotfiles/alacritty ~/.config/
 ln -s ~/personal/.dotfiles/code/keybindings.json ~/.config/Code/User/
 ln -s ~/personal/.dotfiles/code/settings.json ~/.config/Code/User/
 # scripts
-ln -s ~/personal/.dotfiles/bin/ ~/.local/
+# ln -s ~/personal/.dotfiles/bin/ ~/.local/
 # keyd
 mkdir -p /etc/keyd/
 ln -s ~/personal/.dotfiles/ubuntu/default.conf /etc/keyd/
 # gnome settings
-dconf load / < ~/personal/.dotfiles/ubuntu/settings.dconf
+dconf load /org/gnome/settings-daemon/plugins/media-keys/ < ~/personal/.dotfiles/gnome/custom_shortcuts.dconf
+dconf load /org/gnome/desktop/wm/keybindings/ < ~/personal/.dotfiles/gnome/desktop_keybindings.dconf

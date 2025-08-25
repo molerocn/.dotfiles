@@ -1,0 +1,12 @@
+#!/bin/bash
+
+CURRENT=$(gsettings get org.gnome.desktop.input-sources sources)
+
+if [[ "$CURRENT" == *"us+dvorak"* ]]; then
+    gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'latam')]"
+    sudo systemctl stop keyd
+else
+    gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us+dvorak')]"
+    sudo systemctl start keyd
+fi
+

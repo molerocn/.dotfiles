@@ -90,7 +90,7 @@ document.addEventListener('keydown', function(e) {
         return;
     }
 
-    if (e.altKey && e.key === 's' && !e.ctrlKey) {
+    if (e.altKey && e.key === 'c' && !e.ctrlKey) {
         e.preventDefault();
         if (!isHideSetup) {
             setup_hide_event();
@@ -120,13 +120,13 @@ document.addEventListener('keydown', function(e) {
     }
 
     // cambiar entre cada chat igual que en mi terminal
-    for (let i = 0; i < navs.length; i++) {
-        // TODO: usar keycode en vez de letra KeyK en vez de k
-        if (e.altKey && e.key === navs[i]) {
-            e.preventDefault();
-            navigateToChat(i);
-            return;
-        }
-    }
+    // for (let i = 0; i < navs.length; i++) {
+    //     // TODO: usar keycode en vez de letra KeyK en vez de k
+    //     if (e.altKey && e.key === navs[i]) {
+    //         e.preventDefault();
+    //         navigateToChat(i);
+    //         return;
+    //     }
+    // }
 }, false);
 

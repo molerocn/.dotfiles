@@ -1,0 +1,33 @@
+[/]
+control-center=['<Super>i']
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7/']
+
+[custom-keybindings/custom2]
+binding='<Shift><Alt>s'
+command='/home/molerocn/personal/.dotfiles/bin/obsidian_sync'
+name='obsidian sync'
+
+[custom-keybindings/custom3]
+binding='<Shift><Alt>w'
+command='/home/molerocn/personal/.dotfiles/bin/toggle_wifi'
+name='Toggle wifi'
+
+[custom-keybindings/custom4]
+binding='<Shift><Alt>n'
+command='/home/molerocn/personal/.dotfiles/bin/anki_sync'
+name='anki sync'
+
+[custom-keybindings/custom5]
+binding='<Shift><Alt>l'
+command='/home/molerocn/personal/.dotfiles/bin/toggle_theme manual'
+name='Toggle theme'
+
+[custom-keybindings/custom6]
+binding='<Shift><Alt>u'
+command='nautilus Downloads'
+name='downloads folder'
+
+[custom-keybindings/custom7]
+binding='<Alt>j'
+command='/home/molerocn/personal/.dotfiles/bin/layout_switcher'
+name='layout switcher'

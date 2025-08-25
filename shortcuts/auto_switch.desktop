@@ -1,0 +1,6 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Terminal=false
+Type=Application
+Name=Switch theme
+Exec=/home/molerocn/personal/.dotfiles/bin/toggle_theme automatic

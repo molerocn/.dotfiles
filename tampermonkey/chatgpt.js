@@ -2,31 +2,17 @@
 // @name         Chatgpt actions
 // @namespace    http://tampermonkey.net/
 // @version      2025-05-25
-// @description  try to take over the world!
+// @description  Enfocar chat y escribir la letra solo una vez (sin capturar Ctrl/Alt/Shift/Meta)
 // @author       You
 // @match        https://chatgpt.com/*
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @grant        none
 // ==/UserScript==
 
-let buttonCloseSidebar = null;
-let chats = null;
-const navs = ['h', 't', 'n', 'm', 'w', 'v'];
-
 document.addEventListener('keydown', function(e) {
-
-    if (e.ctrlKey && e.key === 'f') {
-        e.preventDefault();
-        const altKEvent = new KeyboardEvent("keydown", {
-            key: "k",
-            code: "KeyK",
-            altKey: true,
-            ctrlKey: true,
-            bubbles: true
-        });
-        document.dispatchEvent(altKEvent)
-        return;
-    }
+    const tag = document.activeElement.tagName.toLowerCase();
+    const isEditable = document.activeElement.isContentEditable;
+    if (tag === "input" || tag === "textarea" || isEditable) return;
 
     if (e.ctrlKey && e.key === 'b') {
         e.preventDefault();
@@ -40,15 +26,18 @@ document.addEventListener('keydown', function(e) {
         return;
     }
 
-    for (let i = 0; i < navs.length; i++) {
-        if (e.altKey && e.key === navs[i]) {
-            e.preventDefault();
-            if (chats === null) {
-                const history = document.getElementById("history");
-                chats = history.querySelectorAll("a");
-            }
+    // Ignorar si se usan modificadores
+    if (e.ctrlKey || e.altKey || e.metaKey || e.shiftKey) return;
 
-            chats[i].click();
+    if (/^[a-zA-Z]$/.test(e.key)) {
+        const chatInput = document.querySelector('[contenteditable="true"]');
+
+        if (chatInput) {
+            e.preventDefault();
+
+            chatInput.focus();
+            document.execCommand("insertText", false, e.key);
         }
     }
 });
+
