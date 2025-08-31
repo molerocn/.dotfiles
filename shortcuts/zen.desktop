@@ -1,0 +1,8 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Terminal=false
+Type=Application
+Name=Zen
+Exec=/usr/bin/zen
+Icon=/usr/lib/zen/browser/chrome/icons/default/default128.png
+StartupWMClass=zen

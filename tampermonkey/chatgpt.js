@@ -3,7 +3,7 @@
 // @namespace    http://tampermonkey.net/
 // @version      2025-05-25
 // @description  Enfocar chat y escribir la letra solo una vez (sin capturar Ctrl/Alt/Shift/Meta)
-// @author       You
+// @author       molerocn
 // @match        https://chatgpt.com/*
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @grant        none

@@ -90,8 +90,9 @@ document.addEventListener('keydown', function(e) {
         return;
     }
 
-    if (e.altKey && e.key === 'c' && !e.ctrlKey) {
+    if (e.altKey && e.key === 'r' && !e.ctrlKey) {
         e.preventDefault();
+        // ocultar el div izquierdo
         if (!isHideSetup) {
             setup_hide_event();
         }
@@ -103,6 +104,7 @@ document.addEventListener('keydown', function(e) {
             sidebarDivDefaultWidth = sidebarDiv.offsetWidth;
         }
         if (isVisible) {
+            showGreenFlag()
             chatDiv.style.maxWidth = '94px';
             sidebarDiv.style.maxWidth = '96px'
             filtersDiv.style.display = 'none'
@@ -110,12 +112,42 @@ document.addEventListener('keydown', function(e) {
             brandDiv.style.display = 'none';
             isVisible = false;
         } else {
+            for (let i = 0; i < chatDiv.children.length; i++) {
+                const chat = chatDiv.children[i]
+                chat.style.backgroundColor = '';
+            }
             chatDiv.style.maxWidth = `${chatDivDefaultWidth}px`;
             sidebarDiv.style.maxWidth = `${sidebarDivDefaultWidth}px`;
             filtersDiv.style.display = 'flex'
             searchDiv.style.display = 'block'
             brandDiv.style.display = 'flex'
             isVisible = true;
+        }
+
+        // mostrar un circulo izquierdo si cuenta con mensajes
+
+    }
+    function showGreenFlag() {
+        if (!isChangeSetup) {
+            setup_change_event();
+        }
+
+        for (let i = 0; i < chatDiv.children.length; i++) {
+            const chat = chatDiv.children[i]
+            // Solo spans que tengan aria-label (más eficiente)
+            const spans = chat.querySelectorAll('span[aria-label]');
+
+            // buscar la palabra "unread" como palabra completa (case-insensitive)
+            const tieneUnread = Array.from(spans).some(span => {
+                const label = span.getAttribute('aria-label');
+                return typeof label === 'string' && /\bunread\b/i.test(label.trim());
+            });
+
+            if (tieneUnread) {
+                chat.style.backgroundColor = 'green';
+            } else {
+                chat.style.backgroundColor = '';
+            }
         }
     }
 

@@ -2,6 +2,7 @@ export JAVA_HOME=/usr/lib/jvm/java-21-openjdk
 export ZSH="$HOME/.oh-my-zsh"
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/personal/.dotfiles/bin:$PATH
+export USBS=/run/media/molerocn
 export ANKI_WAYLAND=1
 
 ZSH_THEME="robbyrussell"
@@ -53,3 +54,7 @@ alias usboff="udisksctl unmount -b /dev/sda1; udisksctl power-off -b /dev/sda"
 alias book="open ~/Documents/libros/fundamentos\ matematicos/mml-without-margin.pdf &"
 alias usbs="cd /run/media/molerocn/; ls -lah"
 alias supercp="rsync -ah --progress"
+alias jlab="/opt/JupyterLab/jupyterlab-desktop"
+alias mlrc="mlr --csv"
+alias mlrcs='mlr --csv --ifs=";"'
+alias cpwd='pwd | copy'

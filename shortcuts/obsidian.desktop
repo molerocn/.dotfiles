@@ -1,0 +1,9 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Terminal=false
+Type=Application
+Name=Obsidian
+Exec=/usr/lib/obsidian/Obsidian-1.8.10.AppImage %u
+Icon=/usr/lib/obsidian/obsidian.png
+StartupWMClass=obsidian
+MimeType=x-scheme-handler/obsidian;
