@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Obtener estado actual del adaptador Bluetooth
+estado=$(bluetoothctl show | grep "Powered" | awk '{print $2}')
+
+if [ "$estado" = "yes" ]; then
+    # Apagar Bluetooth
+    bluetoothctl power off
+    notify-send "Bluetooth toggle" "El Bluetooth se apagó correctamente"
+else
+    # Encender Bluetooth
+    bluetoothctl power on
+    notify-send "Bluetooth toggle" "Bluetooth activado"
+fi

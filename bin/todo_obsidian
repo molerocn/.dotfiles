@@ -1,0 +1,26 @@
+#!/bin/bash
+
+TODO_FILE="$HOME/personal/second-brain/Todo/Todo.md"
+DONE_FILE="$HOME/personal/second-brain/Todo/Done.md"
+
+if [ ! -f "$TODO_FILE" ]; then
+    exit 1
+fi
+
+if [ ! -f "$DONE_FILE" ]; then
+    touch "$DONE_FILE"
+fi
+
+completed=$(grep "\[x\]" "$TODO_FILE")
+
+if [ -z "$completed" ]; then
+    exit 0
+fi
+
+{ 
+    echo "$completed"
+    cat "$DONE_FILE"
+} > tmp_done.md && mv tmp_done.md "$DONE_FILE"
+
+grep -v "\[x\]" "$TODO_FILE" > tmp_todo.md && mv tmp_todo.md "$TODO_FILE"
+

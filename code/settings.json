@@ -5,12 +5,12 @@
   // "window.menuBarVisibility": "hidden",
   // "editor.fontLigatures": true,
 
-  "editor.fontSize": 16,
+  "editor.fontSize": 17,
   "window.zoomLevel": 1,
-  "editor.fontFamily": "Jetbrains Mono",
-  // "editor.lineNumbers": "relative",
+  "editor.fontFamily": "Fira Code",
+  "editor.lineNumbers": "relative",
   "workbench.editor.openPositioning": "last",
-  // "editor.rulers": [80],
+  "editor.rulers": [80],
   "editor.minimap.enabled": false,
   // "git.decorations.enabled": false,
   // "extensions.ignoreRecommendations": true,
@@ -59,8 +59,8 @@
   ],
   "vim.visualModeKeyBindingsNonRecursive": [
     { "before": ["p"], "after": ["p", "g", "v", "y"] },
-    { "before": ["B"], "commands": ["editor.action.moveLinesDownAction"], "args": { "by": "line", "value": 1 } },
-    { "before": ["M"], "commands": ["editor.action.moveLinesUpAction"], "args": { "by": "line", "value": 1 } },
+    { "before": ["B"], "commands": ["editor.action.moveLinesDownAction"], "args": { "by": "line", "value": 1 }},
+    { "before": ["M"], "commands": ["editor.action.moveLinesUpAction"], "args": { "by": "line", "value": 1 }},
     { "before": ["<leader>", "y"], "after": ["<C-c>"]},
     { "before": ["<leader>", "c", "e"], "commands": [{ "command": "github.copilot.interactiveEditor.explain" }] },
     { "before": ["W"], "after": ["<nop>"] },
@@ -69,4 +69,5 @@
   // "python.defaultInterpreterPath": "/bin/python",
   "window.autoDetectColorScheme": true,
   "python.defaultInterpreterPath": "/bin/python",
+  "editor.codeLens": false,
 }

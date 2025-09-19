@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# Verificar si hay alguna ventana de Zenity con --info abierta
+# if pgrep -af zenity | grep -- "--info" > /dev/null; then
+#     # Cerrar todas las ventanas de Zenity tipo --info
+#     pgrep -af zenity | grep -- "--info" | awk '{print $1}' | xargs kill
+#     exit 0
+# fi
+
+# Obtener porcentaje de batería
+BATERIA=$(upower -i $(upower -e | grep BAT) | grep -E "percentage" | awk '{print $2}')
+
+# Estado de Wi-Fi
+WIFI=$(nmcli radio wifi)
+if [ "$WIFI" = "enabled" ]; then
+    WIFI_ESTADO="ON"
+else
+    WIFI_ESTADO="OFF"
+fi
+
+# Estado de Bluetooth
+BT_ESTADO=$(bluetoothctl show | grep "Powered" | awk '{print $2}')
+if [ "$BT_ESTADO" = "yes" ]; then
+    BT_ESTADO="ON"
+else
+    BT_ESTADO="OFF"
+fi
+
+# Volumen actual
+# VOLUMEN=$(amixer get Master | grep -oP '\d+%' | head -1)
+
+notify-send "Overview" "$BATERIA, $WIFI_ESTADO, $BT_ESTADO"
+# Mostrar ventana Zenity por 3 segundos
+# zenity --info \
+#        --title="Estado del sistema" \
+#        --text="Batería: $BATERIA
+# Wifi: $WIFI_ESTADO
+# Bluetooth: $BT_ESTADO"

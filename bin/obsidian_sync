@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # notify-send "Obsidian" "Comenzando sincronización..."
-cd ~/personal/segunda_mente/ || { notify-send "Obsidian (Error)" "No se pudo acceder al directorio"; exit 1; }
+cd ~/personal/second-brain/ || { notify-send "Obsidian (Error)" "No se pudo acceder al directorio"; exit 1; }
 
 # Ejecutar git pull y guardar su salida
 pull_output=$(git pull origin main 2>&1)

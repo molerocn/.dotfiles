@@ -27,7 +27,7 @@ document.addEventListener('keydown', function(e) {
     }
 
     // Ignorar si se usan modificadores
-    if (e.ctrlKey || e.altKey || e.metaKey || e.shiftKey) return;
+    if (e.ctrlKey || e.altKey || e.metaKey) return;
 
     if (/^[a-zA-Z]$/.test(e.key)) {
         const chatInput = document.querySelector('[contenteditable="true"]');

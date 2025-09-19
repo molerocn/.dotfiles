@@ -1,6 +1,16 @@
 [/]
 control-center=['<Super>i']
-custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7/']
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom8/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom9/']
+
+[custom-keybindings/custom0]
+binding='<Shift><Alt>e'
+command='/bin/python /home/molerocn/personal/.dotfiles/bin/eventos.py'
+name='show events'
+
+[custom-keybindings/custom1]
+binding='<Super>a'
+command='/home/molerocn/personal/.dotfiles/bin/settings_overview'
+name='show overview'
 
 [custom-keybindings/custom2]
 binding='<Shift><Alt>s'
@@ -10,7 +20,7 @@ name='obsidian sync'
 [custom-keybindings/custom3]
 binding='<Shift><Alt>w'
 command='/home/molerocn/personal/.dotfiles/bin/toggle_wifi'
-name='Toggle wifi'
+name='toggle wifi'
 
 [custom-keybindings/custom4]
 binding='<Shift><Alt>n'
@@ -20,7 +30,7 @@ name='anki sync'
 [custom-keybindings/custom5]
 binding='<Shift><Alt>l'
 command='/home/molerocn/personal/.dotfiles/bin/toggle_theme manual'
-name='Toggle theme'
+name='toggle theme'
 
 [custom-keybindings/custom6]
 binding='<Shift><Alt>u'
@@ -28,6 +38,16 @@ command='nautilus Downloads'
 name='downloads folder'
 
 [custom-keybindings/custom7]
-binding='<Alt>j'
+binding='<Alt>k'
 command='/home/molerocn/personal/.dotfiles/bin/layout_switcher'
 name='layout switcher'
+
+[custom-keybindings/custom8]
+binding='<Shift><Alt>b'
+command='/home/molerocn/personal/.dotfiles/bin/toggle_bluetooth'
+name='toggle bluetooth'
+
+[custom-keybindings/custom9]
+binding='<Super>Return'
+command='alacritty'
+name='terminal'

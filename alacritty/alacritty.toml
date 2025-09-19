@@ -14,19 +14,19 @@ TERM = "xterm-256color"
 size = 17
 
 [font.bold]
-family = "Cascadia Code"
+family = "Fira Code"
 style = "Bold"
 
 [font.bold_italic]
-family = "Cascadia Code"
+family = "Fira Code"
 style = "Bold Italic"
 
 [font.italic]
-family = "Cascadia Code"
+family = "Fira Code"
 style = "Italic"
 
 [font.normal]
-family = "Cascadia Code"
+family = "Fira Code"
 style = "Regular"
 
 [window.padding]

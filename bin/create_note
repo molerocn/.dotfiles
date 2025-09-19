@@ -1,6 +1,6 @@
 #!/bin/bash
 
-vault=~/personal/segunda_mente/
+vault=~/personal/second-brain/
 
 while true; do
     # Recopilar todas las carpetas válidas

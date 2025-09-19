@@ -1,58 +1,33 @@
-from ics import Calendar
+# mostrar_eventos.py
+import json
 from datetime import date
 import subprocess
 
-ics_files = [
-    "/home/molerocn/Documents/eventos.ics",
-    "/home/molerocn/Documents/festivos.ics"
-]
+with open("/home/molerocn/Documents/eventos.json", "r") as f:
+    eventos = json.load(f)
 
 hoy = date.today()
-eventos = []
+procesados = []
 
-# Procesar múltiples archivos .ics
-for ics_file in ics_files:
-    with open(ics_file, "r") as f:
-        content = f.read()
+for ev in eventos:
+    dt = date.fromisoformat(ev["fecha"])
+    dias = (dt - hoy).days
+    if dias >= 0:
+        procesados.append((ev["nombre"], dt, dias))
 
-    # Separar los múltiples VCALENDAR y procesarlos
-    calendars = content.split("BEGIN:VCALENDAR")
+procesados = sorted(procesados, key=lambda x: x[1])[:6]
 
-    for block in calendars:
-        if not block.strip():
-            continue
-        cal_text = "BEGIN:VCALENDAR" + block
-        c = Calendar(cal_text)
-
-        for event in c.events:
-            dt = event.begin.date()
-            dias_faltantes = (dt - hoy).days
-            if dias_faltantes >= 0:
-                # Guardamos también la fecha para mostrar día/mes
-                eventos.append((event.name, dt, dias_faltantes))
-
-# Ordenar por días faltantes y quedarse con los 5 más cercanos
-eventos = sorted(eventos, key=lambda x: x[1])[:5]
-
-# Mostrar en consola
-# for nombre, fecha, dias in eventos:
-#     print(
-#         f"{nombre}: {fecha.strftime('%d/%m')} "
-#         f"{'(hoy)' if dias == 0 else '(falta 1 día)' if dias == 1 else f'(faltan {dias} días)'}"
-#     )
-
-# Crear el mensaje de notificación con zenity
-if eventos:
+if procesados:
     mensaje = "\n".join([
-        f"{nombre} ({fecha.strftime('%d/%m')}, "
+        f"{nombre} ({fecha.strftime('%A %d/%m')}, "
         f"{'hoy)' if dias == 0 else 'mañana)' if dias == 1 else f'faltan {dias} días)'}"
-        for nombre, fecha, dias in eventos
+        for nombre, fecha, dias in procesados
     ])
 
     subprocess.run([
         "zenity",
         "--info",
-        "--width=350",  # ancho de la ventana en píxeles
+        "--width=450",
         "--title=Eventos",
         f"--text={mensaje}"
     ])

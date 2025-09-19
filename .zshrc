@@ -1,8 +1,10 @@
+setopt NO_NOMATCH # no mostrar errores tras no coincidir con ? o *
 export JAVA_HOME=/usr/lib/jvm/java-21-openjdk
 export ZSH="$HOME/.oh-my-zsh"
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/personal/.dotfiles/bin:$PATH
 export USBS=/run/media/molerocn
+export WIN=/mnt/win
 export ANKI_WAYLAND=1
 
 ZSH_THEME="robbyrussell"
@@ -14,18 +16,13 @@ source $ZSH/oh-my-zsh.sh
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 
 bindkey -s '^E' '^U\025nvim .\r'
+bindkey -s '^Y' '^Unautilus . > /dev/null 2>&1 & \r'
 bindkey -s '^F' '^U~/personal/.dotfiles/bin/tmux-sessionizer \r'
 bindkey -s '^B' '^Utmux a\r'
 bindkey -s '^O' '^Ucreate_note \r'
 # bindkey -s '^S' '^Uankiex \r'
 bindkey -r '^S'
 bindkey '^ ' autosuggest-accept
-
-function paste_clipboard() {
-    LBUFFER+=$(wl-paste)
-}
-zle -N paste_clipboard
-bindkey '^V' paste_clipboard
 
 # aliases
 alias docsql='mysql -u root -h 172.17.0.2 -p'
@@ -36,7 +33,6 @@ alias a="ls -lah"
 alias at="ls -lahtr"
 alias vim="nvim"
 alias mountwin="sudo mount /dev/nvme0n1p3 /mnt/win"
-alias win="cd /mnt/win"
 alias copy="wl-copy"
 alias paste="wl-paste"
 alias gic="git commit -m"
@@ -58,3 +54,21 @@ alias jlab="/opt/JupyterLab/jupyterlab-desktop"
 alias mlrc="mlr --csv"
 alias mlrcs='mlr --csv --ifs=";"'
 alias cpwd='pwd | copy'
+alias balsamiq="wine $WIN/Program\ Files/Balsamiq\ Mockups/Balsamiq\ Mockups\ 3.exe"
+alias epaste="echo $(paste)"
+alias open='nohup xdg-open >/dev/null 2>&1'
+# alias tre="trans -b en:es"
+# alias tr="trans -b es:en"
+
+# my nasty functions
+function mkdirc() {
+    mkdir $1
+    cd $1
+}
+function te() {
+    trans -b en:es "$*"
+}
+
+function ts() {
+    trans -b es:en "$*"
+}

@@ -2,6 +2,7 @@
 
 MODE=$1  # Primer argumento: "manual" o "automatic"
 CONFIG_FILE="$HOME/.config/alacritty/alacritty.toml"
+TMUX_CONFIG_FILE="$HOME/.tmux.conf"
 
 restart_anki() {
     if pgrep -x "anki" > /dev/null; then
@@ -13,20 +14,24 @@ restart_anki() {
 
 set_light() {
     sed -i 's/github_dark_default/github_light/' "$CONFIG_FILE"
+    sed -i 's/#131313/#ECECEC/' "$TMUX_CONFIG_FILE"
+    sed -i 's/#D4D4D4/#2B2B2B/' "$TMUX_CONFIG_FILE"
+    tmux source ~/.tmux.conf
     gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
     restart_anki
-    echo "🌞 Light mode activado"
 }
 
 set_dark() {
     sed -i 's/github_light/github_dark_default/' "$CONFIG_FILE"
+    sed -i 's/#ECECEC/#131313/' "$TMUX_CONFIG_FILE"
+    sed -i 's/#2B2B2B/#D4D4D4/' "$TMUX_CONFIG_FILE"
+    tmux source ~/.tmux.conf
     gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
     restart_anki
-    echo "🌙 Dark mode activado"
 }
 
+current_scheme=$(gsettings get org.gnome.desktop.interface color-scheme)
 if [[ "$MODE" == "manual" ]]; then
-    current_scheme=$(gsettings get org.gnome.desktop.interface color-scheme)
     if [[ "$current_scheme" == "'prefer-dark'" ]]; then
         set_light
     else
@@ -35,9 +40,13 @@ if [[ "$MODE" == "manual" ]]; then
 elif [[ "$MODE" == "automatic" ]]; then
     hour=$(date +%H)
     if (( hour >= 8 && hour < 17 )); then
-        set_light
+        if [[ "$current_scheme" == "'prefer-dark'" ]]; then
+            set_light
+        fi
     else
-        set_dark
+        if [[ "$current_scheme" == "'prefer-light'" ]]; then
+            set_dark
+        fi
     fi
 else
     echo "Uso: $0 [manual|automatic]"

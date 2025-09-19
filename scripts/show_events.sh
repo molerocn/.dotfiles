@@ -1,0 +1,1 @@
+syncevolution --print-databases

@@ -90,7 +90,7 @@ document.addEventListener('keydown', function(e) {
         return;
     }
 
-    if (e.altKey && e.key === 'r' && !e.ctrlKey) {
+    if (e.altKey && e.key === 's' && !e.ctrlKey) {
         e.preventDefault();
         // ocultar el div izquierdo
         if (!isHideSetup) {

@@ -7,7 +7,7 @@ is_first_time = True
 
 def seleccionar_deck_con_fzf():
     comando = r"""
-    cd ~/personal/segunda_mente && \
+    cd ~/personal/second-brain && \
     find . -type d \
     -not -path "*/.git*" \
     -not -path "*/.obsidian*" \
@@ -23,13 +23,13 @@ def seleccionar_deck_con_fzf():
 
 def seleccionar_archivo_md():
     comando_fzf = r"""
-    find ~/personal/segunda_mente/ -type f -name '*.md' -print0 \
+    find ~/personal/second-brain/ -type f -name '*.md' -print0 \
     | xargs -0 stat --format '%Y %n' \
     | sort -nr \
     | cut -d' ' -f2- \
-    | sed 's|.*/personal/segunda_mente/||' \
+    | sed 's|.*/personal/second-brain/||' \
     | fzf \
-    | sed 's|^|~/personal/segunda_mente/|'
+    | sed 's|^|~/personal/second-brain/|'
     """
     resultado = subprocess.run(comando_fzf, shell=True, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, text=True)
     ruta_completa = resultado.stdout.strip()
@@ -148,7 +148,7 @@ if __name__ == "__main__":
 
                 tarjetas = procesar_md_respetando_indentacion_desde_lineas(lineas)
 
-                relativa = entrada.split("segunda_mente/")[-1]
+                relativa = entrada.split("second-brain/")[-1]
                 partes = relativa.split(os.sep)[:-1]
                 deck = "::".join(partes)
 
