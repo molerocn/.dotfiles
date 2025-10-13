@@ -13,21 +13,21 @@ restart_anki() {
 }
 
 set_light() {
-    sed -i 's/github_dark_default/github_light/' "$CONFIG_FILE"
+    # sed -i 's/github_dark_default/github_light/' "$CONFIG_FILE"
     sed -i 's/#131313/#ECECEC/' "$TMUX_CONFIG_FILE"
     sed -i 's/#D4D4D4/#2B2B2B/' "$TMUX_CONFIG_FILE"
     tmux source ~/.tmux.conf
     gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
-    restart_anki
+    # restart_anki
 }
 
 set_dark() {
-    sed -i 's/github_light/github_dark_default/' "$CONFIG_FILE"
+    # sed -i 's/github_light/github_dark_default/' "$CONFIG_FILE"
     sed -i 's/#ECECEC/#131313/' "$TMUX_CONFIG_FILE"
     sed -i 's/#2B2B2B/#D4D4D4/' "$TMUX_CONFIG_FILE"
     tmux source ~/.tmux.conf
     gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
-    restart_anki
+    # restart_anki
 }
 
 current_scheme=$(gsettings get org.gnome.desktop.interface color-scheme)
@@ -38,8 +38,8 @@ if [[ "$MODE" == "manual" ]]; then
         set_dark
     fi
 elif [[ "$MODE" == "automatic" ]]; then
-    hour=$(date +%H)
-    if (( hour >= 8 && hour < 17 )); then
+    hour=$((10#$(date +%H)))
+    if (( hour >= 6 && hour < 17 )); then
         if [[ "$current_scheme" == "'prefer-dark'" ]]; then
             set_light
         fi

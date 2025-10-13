@@ -3,6 +3,6 @@
 Terminal=false
 Type=Application
 Name=Zen
-Exec=/usr/bin/zen
-Icon=/usr/lib/zen/browser/chrome/icons/default/default128.png
+Exec=/home/molerocn/.local/bin/zen
+Icon=/home/molerocn/.local/lib/zen/browser/chrome/icons/default/default128.png
 StartupWMClass=zen

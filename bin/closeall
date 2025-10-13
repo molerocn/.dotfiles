@@ -11,5 +11,6 @@ pkill firefox
 pkill chrome
 pkill edge
 pkill zen
+gnome-pomodoro --reset
 pkill gnome-pomodoro
 pkill evince

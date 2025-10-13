@@ -5,13 +5,13 @@ rm ~/.zshrc
 ln -s ~/personal/.dotfiles/.zshrc ~/
 # setup tmux
 ln -s ~/personal/.dotfiles/.tmux.conf ~/
-# alacritty
-ln -s ~/personal/.dotfiles/alacritty ~/.config/
+# kitty
+ln -s ~/personal/.dotfiles/kitty ~/.config/
 # visual studio code
 ln -s ~/personal/.dotfiles/code/keybindings.json ~/.config/Code/User/
 ln -s ~/personal/.dotfiles/code/settings.json ~/.config/Code/User/
-# scripts
-# ln -s ~/personal/.dotfiles/bin/ ~/.local/
+# autostart script
+ln -s ~/personal/.dotfiles/shortcuts/autostart.desktop ~/.config/autostart/
 # keyd
 mkdir -p /etc/keyd/
 ln -s ~/personal/.dotfiles/ubuntu/default.conf /etc/keyd/

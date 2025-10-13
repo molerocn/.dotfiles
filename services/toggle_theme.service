@@ -1,0 +1,10 @@
+[Unit]
+Description=Ejecutar toggle_theme
+After=graphical-session.target
+Wants=graphical-session.target
+
+[Service]
+Type=oneshot
+ExecStart=/home/molerocn/personal/.dotfiles/bin/toggle_theme automatic
+Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/%U/bus
+Environment=XDG_RUNTIME_DIR=/run/user/%U

@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # notify-send "Obsidian" "Comenzando sincronización..."
-cd ~/personal/second-brain/ || { notify-send "Obsidian (Error)" "No se pudo acceder al directorio"; exit 1; }
+cd ~/personal/second-brain/ || { zenity --info --text "No se pudo acceder al directorio"; exit 1; }
+zenity --progress --title "Obsidian" --text="Syncing notes..." --pulsate --no-cancel &
 
 # Ejecutar git pull y guardar su salida
 pull_output=$(git pull origin main 2>&1)
@@ -17,10 +18,13 @@ push_output=$(git push origin main 2>&1)
 push_status=$?
 
 # Verificar errores
+pkill zenity
 if [[ $pull_status -ne 0 || $push_status -ne 0 ]]; then
-    notify-send "Obsidian (Error)" "Error al sincronizar"
+    zenity --info --title "Obsidian" --text "Error while sync"
     exit 1
 fi
 
 # Notificación final de éxito
-notify-send "Obsidian" "Apuntes sincronizados"
+zenity --info --title "Obsidian" --text "Notes synced" &
+sleep 1
+pkill zenity

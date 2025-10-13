@@ -3,7 +3,7 @@
 Terminal=false
 Type=Application
 Name=Obsidian
-Exec=/usr/lib/obsidian/Obsidian-1.8.10.AppImage %u
-Icon=/usr/lib/obsidian/obsidian.png
+Exec=/home/molerocn/.local/bin/obsidian %u
+Icon=/home/molerocn/.local/lib/obsidian/obsidian.png
 StartupWMClass=obsidian
 MimeType=x-scheme-handler/obsidian;

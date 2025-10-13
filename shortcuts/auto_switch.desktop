@@ -1,6 +1,0 @@
-#!/usr/bin/env xdg-open
-[Desktop Entry]
-Terminal=false
-Type=Application
-Name=Switch theme
-Exec=sh -c "/home/molerocn/personal/.dotfiles/bin/todo_obsidian; /home/molerocn/personal/.dotfiles/bin/toggle_theme automatic; /usr/bin/python3 /home/molerocn/personal/.dotfiles/scripts/gnome_resume_listener.py &"

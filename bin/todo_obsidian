@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TODO_FILE="$HOME/personal/second-brain/Todo/Todo.md"
+TODO_FILE="$HOME/personal/second-brain/Todo/To Do.md"
 DONE_FILE="$HOME/personal/second-brain/Todo/Done.md"
 
 if [ ! -f "$TODO_FILE" ]; then

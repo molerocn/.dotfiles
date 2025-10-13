@@ -1,0 +1,7 @@
+#!/bin/bash
+
+playertcl pause
+sleep 5
+gnome-pomodoro --reset
+sudo rtcwake -u -m mem -s 1200
+mpv --loop /home/molerocn/Music/alarm.mp3 &

@@ -10,8 +10,9 @@ if [[ -z $selected ]]; then
     exit 0
 fi
 
-selected_name=$(basename "$selected" | tr . _)
 tmux_running=$(pgrep tmux)
+selected_name=$(basename "$selected" | tr . _)
+selected=$(realpath -e "$selected" 2>/dev/null || realpath "$selected" 2>/dev/null || printf "%s" "$selected")
 
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
     tmux new-session -s $selected_name -c $selected 
@@ -22,4 +23,6 @@ if ! tmux has-session -t=$selected_name 2> /dev/null; then
     tmux new-session -ds $selected_name -c $selected 
 fi
 
+# prueba
+tmux set-environment -t $selected_name SESSION_ROOT "$selected"
 tmux switch-client -t $selected_name

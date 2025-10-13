@@ -1,0 +1,11 @@
+[Unit]
+Description=Timer para ejecutar toggle_theme
+
+[Timer]
+OnCalendar=06:01
+OnCalendar=17:01
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+

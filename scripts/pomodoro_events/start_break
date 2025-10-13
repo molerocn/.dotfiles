@@ -1,0 +1,6 @@
+#!/bin/bash
+
+playertcl pause
+sleep 5
+sudo rtcwake -u -m mem -s 295
+mpv --loop /home/molerocn/Music/alarm.mp3 &

@@ -1,9 +1,0 @@
-#!/usr/bin/env xdg-open
-[Desktop Entry]
-Terminal=false
-Type=Application
-Name=Todoist
-Exec=/home/molerocn/.local/lib/todoist/todoist.AppImage
-Icon=/home/molerocn/.local/lib/todoist/todoist.png
-StartupWMClass=todoist
-MimeType=x-scheme-handler/todoist;

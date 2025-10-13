@@ -70,4 +70,5 @@
   "window.autoDetectColorScheme": true,
   "python.defaultInterpreterPath": "/bin/python",
   "editor.codeLens": false,
+  "github.copilot.nextEditSuggestions.enabled": true,
 }

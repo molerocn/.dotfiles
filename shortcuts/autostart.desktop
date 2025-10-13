@@ -1,0 +1,6 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Terminal=false
+Type=Application
+Name=Autostart
+Exec=/home/molerocn/personal/.dotfiles/scripts/autostart
