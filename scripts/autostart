@@ -2,19 +2,19 @@
 export DOTFILES="$HOME/personal/.dotfiles"
 export PATH="$HOME/.local/bin:$DOTFILES/bin:$PATH"
 
-# necesario para poder pausar pomodoro en caso de suspension
-export DISPLAY=:0
-export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u)/bus
-
 zen &
+kitty -e tmux &
 obsidian &
 anki &
-kitty -e tmux &
 todo_obsidian &
 toggle_theme automatic &
+copyq &
 
-python3 $DOTFILES/scripts/pomodoro.py &
+# necesario para poder pausar pomodoro en caso de suspension
+# export DISPLAY=:0
+# export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u)/bus
 python3 $DOTFILES/scripts/gnome_resume_listener.py &
+# python3 $DOTFILES/scripts/pomodoro.py &
 (
     sleep 8
     python3 $DOTFILES/bin/eventos.py &

@@ -18,3 +18,5 @@ ln -s ~/personal/.dotfiles/ubuntu/default.conf /etc/keyd/
 # gnome settings
 dconf load /org/gnome/settings-daemon/plugins/media-keys/ < ~/personal/.dotfiles/gnome/custom_shortcuts.dconf
 dconf load /org/gnome/desktop/wm/keybindings/ < ~/personal/.dotfiles/gnome/desktop_keybindings.dconf
+gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 25 # 30 default
+gsettings set org.gnome.desktop.peripherals.keyboard delay 300 # 500 default

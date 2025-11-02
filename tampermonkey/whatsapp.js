@@ -19,7 +19,7 @@ let isHideSetup = false;
 let sidebarDiv = null;
 let filtersDiv = null;
 let searchDiv = null;
-let brandDiv = null;
+// let brandDiv = null;
 
 const navs = ['d', 'b', 'h', 't', 'n', 'm', 'w', 'v'];
 let isVisible = true
@@ -45,9 +45,9 @@ function setup_hide_event() {
         el.getAttribute('aria-label') === 'Search input textbox');
     searchDiv = searchDiv.parentElement.parentElement.parentElement.parentElement;
     buttons = document.querySelectorAll('button');
-    brandDiv = Array.from(buttons).find(el =>
-        el.getAttribute('aria-label') === 'Menu');
-    brandDiv = brandDiv.parentElement.parentElement.parentElement.parentElement.parentElement;
+    // brandDiv = Array.from(buttons).find(el =>
+    //     el.getAttribute('aria-label') === 'Menu');
+    // brandDiv = brandDiv.parentElement.parentElement.parentElement.parentElement.parentElement;
 
     isHideSetup = true;
 }
@@ -109,7 +109,7 @@ document.addEventListener('keydown', function(e) {
             sidebarDiv.style.maxWidth = '96px'
             filtersDiv.style.display = 'none'
             searchDiv.style.display = 'none';
-            brandDiv.style.display = 'none';
+            // brandDiv.style.display = 'none';
             isVisible = false;
         } else {
             for (let i = 0; i < chatDiv.children.length; i++) {
@@ -120,7 +120,7 @@ document.addEventListener('keydown', function(e) {
             sidebarDiv.style.maxWidth = `${sidebarDivDefaultWidth}px`;
             filtersDiv.style.display = 'flex'
             searchDiv.style.display = 'block'
-            brandDiv.style.display = 'flex'
+            // brandDiv.style.display = 'flex'
             isVisible = true;
         }
 

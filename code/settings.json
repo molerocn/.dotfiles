@@ -71,4 +71,5 @@
   "python.defaultInterpreterPath": "/bin/python",
   "editor.codeLens": false,
   "github.copilot.nextEditSuggestions.enabled": true,
+  "extensions.ignoreRecommendations": true,
 }
