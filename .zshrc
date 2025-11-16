@@ -16,7 +16,7 @@ plugins=(
     zsh-autosuggestions
 )
 source $ZSH/oh-my-zsh.sh
-source /usr/share/doc/fzf/examples/key-bindings.zsh
+source /usr/share/fzf/shell/key-bindings.zsh
 
 bindkey -s '^E' '^Uvim .\r'
 bindkey -s '^Y' '^Unautilus -w . > /dev/null 2>&1 & \r'

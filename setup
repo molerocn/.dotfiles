@@ -11,10 +11,11 @@ ln -s ~/personal/.dotfiles/kitty ~/.config/
 ln -s ~/personal/.dotfiles/code/keybindings.json ~/.config/Code/User/
 ln -s ~/personal/.dotfiles/code/settings.json ~/.config/Code/User/
 # autostart script
+mkdir -p ~/.config/autostart
 ln -s ~/personal/.dotfiles/shortcuts/autostart.desktop ~/.config/autostart/
 # keyd
-mkdir -p /etc/keyd/
-ln -s ~/personal/.dotfiles/ubuntu/default.conf /etc/keyd/
+sudo mkdir -p /etc/keyd/
+sudo ln -s ~/personal/.dotfiles/default.conf /etc/keyd/
 # gnome settings
 dconf load /org/gnome/settings-daemon/plugins/media-keys/ < ~/personal/.dotfiles/gnome/custom_shortcuts.dconf
 dconf load /org/gnome/desktop/wm/keybindings/ < ~/personal/.dotfiles/gnome/desktop_keybindings.dconf
