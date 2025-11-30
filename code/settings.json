@@ -71,4 +71,5 @@
   "github.copilot.nextEditSuggestions.enabled": true,
   "extensions.ignoreRecommendations": true,
   "workbench.secondarySideBar.defaultVisibility": "hidden",
+  "database-client.autoSync": true,
 }
