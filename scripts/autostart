@@ -4,8 +4,8 @@ export PATH="$HOME/.local/bin:$DOTFILES/bin:$PATH"
 
 zen &
 kitty -e tmux &
-obsidian &
-anki &
+# obsidian &
+# anki &
 todo_obsidian &
 toggle_theme automatic &
 copyq &

@@ -34,7 +34,7 @@ alias a="ls -lah"
 alias at="ls -lahtr ~/Downloads"
 alias atd="ls -lahtr"
 # alias vim="nvim"
-alias mountwin="sudo mount /dev/nvme0n1p3 /mnt/win"
+alias mountwin="sudo mount /dev/sdb1 /mnt/win"
 alias copy="wl-copy"
 alias paste="wl-paste"
 alias gic="git commit -m"
@@ -233,3 +233,19 @@ cpd() {
         fi
     fi
 }
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/molerocn/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/molerocn/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/molerocn/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/molerocn/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+

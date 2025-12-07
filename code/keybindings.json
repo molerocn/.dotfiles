@@ -265,16 +265,6 @@
   },
   // serie of commands first toggle sidebar and then git.commit
   {
-    "key": "alt+c",
-    "command": "runCommands",
-    "args": {
-      "commands": [
-        // "workbench.action.closeSidebar",
-        "git.commit",
-      ]
-    },
-  },
-  {
     "key": "alt+shift+c",
     "command": "runCommands",
     "args": {
@@ -525,5 +515,25 @@
     "key": "ctrl+oem_3",
     "command": "-workbench.action.terminal.toggleTerminal",
     "when": "terminal.active"
+  },
+  {
+    "key": "alt+c",
+    "command": "-workbench.action.terminal.toggleFindCaseSensitive",
+    "when": "terminalFindVisible && terminalHasBeenCreated || terminalFindVisible && terminalProcessSupported"
+  },
+  {
+    "key": "alt+c",
+    "command": "-toggleSearchEditorCaseSensitive",
+    "when": "inSearchEditor && searchInputBoxFocus"
+  },
+  {
+    "key": "alt+c",
+    "command": "-toggleFindCaseSensitive",
+    "when": "editorFocus"
+  },
+  {
+    "key": "alt+c",
+    "command": "-toggleSearchCaseSensitive",
+    "when": "searchViewletFocus"
   }
 ]
