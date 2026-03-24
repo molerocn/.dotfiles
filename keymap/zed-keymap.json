@@ -1,0 +1,23 @@
+[
+  // guardar en insert mode
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      "ctrl-s": ["workspace::SendKeystrokes", "escape : w a enter"],
+    },
+  },
+  // para copiar con leader y
+  {
+    "context": "Editor && vim_mode == visual",
+    "bindings": {
+      "space y": ["workspace::SendKeystrokes", "\" + y escape"],
+    },
+  },
+  // completar con ctrl + y
+  {
+    "context": "Editor && showing_completions",
+    "bindings": {
+      "ctrl-y": "editor::ComposeCompletion",
+    },
+  },
+]

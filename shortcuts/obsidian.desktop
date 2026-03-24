@@ -1,9 +1,0 @@
-#!/usr/bin/env xdg-open
-[Desktop Entry]
-Terminal=false
-Type=Application
-Name=Obsidian
-Exec=/home/molerocn/.local/bin/obsidian %u
-Icon=/home/molerocn/.local/lib/obsidian/obsidian.png
-StartupWMClass=obsidian
-MimeType=x-scheme-handler/obsidian;

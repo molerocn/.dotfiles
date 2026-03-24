@@ -1,8 +1,0 @@
-#!/usr/bin/env xdg-open
-[Desktop Entry]
-Terminal=false
-Type=Application
-Name=Zen
-Exec=/home/molerocn/.local/bin/zen
-Icon=/home/molerocn/.local/lib/zen/browser/chrome/icons/default/default128.png
-StartupWMClass=zen
