@@ -18,7 +18,7 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 source /usr/share/fzf/shell/key-bindings.zsh
 
-bindkey -s '^E' '^Uvim .\r'
+bindkey -s '^E' '^Uzed .\r'
 bindkey -s '^Y' '^Unautilus -w . > /dev/null 2>&1 & \r'
 bindkey -s '^F' '^U$DOTFILES/bin/tmux-sessionizer \r'
 bindkey -s '^B' '^Utmux a\r'
@@ -29,7 +29,7 @@ bindkey '^ ' autosuggest-accept
 # aliases
 alias notepad="gnome-text-editor"
 alias sc="source ~/.zshrc"
-alias esc="nvim ~/.zshrc"
+alias esc="zed ~/.zshrc"
 alias a="ls -lah"
 alias at="ls -lahtr ~/Downloads"
 alias atd="ls -lahtr"
@@ -72,17 +72,17 @@ ts() {
 }
 
 # vim in first window discipline
-vim() {
-  if [[ -n "$TMUX" ]]; then
-    local win
-    win=$(tmux display-message -p '#{window_index}')
-    if [[ "$win" != "1" ]]; then
-      echo "vim is only allowed in first window" >&2
-      return 1
-    fi
-  fi
-  command nvim "$@"
-}
+# vim() {
+#   if [[ -n "$TMUX" ]]; then
+#     local win
+#     win=$(tmux display-message -p '#{window_index}')
+#     if [[ "$win" != "1" ]]; then
+#       echo "vim is only allowed in first window" >&2
+#       return 1
+#     fi
+#   fi
+#   command nvim "$@"
+# }
 
 # copy last file or n last items from ~/Downloads
 # cpd() {
