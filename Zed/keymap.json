@@ -13,11 +13,32 @@
       "space y": ["workspace::SendKeystrokes", "\" + y escape"],
     },
   },
+  // acceder al sidebar
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      "space v": "pane::RevealInProjectPanel",
+    },
+  },
   // completar con ctrl + y
   {
     "context": "Editor && showing_completions",
     "bindings": {
       "ctrl-y": "editor::ComposeCompletion",
+    },
+  },
+  // close with ctrl + c
+  {
+    "context": "Editor",
+    "use_key_equivalents": true,
+    "bindings": {
+      "ctrl-c": "editor::Cancel",
+    },
+  },
+  {
+    "context": "Picker > Editor",
+    "bindings": {
+      "ctrl-c": "menu::Cancel",
     },
   },
 ]
