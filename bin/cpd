@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+dest="${1:-.}"
+
+source_file=$(ls -tp "$HOME/Downloads" | grep -v / | head -n 1)
+
+if [[ -z "$source_file" ]]; then
+    echo "Error: No se encontraron archivos en ~/Downloads"
+    exit 1
+fi
+
+cp -v "$HOME/Downloads/$source_file" "$dest"

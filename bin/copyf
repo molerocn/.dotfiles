@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+[ $# -eq 0 ] && { echo "Usage: copyf <file>"; exit 1; }
+[ ! -e "$1" ] && { echo "File not found: $1" >&2; exit 2; }
+
+wl-copy --type text/uri-list "file://$(realpath "$1")"

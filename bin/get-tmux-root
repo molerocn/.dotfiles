@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Este script solo busca la ruta y la imprime (echo), no hace cd.
+
+if [ -z "$TMUX" ]; then
+    echo "$HOME"
+    exit 0
+fi
+
+session=$(tmux display-message -p '#S' 2>/dev/null) || {
+    exit 1
+}
+
+root=$(tmux show-environment -t "$session" SESSION_ROOT 2>/dev/null | sed 's/^SESSION_ROOT=//')
+
+if [ -z "$root" ]; then
+    exit 1
+fi
+
+# Imprime la ruta para que la terminal la atrape
+echo "$root"
