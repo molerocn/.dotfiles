@@ -1,5 +1,5 @@
 [
-  // guardar en insert mode
+  // INSERT MODE
   {
     "context": "Editor && vim_mode == insert",
     "bindings": {
@@ -11,13 +11,16 @@
     "context": "Editor && vim_mode == visual",
     "bindings": {
       "space y": ["workspace::SendKeystrokes", "\" + y escape"],
+      "shift-h": "editor::MoveLineUp",
+      "shift-m": "editor::MoveLineDown",
     },
   },
-  // acceder al sidebar
   {
     "context": "Editor && vim_mode == normal",
     "bindings": {
-      "space v": "pane::RevealInProjectPanel",
+      "space v": "pane::RevealInProjectPanel", // acceder al sidebar
+      "space d": ["workspace::SendKeystrokes", "d d"],
+      "shift-h": null, // esto es muy molesto
     },
   },
   // completar con ctrl + y
