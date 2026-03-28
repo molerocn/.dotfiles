@@ -12,6 +12,7 @@ bindkey -s '^E' '^Uvim .\r'
 bindkey -s '^N' '^Unotebook\r'
 bindkey -s '^Y' '^Udolphin . > /dev/null 2>&1 & \r'
 bindkey -s '^F' '^U$DOTFILES/bin/tmux-sessionizer \r'
+bindkey -s '^G' '^U$DOTFILES/bin/notebook \r'
 bindkey -s '^B' '^Utmux a\r'
 bindkey -r '^S'
 bindkey '^ ' autosuggest-accept
