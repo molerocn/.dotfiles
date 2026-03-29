@@ -2,12 +2,34 @@
 
 NB_DIR="./notebooks"
 
-if [[ ! -d "$NB_DIR" ]]; then
-    exit 1
-fi
-
 selected_file=$(find -L "$NB_DIR" -name '*.py' 2>/dev/null | sort -Vr | fzf --no-sort)
 
 if [[ -n "$selected_file" ]]; then
-    tmux run-shell -b "cd '$(pwd)' && uv run marimo edit '$selected_file' >/dev/null 2>&1"
+    uv run marimo edit "$selected_file" > /dev/null 2>&1 &
 fi
+
+# #!/usr/bin/env bash
+#
+# NB_DIR="./notebooks"
+#
+# selected_file=$(find -L "$NB_DIR" -name '*.py' 2>/dev/null | sort -Vr | fzf --no-sort)
+#
+# if [[ -n "$selected_file" ]]; then
+#     uv run marimo edit "$selected_file" > /dev/null 2>&1 &
+# fi
+
+# #!/usr/bin/env bash
+#
+# NB_DIR="./notebooks"
+#
+# if [[ ! -d "$NB_DIR" ]]; then
+#     echo "Notebooks folder doesn't exist" >&2
+#     exit 1
+# fi
+#
+# selected_file=$(find -L "$NB_DIR" -name '*.py' 2>/dev/null | sort -Vr | fzf --no-sort)
+#
+# if [[ -n "$selected_file" ]]; then
+#     nohup uv run marimo edit "$selected_file" > /dev/null 2>&1 & 
+#     disown
+# fLi
