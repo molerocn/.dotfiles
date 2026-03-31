@@ -1,0 +1,36 @@
+{
+  // personalization
+  "theme": "Catppuccin Mocha",
+  "cursor_shape": "block",
+  "tab_bar": {
+    "show": true,
+  },
+  "toolbar": {
+    "breadcrumbs": false,
+    "quick_actions": false,
+  },
+
+  // options
+  "relative_line_numbers": "enabled",
+  "vim_mode": true,
+  "vim": {
+    "highlight_on_yank_duration": 40,
+    "use_system_clipboard": "never",
+  },
+  "vertical_scroll_margin": 6,
+  "wrap_guides": [80],
+  // la mejor config
+  "disable_ai": true,
+
+  // font
+  "buffer_font_family": "Monaspace Neon",
+  "buffer_font_features": {
+    "calt": true,
+    "liga": true,
+    "ss01": true,
+    "ss02": true,
+    "ss03": true,
+    "ss07": true,
+    "ss08": true,
+  },
+}

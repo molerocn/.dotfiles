@@ -1,0 +1,173 @@
+[
+  // INSERT CONTEXT
+  // save with ctrl-s in insert mode
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      "ctrl-s": ["workspace::SendKeystrokes", "escape ctrl-s"],
+    },
+  },
+  // VISUAL CONTEXT
+  // yanked text to clipboard
+  // move line up and down
+  // save just pressing s key
+  {
+    "context": "Editor && vim_mode == visual",
+    "bindings": {
+      "space y": ["workspace::SendKeystrokes", "\" + y escape"],
+      "shift-h": "editor::MoveLineUp",
+      "shift-m": "editor::MoveLineDown",
+      "s": ["workspace::SendKeystrokes", "escape ctrl-s"],
+    },
+  },
+  // NORMAL CONTEXT
+  // open project sidebar
+  // remove line and save with leader d
+  // save just pressing s key
+  // disable shift-h
+  // fuzzy finder for projects
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      "space v": "pane::RevealInProjectPanel",
+      "space d": ["workspace::SendKeystrokes", "d d : w enter"],
+      "s": ["workspace::SendKeystrokes", "escape ctrl-s"],
+      "ctrl-f": ["projects::OpenRecent", { "create_new_window": true }],
+      "shift-h": null,
+      "ctrl-h": ["pane::ActivateItem", 0],
+      "ctrl-t": ["pane::ActivateItem", 1],
+      "ctrl-n": ["pane::ActivateItem", 2],
+      "ctrl-m": ["pane::ActivateItem", 3],
+    },
+  },
+  // complete with ctrl-y
+  {
+    "context": "Editor && showing_completions",
+    "bindings": {
+      "ctrl-y": "editor::ComposeCompletion",
+    },
+  },
+  // cancel with ctrl-c (search files and search wihtin buffer)
+  {
+    "context": "Picker > Editor",
+    "bindings": {
+      "ctrl-c": "menu::Cancel",
+    },
+  },
+  {
+    "context": "BufferSearchBar > Editor",
+    "bindings": {
+      "ctrl-c": "buffer_search::Dismiss",
+    },
+  },
+  // swap tabs
+  {
+    "context": "Pane",
+    "bindings": {
+      "ctrl-<": "pane::SwapItemLeft",
+      "ctrl->": "pane::SwapItemRight",
+    },
+  },
+  // deactivate conflict shit (swap tabs)
+  {
+    "context": "AgentPanel",
+    "unbind": {
+      "ctrl->": "agent::AddSelectionToThread",
+    },
+  },
+  {
+    "context": "Editor && mode == full",
+    "unbind": {
+      "ctrl->": "agent::AddSelectionToThread",
+    },
+  },
+  {
+    "context": "Terminal",
+    "unbind": {
+      "ctrl->": "agent::AddSelectionToThread",
+    },
+  },
+  {
+    "context": "Editor && mode == full",
+    "unbind": {
+      "ctrl-<": "assistant::InsertIntoEditor",
+    },
+  },
+  {
+    "context": "ContextEditor > Editor",
+    "unbind": {
+      "ctrl-<": "assistant::InsertIntoEditor",
+    },
+  },
+  // fuzzy finder for projects
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-f": [
+        "projects::OpenRecent",
+        {
+          "create_new_window": true,
+        },
+      ],
+    },
+  },
+  // deactivate conflict shit (fuzzy finder)
+  {
+    "context": "Workspace",
+    "unbind": {
+      "ctrl-alt-o": [
+        "projects::OpenRecent",
+        {
+          "create_new_window": false,
+        },
+      ],
+    },
+  },
+  {
+    "context": "Editor && mode == full",
+    "unbind": {
+      "ctrl-f": "buffer_search::Deploy",
+    },
+  },
+  // toggle terminal
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-/": "terminal_panel::Toggle",
+    },
+  },
+  // deactivate conflict shit (toggle terminal)
+  {
+    "context": "Workspace",
+    "unbind": {
+      "ctrl-`": "terminal_panel::Toggle",
+    },
+  },
+  {
+    "context": "Editor",
+    "unbind": {
+      "ctrl-/": [
+        "editor::ToggleComments",
+        {
+          "advance_downwards": false,
+        },
+      ],
+    },
+  },
+  // terminal (respetar keymaps)
+  {
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-p": null,
+      "ctrl-n": null,
+      "ctrl-enter": ["terminal::SendText", "\r"],
+    },
+  },
+  // deactivate conflict shit (other)
+  {
+    "context": "Workspace",
+    "unbind": {
+      "ctrl-shift-s": "workspace::SaveAs",
+    },
+  },
+]
