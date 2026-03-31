@@ -154,13 +154,20 @@
       ],
     },
   },
-  // terminal (respetar keymaps)
+  // TERMINAL CONTEXT
+  // respetar keymaps n p
+  // ctrl + enter = enter
+  // keymaps to navigate between terminal panes
+  // clear line using ctrl + u like linux
   {
     "context": "Terminal",
     "bindings": {
       "ctrl-p": null,
       "ctrl-n": null,
       "ctrl-enter": ["terminal::SendText", "\r"],
+      "ctrl-h": "pane::ActivatePreviousItem",
+      "ctrl-t": "pane::ActivateNextItem",
+      "ctrl-u": ["terminal::SendText", "\u001b"],
     },
   },
   // deactivate conflict shit (other)
