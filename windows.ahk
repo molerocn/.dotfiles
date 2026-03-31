@@ -2,9 +2,9 @@
 
 ; ----------------------------------------- capslock
 
+; CapsLock::Escape
 CapsLock::Control
 SetTimer(CheckCapsLock, 100)
-
 CheckCapsLock() {
     ; Si CapsLock está encendido (T = Toggle state), lo apaga
     if GetKeyState("CapsLock", "T") {
@@ -16,8 +16,7 @@ CheckCapsLock() {
 
 ; ----------------------------------------- keymaps
 
-Esc::$
-LControl::Esc
+;; LControl::Esc
 +SC1B::Backspace
 VKE2::Shift
 !Enter::\
