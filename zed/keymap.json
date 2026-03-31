@@ -26,18 +26,25 @@
   // save just pressing s key
   // disable shift-h
   // fuzzy finder for projects
+  // harpoon bindings
+  // open git
+  // open search in files
+  // close search bar within buffer
   {
     "context": "Editor && vim_mode == normal",
     "bindings": {
       "space v": "pane::RevealInProjectPanel",
       "space d": ["workspace::SendKeystrokes", "d d : w enter"],
       "s": ["workspace::SendKeystrokes", "escape ctrl-s"],
-      "ctrl-f": ["projects::OpenRecent", { "create_new_window": true }],
       "shift-h": null,
       "ctrl-h": ["pane::ActivateItem", 0],
       "ctrl-t": ["pane::ActivateItem", 1],
       "ctrl-n": ["pane::ActivateItem", 2],
       "ctrl-m": ["pane::ActivateItem", 3],
+      "ctrl-f": ["projects::OpenRecent", { "create_new_window": true }],
+      "space g s": "git_panel::ToggleFocus",
+      "space p s": "pane::DeploySearch",
+      "ctrl-shift-c": "buffer_search::Dismiss",
     },
   },
   // complete with ctrl-y
@@ -103,12 +110,7 @@
   {
     "context": "Workspace",
     "bindings": {
-      "ctrl-f": [
-        "projects::OpenRecent",
-        {
-          "create_new_window": true,
-        },
-      ],
+      "ctrl-f": ["projects::OpenRecent", { "create_new_window": true }],
     },
   },
   // deactivate conflict shit (fuzzy finder)
@@ -168,6 +170,7 @@
       "ctrl-h": "pane::ActivatePreviousItem",
       "ctrl-t": "pane::ActivateNextItem",
       "ctrl-u": ["terminal::SendText", "\u001b"],
+      "ctrl-shift-n": "workspace::NewTerminal",
     },
   },
   // enable fuzzy finder for files within project panel
@@ -187,6 +190,36 @@
   {
     "unbind": {
       "ctrl-shift-w": "workspace::CloseWindow",
+    },
+  },
+  {
+    "context": "vim_mode == literal",
+    "unbind": {
+      "ctrl-b": ["vim::Literal", ["ctrl-b", "\u0002"]],
+    },
+  },
+  {
+    "context": "VimControl && !menu",
+    "unbind": {
+      "ctrl-b": "vim::PageUp",
+    },
+  },
+  {
+    "context": "Workspace",
+    "unbind": {
+      "ctrl-b": "workspace::ToggleLeftDock",
+    },
+  },
+  {
+    "context": "Workspace",
+    "unbind": {
+      "ctrl-shift-n": "workspace::NewWindow",
+    },
+  },
+  {
+    "context": "Terminal",
+    "unbind": {
+      "ctrl-n": "workspace::NewTerminal",
     },
   },
 ]
