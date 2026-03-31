@@ -1,6 +1,10 @@
 {
   // personalization
-  "theme": "Catppuccin Mocha",
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "Catppuccin Mocha",
+  },
   "cursor_shape": "block",
   "tab_bar": {
     "show": true,
@@ -32,5 +36,12 @@
     "ss03": true,
     "ss07": true,
     "ss08": true,
+  },
+
+  // lsp
+  "languages": {
+    "Python": {
+      "language_servers": ["ty", "!basedpyright", "ruff"],
+    },
   },
 }
