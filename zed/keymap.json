@@ -170,6 +170,13 @@
       "ctrl-u": ["terminal::SendText", "\u001b"],
     },
   },
+  // enable fuzzy finder for files within project panel
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "ctrl-p": "file_finder::Toggle",
+    },
+  },
   // deactivate conflict shit (other)
   {
     "context": "Workspace",
@@ -179,7 +186,7 @@
   },
   {
     "unbind": {
-      "ctrl-shift-w": "workspace::CloseWindow"
-    }
-  }
+      "ctrl-shift-w": "workspace::CloseWindow",
+    },
+  },
 ]
