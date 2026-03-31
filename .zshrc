@@ -8,7 +8,7 @@ plugins=(git zsh-autosuggestions)
 source $ZSH/oh-my-zsh.sh
 source /usr/share/fzf/shell/key-bindings.zsh
 
-bindkey -s '^E' '^Uneovide .\r'
+bindkey -s '^E' '^Uvim .\r'
 # bindkey -s '^N' '^Unotebook\r'
 bindkey -s '^Y' '^Udolphin . > /dev/null 2>&1 & \r'
 bindkey -s '^F' '^U$DOTFILES/bin/tmux-sessionizer \r'
@@ -19,7 +19,7 @@ bindkey '^ ' autosuggest-accept
 
 alias notepad="kwrite"
 alias sc="source ~/.zshrc"
-alias esc="neovide ~/.zshrc"
+alias esc="nvim ~/.zshrc"
 alias a="ls -lah"
 alias at="ls -lahtr ~/Downloads"
 alias atd="ls -lahtr"

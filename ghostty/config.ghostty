@@ -1,4 +1,7 @@
-theme = dark:Ayu,light:Ayu Light
+theme = dark:12-bit Rainbow , light:Ayu Light
+
+cursor-style = block
+shell-integration-features = no-cursor
 
 font-size = 13
 adjust-cell-height = 20%
