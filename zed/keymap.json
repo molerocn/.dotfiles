@@ -1,4 +1,5 @@
 [
+  // TODO: usar ctrl-c para salir de menu de rename y code action
   // VIM INSERT CONTEXT
   // save with ctrl-s in insert mode
   {
@@ -12,6 +13,7 @@
   // move line up and down
   // save just pressing s key
   // unmap ctrl-b
+  // preserve clipboard after paste with p
   {
     "context": "Editor && vim_mode == visual",
     "bindings": {
@@ -20,6 +22,7 @@
       "shift-m": "editor::MoveLineDown",
       "s": ["workspace::SendKeystrokes", "escape ctrl-s"],
       "ctrl-b": null,
+      "space p": ["vim::Paste", { "preserve_clipboard": false }],
     },
   },
   // VIM NORMAL CONTEXT
@@ -89,9 +92,8 @@
     "context": "Terminal && os == windows",
     "bindings": {
       "ctrl-u": ["terminal::SendText", "\u001b"],
-      // probar esto para windows
-      // "ctrl-p": ["terminal::SendText", "\u001b[A"],
-      // "ctrl-n": ["terminal::SendText", "\u001b[B"],
+      "ctrl-p": ["terminal::SendText", "\u001b[A"],
+      "ctrl-n": ["terminal::SendText", "\u001b[B"],
     },
   },
   // EDITOR CONTEXT
@@ -135,7 +137,7 @@
       "ctrl-p": "file_finder::Toggle",
     },
   },
-  // PROJECT PANEL CONTEXT
+  // GIT PANEL CONTEXT
   // fuzzy finder for files
   {
     "context": "GitPanel",
