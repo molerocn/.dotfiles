@@ -1,5 +1,5 @@
 [
-  // INSERT CONTEXT
+  // VIM INSERT CONTEXT
   // save with ctrl-s in insert mode
   {
     "context": "Editor && vim_mode == insert",
@@ -7,10 +7,11 @@
       "ctrl-s": ["workspace::SendKeystrokes", "escape ctrl-s"],
     },
   },
-  // VISUAL CONTEXT
+  // VIM VISUAL CONTEXT
   // yanked text to clipboard
   // move line up and down
   // save just pressing s key
+  // unmap ctrl-b
   {
     "context": "Editor && vim_mode == visual",
     "bindings": {
@@ -18,43 +19,101 @@
       "shift-h": "editor::MoveLineUp",
       "shift-m": "editor::MoveLineDown",
       "s": ["workspace::SendKeystrokes", "escape ctrl-s"],
+      "ctrl-b": null,
     },
   },
-  // NORMAL CONTEXT
-  // open project sidebar
+  // VIM NORMAL CONTEXT
   // remove line and save with leader d
   // save just pressing s key
-  // disable shift-h
-  // fuzzy finder for projects
   // harpoon bindings
-  // open git
-  // open search in files
+  // fuzzy finder for projects
   // close search bar within buffer
+  // unmap shift-h
+  // unmap ctrl-b
   {
     "context": "Editor && vim_mode == normal",
     "bindings": {
-      "space v": "pane::RevealInProjectPanel",
-      "space d": ["workspace::SendKeystrokes", "d d : w enter"],
+      "space d": ["workspace::SendKeystrokes", "d d ctrl-s"],
       "s": ["workspace::SendKeystrokes", "escape ctrl-s"],
-      "shift-h": null,
       "ctrl-h": ["pane::ActivateItem", 0],
       "ctrl-t": ["pane::ActivateItem", 1],
       "ctrl-n": ["pane::ActivateItem", 2],
       "ctrl-m": ["pane::ActivateItem", 3],
       "ctrl-f": ["projects::OpenRecent", { "create_new_window": true }],
-      "space g s": "git_panel::ToggleFocus",
-      "space p s": "pane::DeploySearch",
       "ctrl-shift-c": "buffer_search::Dismiss",
+      "shift-h": null,
+      "ctrl-b": null,
     },
   },
-  // complete with ctrl-y
+  // WORKSPACE CONTEXT
+  // fuzzy finder for projects
+  // toggle terminal
+  // swap tabs using ctrl and < or >
+  // unmap ctrl-shift-s
+  // unmap ctrl-alt-o
+  // unmap ctrl-b
+  // unmap ctrl-shift-n
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-f": ["projects::OpenRecent", { "create_new_window": true }],
+      "ctrl-/": "terminal_panel::Toggle",
+      "ctrl-<": "pane::SwapItemLeft",
+      "ctrl->": "pane::SwapItemRight",
+      "ctrl-shift-s": null, // save as
+      "ctrl-alt-o": null, // open project (ctrl-f behaviour)
+      "ctrl-b": null, // ToggleLeftDock
+      "ctrl-shift-n": null, // NewWindow
+    },
+  },
+  // TERMINAL CONTEXT
+  // respetar keymaps ctrl-n ctrl-p
+  // ctrl + enter = enter
+  // keymaps to navigate across terminal panes
+  // create new terminal
+  {
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-p": null,
+      "ctrl-n": null,
+      "ctrl-enter": ["terminal::SendText", "\r"],
+      "ctrl-h": "pane::ActivatePreviousItem",
+      "ctrl-t": "pane::ActivateNextItem",
+      "ctrl-shift-n": "workspace::NewTerminal",
+    },
+  },
+  // TERMINAL CONTEXT for WINDOWS
+  // clear line using ctrl + u like linux
+  {
+    "context": "Terminal && os == windows",
+    "bindings": {
+      "ctrl-u": ["terminal::SendText", "\u001b"],
+      // probar esto para windows
+      // "ctrl-p": ["terminal::SendText", "\u001b[A"],
+      // "ctrl-n": ["terminal::SendText", "\u001b[B"],
+    },
+  },
+  // EDITOR CONTEXT
+  // unmap ctrl - >
+  // unmap ctrl - <
+  // unbind ctrl-/
+  {
+    "context": "Editor",
+    "unbind": {
+      "ctrl->": "agent::AddSelectionToThread",
+      "ctrl-<": "assistant::InsertIntoEditor",
+      "ctrl-/": ["editor::ToggleComments", { "advance_downwards": false }],
+    },
+  },
+  // EDITOR CONTEXT WITH EVENT
+  // lsp completion
+  // close menus using ctrl-c
   {
     "context": "Editor && showing_completions",
     "bindings": {
       "ctrl-y": "editor::ComposeCompletion",
     },
   },
-  // cancel with ctrl-c (search files and search wihtin buffer)
   {
     "context": "Picker > Editor",
     "bindings": {
@@ -67,167 +126,20 @@
       "ctrl-c": "buffer_search::Dismiss",
     },
   },
-  // swap tabs
-  {
-    "context": "Pane",
-    "bindings": {
-      "ctrl-<": "pane::SwapItemLeft",
-      "ctrl->": "pane::SwapItemRight",
-    },
-  },
-  // deactivate conflict shit (swap tabs)
-  {
-    "context": "AgentPanel",
-    "unbind": {
-      "ctrl->": "agent::AddSelectionToThread",
-    },
-  },
-  {
-    "context": "Editor && mode == full",
-    "unbind": {
-      "ctrl->": "agent::AddSelectionToThread",
-    },
-  },
-  {
-    "context": "Terminal",
-    "unbind": {
-      "ctrl->": "agent::AddSelectionToThread",
-    },
-  },
-  {
-    "context": "Editor && mode == full",
-    "unbind": {
-      "ctrl-<": "assistant::InsertIntoEditor",
-    },
-  },
-  {
-    "context": "ContextEditor > Editor",
-    "unbind": {
-      "ctrl-<": "assistant::InsertIntoEditor",
-    },
-  },
-  // fuzzy finder for projects
-  {
-    "context": "Workspace",
-    "bindings": {
-      "ctrl-f": ["projects::OpenRecent", { "create_new_window": true }],
-    },
-  },
-  // deactivate conflict shit (fuzzy finder)
-  {
-    "context": "Workspace",
-    "unbind": {
-      "ctrl-alt-o": [
-        "projects::OpenRecent",
-        {
-          "create_new_window": false,
-        },
-      ],
-    },
-  },
-  {
-    "context": "Editor && mode == full",
-    "unbind": {
-      "ctrl-f": "buffer_search::Deploy",
-    },
-  },
-  // toggle terminal
-  {
-    "context": "Workspace",
-    "bindings": {
-      "ctrl-/": "terminal_panel::Toggle",
-    },
-  },
-  // deactivate conflict shit (toggle terminal)
-  {
-    "context": "Workspace",
-    "unbind": {
-      "ctrl-`": "terminal_panel::Toggle",
-    },
-  },
-  {
-    "context": "Editor",
-    "unbind": {
-      "ctrl-/": [
-        "editor::ToggleComments",
-        {
-          "advance_downwards": false,
-        },
-      ],
-    },
-  },
-  // TERMINAL CONTEXT
-  // respetar keymaps n p
-  // ctrl + enter = enter
-  // keymaps to navigate between terminal panes
-  // clear line using ctrl + u like linux
-  {
-    "context": "Terminal",
-    "bindings": {
-      "ctrl-p": null,
-      "ctrl-n": null,
-      "ctrl-enter": ["terminal::SendText", "\r"],
-      "ctrl-h": "pane::ActivatePreviousItem",
-      "ctrl-t": "pane::ActivateNextItem",
-      "ctrl-shift-n": "workspace::NewTerminal",
-    },
-  },
-  {
-    "context": "Terminal && os == windows",
-    "bindings": {
-      "ctrl-u": ["terminal::SendText", "\u001b"],
-      // probar esto para windows
-      // "ctrl-p": ["terminal::SendText", "\u001b[A"],
-      // "ctrl-n": ["terminal::SendText", "\u001b[B"],
-    },
-  },
-  // enable fuzzy finder for files within project panel
+  // PROJECT PANEL CONTEXT
+  // fuzzy finder for files
   {
     "context": "ProjectPanel && not_editing",
     "bindings": {
       "ctrl-p": "file_finder::Toggle",
     },
   },
-  // deactivate conflict shit (other)
+  // PROJECT PANEL CONTEXT
+  // fuzzy finder for files
   {
-    "context": "Workspace",
-    "unbind": {
-      "ctrl-shift-s": "workspace::SaveAs",
-    },
-  },
-  {
-    "unbind": {
-      "ctrl-shift-w": "workspace::CloseWindow",
-    },
-  },
-  {
-    "context": "vim_mode == literal",
-    "unbind": {
-      "ctrl-b": ["vim::Literal", ["ctrl-b", "\u0002"]],
-    },
-  },
-  {
-    "context": "VimControl && !menu",
-    "unbind": {
-      "ctrl-b": "vim::PageUp",
-    },
-  },
-  {
-    "context": "Workspace",
-    "unbind": {
-      "ctrl-b": "workspace::ToggleLeftDock",
-    },
-  },
-  {
-    "context": "Workspace",
-    "unbind": {
-      "ctrl-shift-n": "workspace::NewWindow",
-    },
-  },
-  {
-    "context": "Terminal",
-    "unbind": {
-      "ctrl-n": "workspace::NewTerminal",
+    "context": "GitPanel",
+    "bindings": {
+      "ctrl-p": "file_finder::Toggle",
     },
   },
 ]

@@ -31,5 +31,6 @@ alias get="sudo dnf install"
 alias space-in-disk="df -h"
 alias howmuch="du -ha -d 1 | sort -rh | head -n 10"
 alias knb='pkill marimo'
+alias esc='uv run marimo edit .'
 
 cde() { local target=$(get-tmux-root); cd "$target" }
