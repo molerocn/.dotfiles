@@ -44,4 +44,7 @@
       "language_servers": ["ty", "!basedpyright", "ruff"],
     },
   },
+  "terminal": {
+    "detect_venv": "off",
+  },
 }

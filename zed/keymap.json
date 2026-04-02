@@ -169,8 +169,16 @@
       "ctrl-enter": ["terminal::SendText", "\r"],
       "ctrl-h": "pane::ActivatePreviousItem",
       "ctrl-t": "pane::ActivateNextItem",
-      "ctrl-u": ["terminal::SendText", "\u001b"],
       "ctrl-shift-n": "workspace::NewTerminal",
+    },
+  },
+  {
+    "context": "Terminal && os == windows",
+    "bindings": {
+      "ctrl-u": ["terminal::SendText", "\u001b"],
+      // probar esto para windows
+      // "ctrl-p": ["terminal::SendText", "\u001b[A"],
+      // "ctrl-n": ["terminal::SendText", "\u001b[B"],
     },
   },
   // enable fuzzy finder for files within project panel
