@@ -6,9 +6,7 @@
     "dark": "Catppuccin Mocha",
   },
   "cursor_shape": "block",
-  "tab_bar": {
-    "show": true,
-  },
+  "tab_bar": { "show": true },
   "toolbar": {
     "breadcrumbs": false,
     "quick_actions": false,
@@ -25,6 +23,7 @@
   "wrap_guides": [80],
   // la mejor config
   "disable_ai": true,
+  "terminal": { "detect_venv": "off" },
 
   // font
   "buffer_font_family": "Monaspace Neon",
@@ -38,13 +37,8 @@
     "ss08": true,
   },
 
-  // lsp
+  // config per languages
   "languages": {
-    "Python": {
-      "language_servers": ["ty", "!basedpyright", "ruff"],
-    },
-  },
-  "terminal": {
-    "detect_venv": "off",
+    "Python": { "language_servers": ["ty", "!basedpyright", "ruff"] },
   },
 }
