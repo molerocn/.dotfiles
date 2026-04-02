@@ -28,7 +28,6 @@
   // harpoon bindings
   // fuzzy finder for projects
   // close search bar within buffer
-  // unmap shift-h
   // unmap ctrl-b
   {
     "context": "Editor && vim_mode == normal",
@@ -41,7 +40,6 @@
       "ctrl-m": ["pane::ActivateItem", 3],
       "ctrl-f": ["projects::OpenRecent", { "create_new_window": true }],
       "ctrl-shift-c": "buffer_search::Dismiss",
-      "shift-h": null,
       "ctrl-b": null,
     },
   },
@@ -49,6 +47,7 @@
   // fuzzy finder for projects
   // toggle terminal
   // swap tabs using ctrl and < or >
+  // close all docks
   // unmap ctrl-shift-s
   // unmap ctrl-alt-o
   // unmap ctrl-b
@@ -60,6 +59,7 @@
       "ctrl-/": "terminal_panel::Toggle",
       "ctrl-<": "pane::SwapItemLeft",
       "ctrl->": "pane::SwapItemRight",
+      "ctrl-shift-b": "workspace::CloseAllDocks",
       "ctrl-shift-s": null, // save as
       "ctrl-alt-o": null, // open project (ctrl-f behaviour)
       "ctrl-b": null, // ToggleLeftDock
@@ -76,6 +76,7 @@
     "bindings": {
       "ctrl-p": null,
       "ctrl-n": null,
+      "ctrl-f": null,
       "ctrl-enter": ["terminal::SendText", "\r"],
       "ctrl-h": "pane::ActivatePreviousItem",
       "ctrl-t": "pane::ActivateNextItem",
