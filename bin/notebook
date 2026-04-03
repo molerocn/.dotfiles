@@ -1,28 +1,40 @@
 #!/usr/bin/env bash
 
 # 1. Definir las carpetas base
-# Usamos $HOME para que expanda correctamente a tu directorio de usuario (~)
 CARPETAS_BASE=("$HOME/work" "$HOME/personal" "$HOME/projects")
 
 # 2. Buscar subcarpetas (depth 1)
-# -mindepth 1: evita listar la carpeta base en sí misma
-# -maxdepth 1: limita la búsqueda al primer nivel de subcarpetas
-# 2>/dev/null: silencia errores en caso de que alguna carpeta base no exista aún
 PROYECTOS=$(find "${CARPETAS_BASE[@]}" -mindepth 1 -maxdepth 1 -type d 2>/dev/null)
 
 # 3. Mostrar la lista en rofi y guardar la selección
-# -i hace que la búsqueda no distinga entre mayúsculas y minúsculas
 SELECCION=$(echo "$PROYECTOS" | rofi -dmenu -i -p "Abrir proyecto:")
 
-# 4. Si no se seleccionó nada (por ejemplo, si presionas Escape), salimos del script
+# 4. Si no se seleccionó nada, salimos
 if [ -z "$SELECCION" ]; then
     exit 0
 fi
 
-# 5. Entrar a la carpeta seleccionada y lanzar marimo en segundo plano
-cd "$SELECCION" || exit 1
+# 5. --- EVITAR DUPLICADOS ---
+# Buscamos los PIDs de cualquier proceso que contenga "marimo edit"
+for pid in $(pgrep -f "marimo edit"); do
+    # Comprobamos que tengamos permisos para leer la información del proceso
+    if [ -r "/proc/$pid/cwd" ]; then
+        # readlink nos da la ruta exacta desde donde se lanzó ese proceso
+        CWD_PROCESO=$(readlink "/proc/$pid/cwd")
+        
+        # Si la ruta coincide con la selección actual, ya está corriendo
+        if [ "$CWD_PROCESO" = "$SELECCION" ]; then
+            # Enviamos una notificación al sistema (opcional pero muy útil)
+            notify-send "Marimo" "El proyecto ya está en ejecución: $(basename "$SELECCION")"
+            # Salimos del script sin abrir un nuevo servidor
+            exit 0
+        fi
+    fi
+done
 
-# nohup desvincula el proceso. 
-# > /dev/null 2>&1 envía cualquier texto/error a la nada para que no bloquee nada.
-# & al final lo manda a segundo plano.
-nohup uv run marimo edit . > /dev/null 2>&1 &
+# 6. Entrar a la carpeta seleccionada y lanzar marimo en segundo plano
+cd "$SELECCION" || exit 1
+nohup /home/molerocn/.local/bin/uv run marimo edit . > /dev/null 2>&1 &
+
+# Notificación de éxito al abrir uno nuevo
+notify-send "Marimo" "Iniciando servidor para: $(basename "$SELECCION")"
