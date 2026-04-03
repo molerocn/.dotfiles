@@ -1,35 +1,28 @@
 #!/usr/bin/env bash
 
-NB_DIR="./notebooks"
+# 1. Definir las carpetas base
+# Usamos $HOME para que expanda correctamente a tu directorio de usuario (~)
+CARPETAS_BASE=("$HOME/work" "$HOME/personal" "$HOME/projects")
 
-selected_file=$(find -L "$NB_DIR" -name '*.py' 2>/dev/null | sort -Vr | fzf --no-sort)
+# 2. Buscar subcarpetas (depth 1)
+# -mindepth 1: evita listar la carpeta base en sí misma
+# -maxdepth 1: limita la búsqueda al primer nivel de subcarpetas
+# 2>/dev/null: silencia errores en caso de que alguna carpeta base no exista aún
+PROYECTOS=$(find "${CARPETAS_BASE[@]}" -mindepth 1 -maxdepth 1 -type d 2>/dev/null)
 
-if [[ -n "$selected_file" ]]; then
-    uv run marimo edit "$selected_file" > /dev/null 2>&1 &
+# 3. Mostrar la lista en rofi y guardar la selección
+# -i hace que la búsqueda no distinga entre mayúsculas y minúsculas
+SELECCION=$(echo "$PROYECTOS" | rofi -dmenu -i -p "Abrir proyecto:")
+
+# 4. Si no se seleccionó nada (por ejemplo, si presionas Escape), salimos del script
+if [ -z "$SELECCION" ]; then
+    exit 0
 fi
 
-# #!/usr/bin/env bash
-#
-# NB_DIR="./notebooks"
-#
-# selected_file=$(find -L "$NB_DIR" -name '*.py' 2>/dev/null | sort -Vr | fzf --no-sort)
-#
-# if [[ -n "$selected_file" ]]; then
-#     uv run marimo edit "$selected_file" > /dev/null 2>&1 &
-# fi
+# 5. Entrar a la carpeta seleccionada y lanzar marimo en segundo plano
+cd "$SELECCION" || exit 1
 
-# #!/usr/bin/env bash
-#
-# NB_DIR="./notebooks"
-#
-# if [[ ! -d "$NB_DIR" ]]; then
-#     echo "Notebooks folder doesn't exist" >&2
-#     exit 1
-# fi
-#
-# selected_file=$(find -L "$NB_DIR" -name '*.py' 2>/dev/null | sort -Vr | fzf --no-sort)
-#
-# if [[ -n "$selected_file" ]]; then
-#     nohup uv run marimo edit "$selected_file" > /dev/null 2>&1 & 
-#     disown
-# fLi
+# nohup desvincula el proceso. 
+# > /dev/null 2>&1 envía cualquier texto/error a la nada para que no bloquee nada.
+# & al final lo manda a segundo plano.
+nohup uv run marimo edit . > /dev/null 2>&1 &

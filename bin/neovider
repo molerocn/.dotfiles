@@ -1,8 +1,0 @@
-#!/bin/bash
-
-selected=$(find -L ~/projects ~/work ~/personal -mindepth 1 -maxdepth 1 -type d 2>/dev/null | rofi -dmenu -i)
-
-if [[ -n "$selected" ]]; then
-    cd "$selected" || exit
-    /home/molerocn/.local/bin/neovide . > /dev/null 2>&1 &
-fi
