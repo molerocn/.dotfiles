@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Abrir marimo en un proyecto de work, personal o projects usando rofi
 
 # 1. Definir las carpetas base
 CARPETAS_BASE=("$HOME/work" "$HOME/personal" "$HOME/projects")
@@ -21,7 +22,7 @@ for pid in $(pgrep -f "marimo edit"); do
     if [ -r "/proc/$pid/cwd" ]; then
         # readlink nos da la ruta exacta desde donde se lanzó ese proceso
         CWD_PROCESO=$(readlink "/proc/$pid/cwd")
-        
+
         # Si la ruta coincide con la selección actual, ya está corriendo
         if [ "$CWD_PROCESO" = "$SELECCION" ]; then
             # Enviamos una notificación al sistema (opcional pero muy útil)

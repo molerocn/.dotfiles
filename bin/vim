@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Impedir que vim se abra en otro panel (solo para tmux)
 
 if [[ -n "$TMUX" ]]; then
     win=$(tmux display-message -p '#{window_index}')

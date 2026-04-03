@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Este script solo busca la ruta y la imprime (echo), no hace cd.
+# Utilidad para imprimir la ruta original al navegar con tmux
 
 if [ -z "$TMUX" ]; then
     echo "$HOME"
