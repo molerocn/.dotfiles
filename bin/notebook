@@ -1,35 +1,40 @@
 #!/usr/bin/env bash
 
-NB_DIR="./notebooks"
+# 1. Definir las carpetas base
+CARPETAS_BASE=("$HOME/work" "$HOME/personal" "$HOME/projects")
 
-selected_file=$(find -L "$NB_DIR" -name '*.py' 2>/dev/null | sort -Vr | fzf --no-sort)
+# 2. Buscar subcarpetas (depth 1)
+PROYECTOS=$(find "${CARPETAS_BASE[@]}" -mindepth 1 -maxdepth 1 -type d 2>/dev/null)
 
-if [[ -n "$selected_file" ]]; then
-    uv run marimo edit "$selected_file" > /dev/null 2>&1 &
+# 3. Mostrar la lista en rofi y guardar la selección
+SELECCION=$(echo "$PROYECTOS" | rofi -dmenu -i -p "Abrir proyecto:")
+
+# 4. Si no se seleccionó nada, salimos
+if [ -z "$SELECCION" ]; then
+    exit 0
 fi
 
-# #!/usr/bin/env bash
-#
-# NB_DIR="./notebooks"
-#
-# selected_file=$(find -L "$NB_DIR" -name '*.py' 2>/dev/null | sort -Vr | fzf --no-sort)
-#
-# if [[ -n "$selected_file" ]]; then
-#     uv run marimo edit "$selected_file" > /dev/null 2>&1 &
-# fi
+# 5. --- EVITAR DUPLICADOS ---
+# Buscamos los PIDs de cualquier proceso que contenga "marimo edit"
+for pid in $(pgrep -f "marimo edit"); do
+    # Comprobamos que tengamos permisos para leer la información del proceso
+    if [ -r "/proc/$pid/cwd" ]; then
+        # readlink nos da la ruta exacta desde donde se lanzó ese proceso
+        CWD_PROCESO=$(readlink "/proc/$pid/cwd")
+        
+        # Si la ruta coincide con la selección actual, ya está corriendo
+        if [ "$CWD_PROCESO" = "$SELECCION" ]; then
+            # Enviamos una notificación al sistema (opcional pero muy útil)
+            notify-send "Marimo" "El proyecto ya está en ejecución: $(basename "$SELECCION")"
+            # Salimos del script sin abrir un nuevo servidor
+            exit 0
+        fi
+    fi
+done
 
-# #!/usr/bin/env bash
-#
-# NB_DIR="./notebooks"
-#
-# if [[ ! -d "$NB_DIR" ]]; then
-#     echo "Notebooks folder doesn't exist" >&2
-#     exit 1
-# fi
-#
-# selected_file=$(find -L "$NB_DIR" -name '*.py' 2>/dev/null | sort -Vr | fzf --no-sort)
-#
-# if [[ -n "$selected_file" ]]; then
-#     nohup uv run marimo edit "$selected_file" > /dev/null 2>&1 & 
-#     disown
-# fLi
+# 6. Entrar a la carpeta seleccionada y lanzar marimo en segundo plano
+cd "$SELECCION" || exit 1
+nohup /home/molerocn/.local/bin/uv run marimo edit . > /dev/null 2>&1 &
+
+# Notificación de éxito al abrir uno nuevo
+notify-send "Marimo" "Iniciando servidor para: $(basename "$SELECCION")"
