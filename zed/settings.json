@@ -3,7 +3,7 @@
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "Catppuccin Mocha",
+    "dark": "macOS Classic Dark",
   },
   "cursor_shape": "block",
   "tab_bar": { "show": true },
@@ -24,6 +24,11 @@
   "disable_ai": true, // la mejor config
   "terminal": { "detect_venv": "off" },
   "restore_on_startup": "launchpad",
+  "git": {
+    "inline_blame": {
+      "enabled": false,
+    },
+  },
 
   // font
   "buffer_font_family": "Monaspace Neon",
