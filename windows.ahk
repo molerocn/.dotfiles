@@ -61,8 +61,8 @@ XButton2::#^Right
 ^SC00A::^9
 ^SC00B::^0
 
-!SC031::Down
-!SC032::Up
+!SC024::Up
+!SC032::Down
 
 SC29::$
 SC02::&
