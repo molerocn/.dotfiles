@@ -16,13 +16,15 @@ CheckCapsLock() {
 
 ; ----------------------------------------- keymaps
 
-;; LControl::Esc
+LControl::Esc
 +SC1B::Backspace
 VKE2::Shift
 !Enter::\
 SC02B::Enter
 SC02C:::
 +SC02C::;
+SC010::"
++SC010::'
 !+SC02C::Send("!{F4}")
 ^#SC010::Send("{F11}")
 #SC010::#Up
@@ -49,6 +51,7 @@ XButton2::#^Right
 !SC009::!8
 !SC00A::!9
 !SC00B::!0
+!SC010::!'
 
 ^SC002::^1
 ^SC003::^2
@@ -60,6 +63,7 @@ XButton2::#^Right
 ^SC009::^8
 ^SC00A::^9
 ^SC00B::^0
+^SC08::^+
 
 !SC024::Up
 !SC032::Down

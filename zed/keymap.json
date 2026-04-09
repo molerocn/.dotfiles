@@ -117,7 +117,7 @@
     "context": "Editor",
     "unbind": {
       "ctrl->": "agent::AddSelectionToThread",
-      "ctrl-<": "assistant::InsertIntoEditor",
+      // "ctrl-<": "assistant::InsertIntoEditor",
       "ctrl-/": ["editor::ToggleComments", { "advance_downwards": false }],
     },
   },
@@ -144,6 +144,9 @@
   },
   // PROJECT PANEL CONTEXT
   // fuzzy finder for files
+  // escape focus with ctrl c
+  // create new file
+  // rename file
   {
     "context": "ProjectPanel && not_editing",
     "bindings": {

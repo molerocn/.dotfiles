@@ -1,9 +1,9 @@
 {
   // personalization
   "theme": {
-    "mode": "system",
+    "mode": "light",
     "light": "One Light",
-    "dark": "macOS Classic Dark",
+    "dark": "GitHub Dark",
   },
   "cursor_shape": "block",
   "tab_bar": { "show": true },
