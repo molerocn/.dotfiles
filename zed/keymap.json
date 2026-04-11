@@ -1,5 +1,12 @@
 [
-  // TODO: usar ctrl-c para salir de menu de rename y code action
+  // VIM GLOBAL CONTEXT
+  // unmap g l
+  {
+    "context": "VimControl && !menu",
+    "unbind": {
+      "g l": "vim::SelectNext",
+    },
+  },
   // VIM INSERT CONTEXT
   // save with ctrl-s in insert mode
   // save on toggle terminal
@@ -50,6 +57,7 @@
       "ctrl-b": "workspace::ToggleLeftDock",
       "g s": "git_panel::ToggleFocus",
       "g n": "project_panel::ToggleFocus",
+      "g l": "git_graph::Open",
       "space s": "outline::Toggle",
       "space shift-s": "project_symbols::Toggle",
     },
@@ -117,7 +125,7 @@
     "context": "Editor",
     "unbind": {
       "ctrl->": "agent::AddSelectionToThread",
-      "ctrl-<": "assistant::InsertIntoEditor",
+      // "ctrl-<": "assistant::InsertIntoEditor",
       "ctrl-/": ["editor::ToggleComments", { "advance_downwards": false }],
     },
   },
