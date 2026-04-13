@@ -9,9 +9,10 @@ source $ZSH/oh-my-zsh.sh
 source /usr/share/fzf/shell/key-bindings.zsh
 
 # bindkey -s '^E' '^Uzed . > /dev/null 2>&1 & \r'
+bindkey -s '^E' '^Uvim .\r'
 # bindkey -s '^Y' '^Udolphin . > /dev/null 2>&1 & \r'
-# bindkey -s '^F' '^U$DOTFILES/bin/tmux-sessionizer \r'
-# bindkey -s '^B' '^Utmux a\r'
+bindkey -s '^F' '^U$DOTFILES/bin/tmux-sessionizer \r'
+bindkey -s '^B' '^Utmux a\r'
 # bindkey -r '^S'
 bindkey '^ ' autosuggest-accept
 
@@ -29,5 +30,5 @@ alias get="sudo dnf install"
 alias space-in-disk="df -h"
 alias howmuch="du -ha -d 1 | sort -rh | head -n 10"
 
-# cde() { local target=$(get-tmux-root); cd "$target" }
+cde() { local target=$(get-tmux-root); cd "$target" }
 eval "$(zoxide init zsh)"

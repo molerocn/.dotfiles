@@ -60,6 +60,7 @@
       "g l": "git_graph::Open",
       "space s": "outline::Toggle",
       "space shift-s": "project_symbols::Toggle",
+      "shift-h": null,
     },
   },
   // WORKSPACE CONTEXT
@@ -136,6 +137,9 @@
     "context": "Editor && showing_completions",
     "bindings": {
       "ctrl-y": "editor::ComposeCompletion",
+    },
+    "unbind": {
+      "enter": "editor::ConfirmCompletion",
     },
   },
   {
