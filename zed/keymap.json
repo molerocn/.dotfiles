@@ -88,6 +88,12 @@
       "ctrl-g u": "git::Pull",
       "ctrl-g p": "git::Push",
       "ctrl-shift-f": null,
+      "ctrl-shift-r": [
+        "pane::CloseOtherItems",
+        {
+          "close_pinned": false,
+        },
+      ],
     },
   },
   // TERMINAL CONTEXT
