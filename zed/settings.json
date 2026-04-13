@@ -3,7 +3,7 @@
   "theme": {
     "mode": "light",
     "light": "One Light",
-    "dark": "GitHub Dark",
+    "dark": "Catppuccin Mocha",
   },
   "cursor_shape": "block",
   "tab_bar": { "show": true },
@@ -11,6 +11,7 @@
     "breadcrumbs": false,
     "quick_actions": false,
   },
+  "buffer_line_height": { "custom": 1.3 },
 
   // options
   "relative_line_numbers": "enabled",
