@@ -23,8 +23,6 @@ VKE2::Shift
 SC02B::Enter
 SC02C:::
 +SC02C::;
-SC010::"
-+SC010::'
 !+SC02C::Send("!{F4}")
 ^#SC010::Send("{F11}")
 #SC010::#Up

@@ -17,6 +17,7 @@
       "ctrl-s": ["workspace::SendKeystrokes", "escape ctrl-s"],
       "ctrl-/": ["workspace::SendKeystrokes", "escape ctrl-s ctrl-/"],
       "ctrl-f": null,
+      "ctrl-v": "editor::Paste",
     },
   },
   // VIM VISUAL CONTEXT
@@ -42,6 +43,7 @@
   // harpoon bindings
   // fuzzy finder for projects
   // close search bar within buffer
+  // save on toggle terminal
   // unmap ctrl-b
   {
     "context": "Editor && vim_mode == normal",
@@ -59,6 +61,7 @@
       "g n": "project_panel::ToggleFocus",
       "g l": "git_graph::Open",
       "space s": "outline::Toggle",
+      "ctrl-/": ["workspace::SendKeystrokes", "escape ctrl-s ctrl-/"],
       "space shift-s": "project_symbols::Toggle",
       "shift-h": null,
     },
