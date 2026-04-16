@@ -1,5 +1,11 @@
 {
   // personalization
+  "git_panel": {
+    "dock": "right"
+  },
+  "project_panel": {
+    "dock": "right"
+  },
   "icon_theme": "Zed (Default)",
   "theme": {
     "mode": "system",

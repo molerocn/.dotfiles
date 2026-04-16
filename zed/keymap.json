@@ -56,7 +56,7 @@
       "ctrl-m": ["pane::ActivateItem", 3],
       "ctrl-f": ["projects::OpenRecent", { "create_new_window": true }],
       "ctrl-shift-c": "buffer_search::Dismiss",
-      "ctrl-b": "workspace::ToggleLeftDock",
+      "ctrl-b": "workspace::ToggleRightDock",
       "g s": "git_panel::ToggleFocus",
       "g n": "project_panel::ToggleFocus",
       "g l": "git_graph::Open",
@@ -67,17 +67,23 @@
     },
   },
   // WORKSPACE CONTEXT
+  // toggle right dock with ctrl-b
   // fuzzy finder for projects
   // toggle terminal
   // swap tabs using ctrl and < or >
   // close all docks
   // unmap ctrl-shift-s
   // unmap ctrl-alt-o
-  // unmap ctrl-b
   // unmap ctrl-shift-n
+  // git fetch
+  // git pull
+  // git push
+  // unmap ctrl-shift-f
+  // close other tabs with ctrl-shift-r
   {
     "context": "Workspace",
     "bindings": {
+      "ctrl-b": "workspace::ToggleRightDock",
       "ctrl-f": ["projects::OpenRecent", { "create_new_window": true }],
       "ctrl-/": "terminal_panel::Toggle",
       "ctrl-<": "pane::SwapItemLeft",
@@ -109,7 +115,7 @@
     "bindings": {
       "ctrl-p": null,
       "ctrl-n": null,
-      "ctrl-f": null,
+      // "ctrl-f": null,
       "ctrl-enter": ["terminal::SendText", "\r"],
       "ctrl-h": "pane::ActivatePreviousItem",
       "ctrl-t": "pane::ActivateNextItem",
