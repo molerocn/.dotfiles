@@ -1,9 +1,9 @@
 {
   // personalization
   "theme": {
-    "mode": "light",
+    "mode": "system",
     "light": "One Light",
-    "dark": "Catppuccin Mocha",
+    "dark": "GitHub Dark",
   },
   "cursor_shape": "block",
   "tab_bar": { "show": true },
