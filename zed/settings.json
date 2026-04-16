@@ -1,5 +1,6 @@
 {
   // personalization
+  "icon_theme": "Zed (Default)",
   "theme": {
     "mode": "system",
     "light": "One Light",
