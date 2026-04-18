@@ -4,7 +4,7 @@
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "GitHub Dark",
+    "dark": "One Dark",
   },
   "cursor_shape": "block",
   "tab_bar": { "show": true },
