@@ -33,8 +33,8 @@
       "shift-h": "editor::MoveLineUp",
       "shift-m": "editor::MoveLineDown",
       "s": ["workspace::SendKeystrokes", "escape ctrl-s"],
-      "ctrl-b": null,
       "space p": ["vim::Paste", { "preserve_clipboard": false }],
+      "ctrl-b": null,
     },
   },
   // VIM NORMAL CONTEXT
@@ -56,13 +56,13 @@
       "ctrl-m": ["pane::ActivateItem", 3],
       "ctrl-f": ["projects::OpenRecent", { "create_new_window": true }],
       "ctrl-shift-c": "buffer_search::Dismiss",
-      "ctrl-b": "workspace::ToggleLeftDock",
       "g s": "git_panel::ToggleFocus",
       "g n": "project_panel::ToggleFocus",
       "g l": "git_graph::Open",
       "space s": "outline::Toggle",
       "ctrl-/": ["workspace::SendKeystrokes", "escape ctrl-s ctrl-/"],
       "space shift-s": "project_symbols::Toggle",
+      "ctrl-b": "workspace::ToggleRightDock",
       "shift-h": null,
     },
   },
@@ -83,6 +83,7 @@
       "ctrl-<": "pane::SwapItemLeft",
       "ctrl->": "pane::SwapItemRight",
       "ctrl-shift-b": "workspace::CloseAllDocks",
+      "ctrl-b": "workspace::ToggleRightDock",
       "ctrl-shift-s": null, // save as
       "ctrl-alt-o": null, // open project (ctrl-f behaviour)
       "ctrl-shift-n": null, // NewWindow
@@ -109,11 +110,12 @@
     "bindings": {
       "ctrl-p": null,
       "ctrl-n": null,
-      "ctrl-f": null,
+      // "ctrl-f": null,
       "ctrl-enter": ["terminal::SendText", "\r"],
       "ctrl-h": "pane::ActivatePreviousItem",
       "ctrl-t": "pane::ActivateNextItem",
       "ctrl-shift-n": "workspace::NewTerminal",
+      "ctrl-b": "workspace::ToggleRightDock",
     },
   },
   // TERMINAL CONTEXT for WINDOWS
