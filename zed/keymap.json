@@ -63,7 +63,6 @@
       "space s": "outline::Toggle",
       "ctrl-/": ["workspace::SendKeystrokes", "escape ctrl-s ctrl-/"],
       "space shift-s": "project_symbols::Toggle",
-      "ctrl-b": "workspace::ToggleRightDock",
       "shift-h": null,
     },
   },
