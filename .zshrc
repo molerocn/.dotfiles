@@ -29,6 +29,7 @@ alias open='nohup xdg-open >/dev/null 2>&1'
 alias get="sudo dnf install"
 alias space-in-disk="df -h"
 alias howmuch="du -ha -d 1 | sort -rh | head -n 10"
+alias nb='uv run marimo edit'
 
 cde() { local target=$(get-tmux-root); cd "$target" }
 eval "$(zoxide init zsh)"
