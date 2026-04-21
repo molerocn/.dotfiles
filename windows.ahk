@@ -74,8 +74,8 @@ SC03::[
 SC04::SendText("{")
 SC05::}
 SC06::(
-SC07::*
-SC08::+
+SC07::+
+SC08::*
 SC09::)
 SC0A::=
 SC0B::]
@@ -95,6 +95,7 @@ SC0D::#
 +SC0B::6
 +SC0C::8
 +SC0D::`
++Backspace::Backspace
 
 #+SC01F::#+s
 ;^SC011::^w

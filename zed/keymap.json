@@ -133,6 +133,7 @@
       "ctrl-u": ["terminal::SendText", "\u001b"],
       "ctrl-p": ["terminal::SendText", "\u001b[A"],
       "ctrl-n": ["terminal::SendText", "\u001b[B"],
+      "ctrl-space": ["terminal::SendText", "\u001b[C"],
     },
   },
   // EDITOR CONTEXT
