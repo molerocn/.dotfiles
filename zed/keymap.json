@@ -58,7 +58,7 @@
       "ctrl-shift-c": "buffer_search::Dismiss",
       "ctrl-b": "workspace::ToggleRightDock",
       "g s": "git_panel::ToggleFocus",
-      "g n": "project_panel::ToggleFocus",
+      "g n": "pane::RevealInProjectPanel",
       "g l": "git_graph::Open",
       "space s": "outline::Toggle",
       "ctrl-/": ["workspace::SendKeystrokes", "escape ctrl-s ctrl-/"],
@@ -89,14 +89,13 @@
       "ctrl-<": "pane::SwapItemLeft",
       "ctrl->": "pane::SwapItemRight",
       "ctrl-shift-b": "workspace::CloseAllDocks",
-      "ctrl-b": "workspace::ToggleRightDock",
       "ctrl-shift-s": null, // save as
       "ctrl-alt-o": null, // open project (ctrl-f behaviour)
       "ctrl-shift-n": null, // NewWindow
       "ctrl-g ctrl-g": "git::Fetch",
-      "ctrl-g f": "git::CheckoutBranch",
-      "ctrl-g u": "git::Pull",
-      "ctrl-g p": "git::Push",
+      "ctrl-g p": "git::CheckoutBranch",
+      "ctrl-g e": "git::Pull",
+      "ctrl-g u": "git::Push",
       "ctrl-shift-f": null,
       "ctrl-shift-r": [
         "pane::CloseOtherItems",
