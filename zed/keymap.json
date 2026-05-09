@@ -50,10 +50,9 @@
     "bindings": {
       "space d": ["workspace::SendKeystrokes", "d d ctrl-s"],
       "s": ["workspace::SendKeystrokes", "escape ctrl-s"],
-      "ctrl-h": ["pane::ActivateItem", 0],
+      "ctrl-m": ["pane::ActivateItem", 0],
       "ctrl-t": ["pane::ActivateItem", 1],
       "ctrl-n": ["pane::ActivateItem", 2],
-      "ctrl-m": ["pane::ActivateItem", 3],
       "ctrl-f": ["projects::OpenRecent", { "create_new_window": true }],
       "ctrl-shift-c": "buffer_search::Dismiss",
       "ctrl-b": "workspace::ToggleRightDock",
@@ -63,6 +62,7 @@
       "space s": "outline::Toggle",
       "ctrl-/": ["workspace::SendKeystrokes", "escape ctrl-s ctrl-/"],
       "space shift-s": "project_symbols::Toggle",
+      "ctrl-h": null,
       "shift-h": null,
     },
   },
@@ -85,7 +85,7 @@
     "bindings": {
       "ctrl-b": "workspace::ToggleRightDock",
       "ctrl-f": ["projects::OpenRecent", { "create_new_window": true }],
-      "ctrl-/": "terminal_panel::Toggle",
+      "ctrl-e": "terminal_panel::Toggle",
       "ctrl-<": "pane::SwapItemLeft",
       "ctrl->": "pane::SwapItemRight",
       "ctrl-shift-b": "workspace::CloseAllDocks",
@@ -97,6 +97,8 @@
       "ctrl-g e": "git::Pull",
       "ctrl-g u": "git::Push",
       "ctrl-shift-f": null,
+      "ctrl-tab": "pane::ActivateNextItem",
+      "ctrl-shift-tab": "pane::ActivatePreviousItem",
       "ctrl-shift-r": [
         "pane::CloseOtherItems",
         {
@@ -144,7 +146,7 @@
     "unbind": {
       "ctrl->": "agent::AddSelectionToThread",
       // "ctrl-<": "assistant::InsertIntoEditor",
-      "ctrl-/": ["editor::ToggleComments", { "advance_downwards": false }],
+      // "ctrl-/": ["editor::ToggleComments", { "advance_downwards": false }],
     },
   },
   // EDITOR CONTEXT WITH EVENT
@@ -183,6 +185,7 @@
       "ctrl-c": "project_panel::ToggleFocus",
       "a": "project_panel::NewFile",
       "r": "project_panel::Rename",
+      "enter": ["workspace::SendKeystrokes", "space ctrl-b"],
     },
   },
   // GIT PANEL CONTEXT
@@ -200,6 +203,54 @@
       "c c": "git::Commit",
       "c e": "git::Amend",
       "ctrl-c": "git_panel::ToggleFocus",
+    },
+  },
+  {
+    "context": "Terminal",
+    "unbind": {
+      "ctrl-e": ["terminal::SendKeystroke", "ctrl-e"],
+    },
+  },
+  {
+    "context": "KeymapEditor",
+    "unbind": {
+      "ctrl-e": "zed::OpenKeymapFile",
+    },
+  },
+  {
+    "context": "showing_completions",
+    "unbind": {
+      "ctrl-e": "vim::LineDown",
+    },
+  },
+  {
+    "context": "VimControl && !menu",
+    "unbind": {
+      "ctrl-e": "vim::LineDown",
+    },
+  },
+  {
+    "context": "vim_mode == insert",
+    "unbind": {
+      "ctrl-e": "vim::InsertFromBelow",
+    },
+  },
+  {
+    "context": "MarkdownPreview",
+    "unbind": {
+      "ctrl-e": "markdown::ScrollDown",
+    },
+  },
+  {
+    "context": "vim_mode == literal",
+    "unbind": {
+      "ctrl-e": ["vim::Literal", ["ctrl-e", "\u0005"]],
+    },
+  },
+  {
+    "context": "!Terminal",
+    "unbind": {
+      "ctrl-shift-c": "collab_panel::ToggleFocus",
     },
   },
 ]
