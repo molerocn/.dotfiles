@@ -110,6 +110,14 @@ SC0D::#
 
 ; ----------------------------------------- keymaps
 
+; ----------------------------------------- launchers
+
+#n:: {
+    Run('powershell.exe -ExecutionPolicy Bypass -File "C:\Users\juancarlos.molero\personal\.dotfiles\bin\notebook.ps1"')
+}
+
+; ----------------------------------------- launchers
+
 ; ----------------------------------------- Nav
 
 global MoveWindowToDesktopNumberProc
