@@ -83,6 +83,7 @@
   {
     "context": "Workspace",
     "bindings": {
+      "ctrl-,": "pane::CloseActiveItem",
       "ctrl-b": "workspace::ToggleRightDock",
       "ctrl-f": ["projects::OpenRecent", { "create_new_window": true }],
       "ctrl-e": "terminal_panel::Toggle",
@@ -253,4 +254,16 @@
       "ctrl-shift-c": "collab_panel::ToggleFocus",
     },
   },
+  {
+    "context": "SettingsWindow",
+    "unbind": {
+      "ctrl-,": "settings_editor::OpenCurrentFile"
+    }
+  },
+  {
+    "context": "!SettingsWindow",
+    "unbind": {
+      "ctrl-,": "zed::OpenSettings"
+    }
+  }
 ]
