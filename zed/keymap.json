@@ -186,7 +186,6 @@
       "ctrl-c": "project_panel::ToggleFocus",
       "a": "project_panel::NewFile",
       "r": "project_panel::Rename",
-      "enter": ["workspace::SendKeystrokes", "space ctrl-b"],
     },
   },
   // GIT PANEL CONTEXT
@@ -257,13 +256,13 @@
   {
     "context": "SettingsWindow",
     "unbind": {
-      "ctrl-,": "settings_editor::OpenCurrentFile"
-    }
+      "ctrl-,": "settings_editor::OpenCurrentFile",
+    },
   },
   {
     "context": "!SettingsWindow",
     "unbind": {
-      "ctrl-,": "zed::OpenSettings"
-    }
-  }
+      "ctrl-,": "zed::OpenSettings",
+    },
+  },
 ]
