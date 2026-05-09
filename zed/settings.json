@@ -1,44 +1,33 @@
 {
   // personalization
-  "git_panel": {
-    "dock": "right"
-  },
-  "project_panel": {
-    "dock": "right"
-  },
-  "icon_theme": "Zed (Default)",
-  "theme": {
-    "mode": "system",
-    "light": "One Light",
-    "dark": "One Dark",
-  },
+  "cli_default_open_behavior": "existing_window",
+  "theme": { "mode": "system", "light": "One Light", "dark": "One Dark" },
   "cursor_shape": "block",
-  "tab_bar": { "show": true },
-  "toolbar": {
-    "breadcrumbs": false,
-    "quick_actions": false,
-  },
+  "toolbar": { "breadcrumbs": false, "quick_actions": false },
   "buffer_line_height": { "custom": 1.3 },
 
   // options
+  // activar lineas relativas
+  // highlight on yank (gosu)
+  // lineas de espacio cuando se hace scroll
+  // linea de guia por 80
+  // deshabilitar IA
+  // no cargar el env de python en un proyecto, prefiero usar uv
+  // iniciar sin ningun proyecto, elegir cual
+  // no mostrar la persona que hizo el commit, es molesto
   "relative_line_numbers": "enabled",
   "vim_mode": true,
-  "vim": {
-    "highlight_on_yank_duration": 40,
-    "use_system_clipboard": "never",
-  },
+  "vim": { "highlight_on_yank_duration": 40, "use_system_clipboard": "never" },
   "vertical_scroll_margin": 6,
   "wrap_guides": [80],
   "disable_ai": true, // la mejor config
   "terminal": { "detect_venv": "off" },
   "restore_on_startup": "launchpad",
-  "git": {
-    "inline_blame": {
-      "enabled": false,
-    },
-  },
+  "git": { "inline_blame": { "enabled": false } }, // no name of dev
 
   // font
+  // cambiar de fuente
+  // habilitar ligaturas y opciones de la fuente propia
   "buffer_font_family": "Monaspace Neon",
   "buffer_font_features": {
     "calt": true,
@@ -51,7 +40,10 @@
   },
 
   // config per languages
+  // usar ty como lsp principal para python, ruff como default formatter
+  // habilitar lsp por buffer para markdown
   "languages": {
     "Python": { "language_servers": ["ty", "!basedpyright", "ruff"] },
+    "Markdown": { "completions": { "words": "enabled" } },
   },
 }

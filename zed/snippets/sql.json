@@ -1,0 +1,20 @@
+{
+  "Fast select": {
+    "prefix": "st",
+    "body": ["select * from ${1:table}"]
+  },
+  "Select specific columns": {
+    "prefix": "sc",
+    "body": ["select ${1:column} from ${2:table}"]
+  },
+  "Find duplicates": {
+    "prefix": "sd",
+    "body": ["select count(*), count(distinct ${1:column}) from ${2:table}"]
+  },
+  "Fast group by": {
+    "prefix": "sg",
+    "body": [
+      "select ${1:column}, count(*)\nfrom ${2:table}\ngroup by ${1:column}"
+    ]
+  }
+}

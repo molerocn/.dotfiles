@@ -32,7 +32,7 @@
       "space y": ["workspace::SendKeystrokes", "\" + y escape"],
       "shift-h": "editor::MoveLineUp",
       "shift-m": "editor::MoveLineDown",
-      "s": ["workspace::SendKeystrokes", "escape ctrl-s"],
+      "s": "vim::PushAddSurrounds",
       "space p": ["vim::Paste", { "preserve_clipboard": false }],
       "ctrl-b": null,
     },
