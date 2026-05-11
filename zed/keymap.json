@@ -35,6 +35,7 @@
       "s": "vim::PushAddSurrounds",
       "space p": ["vim::Paste", { "preserve_clipboard": false }],
       "ctrl-b": null,
+      "shift-w": null,
     },
   },
   // VIM NORMAL CONTEXT
