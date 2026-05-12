@@ -64,6 +64,7 @@ XButton2::#^Right
 ^SC009::^8
 ^SC00A::^9
 ^SC00B::^0
+^SC1B::return
 
 !SC024::Up
 !SC032::Down
@@ -71,12 +72,12 @@ XButton2::#^Right
 SC29::$
 SC02::&
 SC03::SendText("{")
-SC04::(
-SC05::)
-SC06::[
+SC04::[
+SC05::]
+SC06::(
 SC07::+
 SC08::*
-SC09::]
+SC09::)
 SC0A::=
 SC0B::}
 SC0C::!
@@ -113,7 +114,7 @@ SC0D::#
 ; ----------------------------------------- launchers
 
 #n:: {
-    Run('powershell.exe -ExecutionPolicy Bypass -File "C:\Users\juancarlos.molero\personal\.dotfiles\bin\notebook.ps1"')
+    Run('powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File "C:\Users\juancarlos.molero\personal\.dotfiles\bin\notebook.ps1"', , "Hide")
 }
 
 ; ----------------------------------------- launchers

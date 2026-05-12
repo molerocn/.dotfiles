@@ -85,12 +85,12 @@
     "context": "Workspace",
     "bindings": {
       "ctrl-,": "pane::CloseActiveItem",
-      "ctrl-b": "workspace::ToggleRightDock",
+      // "ctrl-b": "workspace::ToggleRightDock",
       "ctrl-f": ["projects::OpenRecent", { "create_new_window": true }],
       "ctrl-e": "terminal_panel::Toggle",
       "ctrl-<": "pane::SwapItemLeft",
       "ctrl->": "pane::SwapItemRight",
-      "ctrl-shift-b": "workspace::CloseAllDocks",
+      "ctrl-.": "workspace::CloseAllDocks",
       "ctrl-shift-s": null, // save as
       "ctrl-alt-o": null, // open project (ctrl-f behaviour)
       "ctrl-shift-n": null, // NewWindow
@@ -266,4 +266,22 @@
       "ctrl-,": "zed::OpenSettings",
     },
   },
+  {
+    "context": "Editor",
+    "unbind": {
+      "ctrl-.": "editor::ToggleCodeActions"
+    }
+  },
+  {
+    "context": "BufferSearchBar",
+    "unbind": {
+      "ctrl-h": "search::ToggleReplace"
+    }
+  },
+  {
+    "context": "Editor && mode == full",
+    "unbind": {
+      "ctrl-h": "buffer_search::DeployReplace"
+    }
+  }
 ]
