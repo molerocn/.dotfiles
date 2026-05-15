@@ -32,6 +32,9 @@
       "space y": ["workspace::SendKeystrokes", "\" + y escape"],
       "shift-h": "editor::MoveLineUp",
       "shift-m": "editor::MoveLineDown",
+      "shift-j": "vim::Down",
+      "shift-k": "vim::Up",
+      "g j": "vim::JoinLines",
       "s": "vim::PushAddSurrounds",
       "space p": ["vim::Paste", { "preserve_clipboard": false }],
       "ctrl-b": null,
@@ -269,19 +272,30 @@
   {
     "context": "Editor",
     "unbind": {
-      "ctrl-.": "editor::ToggleCodeActions"
-    }
+      "ctrl-.": "editor::ToggleCodeActions",
+    },
   },
   {
     "context": "BufferSearchBar",
     "unbind": {
-      "ctrl-h": "search::ToggleReplace"
-    }
+      "ctrl-h": "search::ToggleReplace",
+    },
   },
   {
     "context": "Editor && mode == full",
     "unbind": {
-      "ctrl-h": "buffer_search::DeployReplace"
-    }
-  }
+      "ctrl-h": "buffer_search::DeployReplace",
+    },
+  },
+  {
+    "context": "Pane",
+    "unbind": {
+      "ctrl-w": [
+        "pane::CloseActiveItem",
+        {
+          "close_pinned": false,
+        },
+      ],
+    },
+  },
 ]
