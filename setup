@@ -1,0 +1,40 @@
+#!/bin/bash
+
+sudo apt install git make curl fzf zsh gcc fd-find wl-clipboard
+ln -s /usr/bin/fdfind ~/.local/bin/fd
+
+# git credentials
+ssh-keygen -t ed25519 -C "carlos.molero.n@gmail.com"
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+wl-copy < ~/.ssh/id_ed25519.pub
+firefox "https://github.com"
+
+# zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+# .dotfiles
+mkdir -pv personal
+git clone git@github.com:molerocn/.dotfiles ~/personal/.dotfiles
+rm ~/.zshrc
+ln -s ~/personal/.dotfiles/.zshrc ~
+sudo mkdir -pv /etc/keyd/
+sudo ln -s ~/personal/.dotfiles/keymap/linux.conf /etc/keyd/default.conf
+# mkdir -pv ~/.config/Code/User/
+# ln -s ~/personal/.dotfiles/code/*.json ~/.config/Code/User/
+
+# keyd
+git clone https://github.com/rvaiya/keyd ~/Downloads/keyd
+(cd ~/Downloads/keyd && make && sudo make install)
+sudo systemctl enable --now keyd
+
+# shortcuts
+dconf load /org/gnome/desktop/wm/keybindings/ < ~/personal/.dotfiles/ubuntu/workspaces.dconf
+
+# fastest keyboard
+gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 25
+gsettings set org.gnome.desktop.peripherals.keyboard delay 300
+
+source ~/.zshrc
+echo "Recuerda instalar desde el app center: Chrome, Code"
