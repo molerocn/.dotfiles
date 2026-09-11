@@ -1,0 +1,5 @@
+#!/bin/bash
+
+dconf dump /org/gnome/shell/keybindings/ > ~/personal/.dotfiles/ubuntu/shell_keybindings.dconf
+dconf dump /org/gnome/settings-daemon/plugins/media-keys/ > ~/personal/.dotfiles/ubuntu/media_keys.dconf
+dconf dump /org/gnome/desktop/wm/keybindings/ > ~/personal/.dotfiles/ubuntu/wm_keybindings.dconf

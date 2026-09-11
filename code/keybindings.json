@@ -1,0 +1,50 @@
+[
+
+    // indent editor
+    // { "key": "tab", "command": "editor.action.indentLines", "when": "editorTextFocus" },
+
+    // conflictos
+    { "key": "ctrl+p", "command": "-extension.vim_ctrl+p" },
+    { "key": "ctrl+w", "command": "-workbench.action.closeActiveEditor" },
+    { "key": "ctrl+p", "command": "-workbench.action.quickOpen" },
+    { "key": "ctrl+space", "command": "-workbench.action.terminal.triggerSuggest", "when": "config.terminal.integrated.suggest.enabled && terminalFocus && terminalProcessSupported && !terminalSuggestWidgetVisible" },
+
+    // global
+    { "key": "ctrl+e", "command": "workbench.action.terminal.toggleTerminal" },
+    { "key": "ctrl+,", "command": "workbench.action.closeActiveEditor"},
+    { "key": "ctrl+s", "command": "runCommands", "args": { "commands": [ "saveAll", "extension.vim_ctrl+c", ], }, },
+    { "key": "ctrl+.", "command": "runCommands", "args": { "commands": [ "workbench.action.closePanel", "workbench.action.closeSidebar" ] } },
+    { "key": "ctrl+f", "command": "workbench.action.openRecent" },
+    { "key": "ctrl+p", "command": "workbench.action.quickOpen", "when": "!terminalFocus" },
+
+    // suggestion
+    { "key": "ctrl+y", "command": "acceptSelectedSuggestion", "when": "suggestWidgetVisible" },
+    { "key": "ctrl+p", "command": "selectPrevSuggestion", "when": "suggestWidgetVisible" },
+
+    // quickopen
+    { "key": "ctrl+n", "command": "workbench.action.quickOpenSelectNext", "when": "inQuickOpen" },
+    { "key": "ctrl+p", "command": "workbench.action.quickOpenSelectPrevious", "when": "inQuickOpen" },
+    { "key": "ctrl+c", "command": "workbench.action.closeQuickOpen", "when": "inQuickOpen" },
+
+    // terminal
+    { "key": "ctrl+shift+n", "command": "workbench.action.terminal.new", "when": "terminalFocus"  },
+    { "key": "ctrl+h", "command": "workbench.action.terminal.focusPrevious", "when": "terminalFocus" },
+    { "key": "ctrl+t", "command": "workbench.action.terminal.focusNext", "when": "terminalFocus"  },
+
+    // explorer
+    { "key": "a", "command": "workbench.files.action.createFileFromExplorer", "when": "filesExplorerFocus && !inputFocus" },
+    { "key": "d", "command": "workbench.files.action.createFolderFromExplorer", "when": "filesExplorerFocus && !inputFocus" },
+    { "key": "shift+d", "command": "moveFileToTrash", "when": "filesExplorerFocus && !inputFocus" },
+
+    // windows
+    { "key": "ctrl+u", "command": "workbench.action.terminal.sendSequence", "args": { "text": "\u001b" }, "when": "isWindows && terminalFocus" },
+    { "key": "ctrl+p", "command": "workbench.action.terminal.sendSequence", "args": { "text": "\u001b[A" }, "when": "isWindows && terminalFocus" },
+    { "key": "ctrl+n", "command": "workbench.action.terminal.sendSequence", "args": { "text": "\u001b[B" }, "when": "isWindows && terminalFocus" },
+    { "key": "tab", "command": "workbench.action.terminal.sendSequence", "args": { "text": "\u0009" }, "when": "isWindows && terminalFocus" },
+    { "key": "ctrl+space", "command": "workbench.action.terminal.sendSequence", "args": { "text": "\u001b[C" }, "when": "isWindows && terminalFocus" }
+
+    // git
+    // { "key": "c c", "command": "git.commit", "when": "focusedView == 'workbench.scm'" },
+    // { "key": "s", "command": "git.stage", "when": "focusedView == 'workbench.scm'" },
+
+]

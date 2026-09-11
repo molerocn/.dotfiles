@@ -1,0 +1,59 @@
+{
+
+    // PREFERENCES
+    "chat.disableAIFeatures": true, // la mejor config
+    "window.autoDetectColorScheme": true,
+    "editor.fontFamily": "JetBrains Mono",
+    "editor.fontLigatures": true,
+    "workbench.sideBar.location": "right",
+    "editor.rulers": [80],
+    "editor.lineNumbers": "relative",
+    "breadcrumbs.enabled": false,
+    "python.analysis.typeCheckingMode": "standard",
+    "window.restoreWindows": "none",
+    "editor.dragAndDrop": false,
+    "editor.minimap.enabled": false,
+    "workbench.secondarySideBar.defaultVisibility": "hidden",
+    "workbench.startupEditor": "none",
+
+    // VIM
+    "vim.useSystemClipboard": false,
+    "vim.leader": " ",
+    "extensions.experimental.affinity": { "vscodevim.vim": 1 },
+    "vim.visualModeKeyBindings": [
+        { "before": ["J"], "after": [ "j" ] },
+        { "before": ["<leader>", "y"], "after": ["\"", "+", "y"] },
+        { "before": ["g", "j"], "commands": [{ "command": "editor.action.joinLines" }, { "command": "extension.vim_escape" }] },
+    ],
+    "vim.normalModeKeyBindings": [
+        { "before": ["[", "d"], "commands": [{ "command": "editor.action.marker.prev" }] },
+        { "before": ["]", "d"], "commands": [{ "command": "editor.action.marker.next" }] },
+        { "before": ["g", "n"], "commands": [{ "command": "workbench.files.action.showActiveFileInExplorer" }] },
+        { "before": ["g", "s"], "commands": [{ "command": "workbench.view.scm" }, { "command": "workbench.cm.action.focusNextResourceGroup" }] },
+        { "before": ["g", "/"], "commands": [{ "command": "workbench.action.findInFiles" }] },
+        { "before": ["K"], "commands": [{ "command": "editor.action.showHover" }] },
+        { "before": ["<C-w>", "a"], "commands": [{ "command": "workbench.action.closeEditorsInGroup" }] },
+        { "before": ["<C-w>", "O"], "commands": [{ "command": "workbench.action.closeOtherEditors" }] },
+        { "before": ["s"], "after": ["<Esc>", ":", "w", "<CR>"] },
+        { "before": ["<leader>", "f"], "commands": [{ "command": "editor.action.formatDocument" }] },
+
+        // LATEX
+        // { "before": ["j"], "after": ["g", "j"] },
+        // { "before": ["k"], "after": ["g", "k"] },
+    ],
+
+    // SHELL
+    // "terminal.integrated.profiles.windows": { "PowerShell 7": { "path": "C:\\Users\\juancarlos.molero\\AppData\\Local\\Programs\\powershell\\pwsh.exe" } },
+    // "terminal.integrated.defaultProfile.windows": "PowerShell 7",
+    "python.terminal.activateEnvironment": false,
+
+    // PYTHON
+    "[python]": {
+        "editor.defaultFormatter": "charliermarsh.ruff"
+    }
+
+    // LATEX
+    // "[latex]": { "editor.wordWrap": "on" },
+    // "latex-workshop.latex.autoBuild.run": "never"
+
+}
