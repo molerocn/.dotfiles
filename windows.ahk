@@ -1,8 +1,5 @@
 #Requires AutoHotkey v2.0
 
-; ----------------------------------------- capslock
-
-; CapsLock::Escape
 CapsLock::Control
 SetTimer(CheckCapsLock, 100)
 CheckCapsLock() {
@@ -12,35 +9,67 @@ CheckCapsLock() {
     }
 }
 
-; ----------------------------------------- capslock
-
-; ----------------------------------------- keymaps
-
-; -- temp
-;SC02C:::
-;+SC02C::;
-;+SC1B::Backspace
-;SC1B::Backspace
-;!+Backspace::^
-;!Backspace::@
-SC1B::@
-+SC1B::^
-; -- temp
-
-LControl::Esc
-VKE2::Shift
+VKE2::Shift ; close shift
 !Enter::\
-SC02B::Enter
-!+SC02C::Send("!{F4}")
-^#SC010::Send("{F11}")
-#SC010::#Up
-z::Shift
-RShift::z
+SC02B::Enter ; close enter
+^SC1B::return
+!+SC02C::Send("!{F4}") ; cerrar ventana
+^#SC010::Send("{F11}") ; maximizar ventana
+#SC010::#Up ; expandir ventana
+z::Shift ; swipe z
+RShift::z ; swipe z
 ^+Esc::^+Esc
-^!t::^k
+!SC024::Up
+!SC032::Down
++Backspace::Backspace
+; ^!t::^k ; ctrl alt k
+#+SC01F::#+s ; screenshot
+^SC02E::^c ; copiar
+^SC02F::^v ; pegar
+#SC02F::#v ; clipboard history
+^SC02D::^x ; cortar
+^SC02C::^z ; deshacer
+; ^SC011::^w ; cerrar la ventana
+; ^!SC02E::^j
+; ^!SC02F::^!k
+; LControl::Escape
+!Space::^Escape
 
-XButton1::#^Left
-XButton2::#^Right
+!+a::SendText("á")
+!+e::SendText("é")
+!+i::SendText("í")
+!+o::SendText("ó")
+!+u::SendText("ú")
+
+SC29::$
+SC02::&
+SC03::SendText("{")
+SC04::(
+SC05::)
+SC06::[
+SC07::+
+SC08::*
+SC09::]
+SC0A::=
+SC0B::}
+SC0C::!
+SC0D::#
+SC1B::@
+
++SC29::~
++SC02::%
++SC03::7
++SC04::5
++SC05::3
++SC06::1
++SC07::9
++SC08::0
++SC09::2
++SC0A::4
++SC0B::6
++SC0C::8
++SC0D::`
++SC1B::^
 
 !SC002::!1
 !SC003::!2
@@ -64,110 +93,65 @@ XButton2::#^Right
 ^SC009::^8
 ^SC00A::^9
 ^SC00B::^0
-^SC1B::return
 
-!SC024::Up
-!SC032::Down
+VDA_PATH := EnvGet("USERPROFILE") . "\VirtualDesktopAccessor.dll"
+vda := DllCall("LoadLibrary", "Str", VDA_PATH, "Ptr")
 
-SC29::$
-SC02::&
-SC03::SendText("{")
-SC04::[
-SC05::]
-SC06::(
-SC07::+
-SC08::*
-SC09::)
-SC0A::=
-SC0B::}
-SC0C::!
-SC0D::#
+pGoToDesktop := DllCall("GetProcAddress", "Ptr", vda, "AStr", "GoToDesktopNumber", "Ptr")
+pMoveWindowToDesktop := DllCall("GetProcAddress", "Ptr", vda, "AStr", "MoveWindowToDesktopNumber", "Ptr")
+; pIsWindowOnDesktop := DllCall("GetProcAddress", "Ptr", vda, "AStr", "ViewIsShownInSwitchers", "Ptr") ; W10
+pIsWindowOnDesktop := DllCall("GetProcAddress", "Ptr", vda, "AStr", "IsWindowOnDesktopNumber", "Ptr") ; W11
 
-+SC29::~
-+SC02::%
-+SC03::7
-+SC04::5
-+SC05::3
-+SC06::1
-+SC07::9
-+SC08::0
-+SC09::2
-+SC0A::4
-+SC0B::6
-+SC0C::8
-+SC0D::`
-+Backspace::Backspace
+GoToDesktop         := (desktopNumber) => DllCall(pGoToDesktop, "Int", desktopNumber, "Int")
+MoveWindowToDesktop := (windowID, desktopNumber) => DllCall(pMoveWindowToDesktop, "Ptr", windowID, "Int", desktopNumber, "Int")
+IsWindowOnDesktop   := (windowID, desktopNumber) => DllCall(pIsWindowOnDesktop, "Ptr", windowID, "Int", desktopNumber, "Int")
 
-#+SC01F::#+s
-;^SC011::^w
+; FocusRecentWindowOnDesktop(desktopNumber := 0) {
+;     winIDList := WinGetList()
+;     for windowID in winIDList {
+;         if (WinGetStyle(windowID) & 0x10000000) && (IsWindowOnDesktop(windowID, desktopNumber) == 1) {
+;             WinActivate("ahk_id " windowID)
+;             return
+;         }
+;     }
+; }
 
-^SC02E::^c
-^!SC02E::^j
-^SC02F::^v
-^!SC02F::^!k
-#SC02F::#v
-^SC02D::^x
-^SC02C::^z
-
-; ----------------------------------------- keymaps
-
-; ----------------------------------------- launchers
-
-#n:: {
-    Run('powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File "C:\Users\juancarlos.molero\personal\.dotfiles\bin\notebook.ps1"', , "Hide")
-}
-
-; ----------------------------------------- launchers
-
-; ----------------------------------------- Nav
-
-global MoveWindowToDesktopNumberProc
-global IsWindowOnDesktopProc
-global GoToDesktopNumberProc
-
-VDA_PATH := EnvGet("USERPROFILE") . "\.lib\VirtualDesktopAccessor.dll"
-hVda11 := DllCall("LoadLibrary", "Str", VDA_PATH, "Ptr")
-MoveWindowToDesktopNumberProc := DllCall("GetProcAddress", "Ptr", hVda11, "AStr", "MoveWindowToDesktopNumber", "Ptr")
-GoToDesktopNumberProc := DllCall("GetProcAddress", "Ptr", hVda11, "AStr", "GoToDesktopNumber", "Ptr")
-IsWindowOnDesktopProc := DllCall("GetProcAddress", "Ptr", hVda11, "AStr", "IsWindowOnDesktopNumber", "Ptr")
-
-FocusWindow(num := 1) {
-    winIDList := WinGetList()
-    for windowID in winIDList {
-        windowIsOnDesktop := DllCall(IsWindowOnDesktopProc, "UInt", windowID, "UInt", num)
-        if (windowIsOnDesktop == 1) {
-            WinActivate("ahk_id " windowID)
+FocusRecentWindowOnDesktop(desktopNumber := 0) {
+    for hwnd in WinGetList() {
+        if (WinGetStyle(hwnd) & 0x10000000)
+        && (IsWindowOnDesktop(hwnd, desktopNumber) == 1) {
+            WinActivate(hwnd)
             return
         }
     }
 }
 
-MoveCurrentWindowToDesktop(num) {
-    activeHwnd := WinGetID("A")
-    DllCall(MoveWindowToDesktopNumberProc, "Ptr", activeHwnd, "Int", num, "Int")
+MoveCurrentWindowToDesktop(desktopNumber) {
+    MoveWindowToDesktop(WinGetID("A"), desktopNumber)
+    GoToDesktop(desktopNumber)
 }
 
-GoToDesktopNumber(num) {
-    DllCall(GoToDesktopNumberProc, "Int", num)
-    FocusWindow(num)
+GoToDesktopNumber(desktopNumber) {
+    GoToDesktop(desktopNumber)
+    FocusRecentWindowOnDesktop(desktopNumber)
 }
-
-; ----------------------------------------- Nav
-
-; ----------------------------------------- Nav maps
 
 !SC01E::GoToDesktopNumber(0) ; Alt + A
 !SC01F::GoToDesktopNumber(1) ; Alt + S
 !SC020::GoToDesktopNumber(2) ; Alt + D
-!SC002::GoToDesktopNumber(3) ; Alt + 1
-!SC003::GoToDesktopNumber(4) ; Alt + 2
-!SC02D::GoToDesktopNumber(5) ; Alt + X
+!SC010::GoToDesktopNumber(3) ; Alt + Q
+!SC011::GoToDesktopNumber(4) ; Alt + W
+!SC012::GoToDesktopNumber(5) ; Alt + E
+!SC002::GoToDesktopNumber(6) ; Alt + 1
+!SC003::GoToDesktopNumber(7) ; Alt + 2
+!SC02D::GoToDesktopNumber(8) ; Alt + X
 
 ^!SC01E::MoveCurrentWindowToDesktop(0) ; Ctrl + Alt + A
 ^!SC01F::MoveCurrentWindowToDesktop(1) ; Ctrl + Alt + S
 ^!SC020::MoveCurrentWindowToDesktop(2) ; Ctrl + Alt + D
-^!SC002::MoveCurrentWindowToDesktop(3) ; Ctrl + Alt + 1
-^!SC003::MoveCurrentWindowToDesktop(4) ; Ctrl + Alt + 2
-^!SC02D::MoveCurrentWindowToDesktop(5) ; Ctrl + Alt + X
-
-; ----------------------------------------- Nav maps
+^!SC010::MoveCurrentWindowToDesktop(3) ; Ctrl + Alt + Q
+^!SC011::MoveCurrentWindowToDesktop(4) ; Ctrl + Alt + W
+^!SC012::MoveCurrentWindowToDesktop(5) ; Ctrl + Alt + E
+^!SC002::MoveCurrentWindowToDesktop(6) ; Ctrl + Alt + 1
+^!SC003::MoveCurrentWindowToDesktop(7) ; Ctrl + Alt + 2
+^!SC02D::MoveCurrentWindowToDesktop(8) ; Ctrl + Alt + X
