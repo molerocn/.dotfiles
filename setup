@@ -30,7 +30,9 @@ git clone https://github.com/rvaiya/keyd ~/Downloads/keyd
 sudo systemctl enable --now keyd
 
 # shortcuts
-dconf load /org/gnome/desktop/wm/keybindings/ < ~/personal/.dotfiles/ubuntu/workspaces.dconf
+dconf load /org/gnome/desktop/wm/keybindings/ < ~/personal/.dotfiles/ubuntu/wm_keybindings.dconf
+dconf load /org/gnome/shell/keybindings/ < ~/personal/.dotfiles/ubuntu/shell_keybindings.dconf
+dconf load /org/gnome/settings-daemon/plugins/media-keys/ < ~/personal/.dotfiles/ubuntu/media_keys.dconf
 
 # fastest keyboard
 gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 25

@@ -11,7 +11,7 @@ bindkey '^ ' autosuggest-accept
 
 alias notepad="kwrite"
 alias sc="source ~/.zshrc"
-alias esc="nvim ~/.zshrc"
+alias esc="vim ~/.zshrc"
 alias a="ls -lah"
 alias at="ls -lahtr ~/Downloads"
 alias atd="ls -lahtr"
@@ -21,5 +21,6 @@ alias cpwd='pwd | copy'
 alias open='nohup xdg-open >/dev/null 2>&1'
 alias space-in-disk="df -h"
 alias howmuch="du -ha -d 1 | sort -rh | head -n 10"
+alias get="sudo apt install"
 
 eval "$(zoxide init zsh)"
