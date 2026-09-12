@@ -16,6 +16,8 @@
     { "key": "ctrl+.", "command": "runCommands", "args": { "commands": [ "workbench.action.closePanel", "workbench.action.closeSidebar" ] } },
     { "key": "ctrl+f", "command": "workbench.action.openRecent" },
     { "key": "ctrl+p", "command": "workbench.action.quickOpen", "when": "!terminalFocus" },
+    { "key": "ctrl+tab", "command": "workbench.action.nextEditor"},
+    { "key": "ctrl+shift+tab", "command": "workbench.action.previousEditor"},
 
     // suggestion
     { "key": "ctrl+y", "command": "acceptSelectedSuggestion", "when": "suggestWidgetVisible" },
@@ -25,6 +27,7 @@
     { "key": "ctrl+n", "command": "workbench.action.quickOpenSelectNext", "when": "inQuickOpen" },
     { "key": "ctrl+p", "command": "workbench.action.quickOpenSelectPrevious", "when": "inQuickOpen" },
     { "key": "ctrl+c", "command": "workbench.action.closeQuickOpen", "when": "inQuickOpen" },
+    { "key": "ctrl+u", "command": "editor.action.selectAll", "when": "inQuickOpen" },
 
     // terminal
     { "key": "ctrl+shift+n", "command": "workbench.action.terminal.new", "when": "terminalFocus"  },
@@ -34,6 +37,7 @@
     // explorer
     { "key": "a", "command": "workbench.files.action.createFileFromExplorer", "when": "filesExplorerFocus && !inputFocus" },
     { "key": "d", "command": "workbench.files.action.createFolderFromExplorer", "when": "filesExplorerFocus && !inputFocus" },
+    { "key": "r", "command": "renameFile", "when": "filesExplorerFocus && !inputFocus" },
     { "key": "shift+d", "command": "moveFileToTrash", "when": "filesExplorerFocus && !inputFocus" },
 
     // windows

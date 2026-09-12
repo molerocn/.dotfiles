@@ -30,13 +30,11 @@ git clone https://github.com/rvaiya/keyd ~/Downloads/keyd
 sudo systemctl enable --now keyd
 
 # shortcuts
-dconf load /org/gnome/desktop/wm/keybindings/ < ~/personal/.dotfiles/ubuntu/wm_keybindings.dconf
-dconf load /org/gnome/shell/keybindings/ < ~/personal/.dotfiles/ubuntu/shell_keybindings.dconf
-dconf load /org/gnome/settings-daemon/plugins/media-keys/ < ~/personal/.dotfiles/ubuntu/media_keys.dconf
+~/personal/.dotfiles/ubuntu/load_shortcuts
 
 # fastest keyboard
 gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 25
-gsettings set org.gnome.desktop.peripherals.keyboard delay 300
+gsettings set org.gnome.desktop.peripherals.keyboard delay 250
 
 source ~/.zshrc
 echo "Recuerda instalar desde el app center: Chrome, Code"

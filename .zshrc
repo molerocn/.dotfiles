@@ -23,4 +23,7 @@ alias space-in-disk="df -h"
 alias howmuch="du -ha -d 1 | sort -rh | head -n 10"
 alias get="sudo apt install"
 
+alias n="z"
+alias cde="z -"
+
 eval "$(zoxide init zsh)"
