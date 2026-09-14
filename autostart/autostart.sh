@@ -1,0 +1,3 @@
+echo holamundo
+# firefox &
+# code &
