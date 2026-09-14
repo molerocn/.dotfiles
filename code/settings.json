@@ -12,13 +12,13 @@
     "editor.dragAndDrop": false,
     "editor.minimap.enabled": false,
     "workbench.secondarySideBar.defaultVisibility": "hidden",
-    "workbench.startupEditor": "none",
-    // "workbench.editor.restoreEditors": false,
     "extensions.ignoreRecommendations": true,
-    // "editor.cursorStyle": "block",
-    // "editor.cursorBlinking": "smooth",
-    // "window.restoreWindows": "none",
-    // "editor.cursorSmoothCaretAnimation": "on",
+    "editor.tabCompletion": "on",
+
+    // startup
+    "workbench.startupEditor": "none",
+    "workbench.editor.restoreEditors": false,
+    "window.restoreWindows": "none",
 
     // SHELL
     "terminal.integrated.profiles.windows": { "PowerShell 7": { "path": "C:\\Users\\juancarlos.molero\\AppData\\Local\\Programs\\powershell\\pwsh.exe" } },
@@ -29,6 +29,7 @@
     "python.analysis.typeCheckingMode": "standard",
     "[python]": { "editor.defaultFormatter": "charliermarsh.ruff" },
     "ruff.lint.enable": false,
+    "jupyter.askForKernelRestart": false,
 
     // VIM
     "vim.leader": " ",
@@ -71,5 +72,87 @@
     // LATEX
     // "[latex]": { "editor.wordWrap": "on" },
     // "latex-workshop.latex.autoBuild.run": "never"
+
+    // db connections
+    "dbcode.resultLocation": "panel",
+    "dbcode.queryRowLimit": 200,
+    "dbcode.connections": [
+        {
+            "connectionId": "uSikpdNF9YJAyJgayWBH2",
+            "name": "planeamiento",
+            "driver": "mssql",
+            "connectionType": "host",
+            "host": "192.168.1.27",
+            "port": 1433,
+            "ssl": false,
+            "authMethod": "sql",
+            "username": "juancarlos.molero",
+            "password": "",
+            "savePassword": "secretStorage",
+            "database": "PLANEAMIENTO",
+            "readOnly": false,
+            "postConnectionSqlType": "inline",
+            "connectionTimeout": 30,
+            "idleTimeout": 300,
+            "maxConnections": 10,
+            "pinnedConnectionTimeout": "0",
+            "introspection": {
+                "progressive": false
+            }
+        },
+        {
+            "connectionId": "o1jj0A1lAy-HosKGBw5Vf",
+            "name": "ODIN",
+            "driver": "snowflake",
+            "host": "BL35257-BI_GROUP",
+            "driverOptions": {
+                "authType": "sso",
+                "secondaryRoles": false,
+                "role": "AZ-SF-BI-PE-ANALYST",
+                "warehouse": "VWH_ODIN_PE"
+            },
+            "database": "DB_ODIN_PE",
+            "readOnly": false,
+            "postConnectionSqlType": "inline",
+            "pinnedConnectionTimeout": "0",
+            "introspection": {
+                "progressive": false
+            },
+            "connectionType": "host"
+        },
+        {
+            "connectionId": "39Xoo_C23pJUsb03GOM15",
+            "name": "dbVENTAS",
+            "driver": "mysql",
+            "connectionType": "host",
+            "host": "rds-verismart-pe-commons.cr64g6mmqows.eu-west-1.rds.amazonaws.com",
+            "port": 3306,
+            "ssl": true,
+            "sslTrustCertificate": false,
+            "authMethod": "password",
+            "username": "verismartremoto",
+            "password": "",
+            "savePassword": "secretStorage",
+            "database": "dbVENTAS",
+            "readOnly": false,
+            "postConnectionSqlType": "inline",
+            "connectionTimeout": 30,
+            "idleTimeout": 300,
+            "maxConnections": 10,
+            "pinnedConnectionTimeout": "0",
+            "driverOptions": {
+                "retrievePublickey": true,
+                "disableMultiStatements": false,
+                "permitLocalInfile": false
+            },
+            "introspection": {
+                "progressive": true,
+                "prefetchAll": false,
+                "batchSize": 50,
+                "cacheTTL": 7,
+                "updateStatistics": false
+            }
+        }
+    ],
 
 }
