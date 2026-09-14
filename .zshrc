@@ -8,6 +8,7 @@ plugins=(git zsh-autosuggestions)
 source $ZSH/oh-my-zsh.sh
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 bindkey '^ ' autosuggest-accept
+bindkey -r "^S"
 
 alias notepad="kwrite"
 alias sc="source ~/.zshrc"
@@ -23,7 +24,6 @@ alias space-in-disk="df -h"
 alias howmuch="du -ha -d 1 | sort -rh | head -n 10"
 alias get="sudo apt install"
 
+eval "$(zoxide init zsh)"
 alias n="z"
 alias cde="z -"
-
-eval "$(zoxide init zsh)"

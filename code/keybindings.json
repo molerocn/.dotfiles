@@ -1,13 +1,16 @@
 [
 
-    // indent editor
-    // { "key": "tab", "command": "editor.action.indentLines", "when": "editorTextFocus" },
+    // editor
+    // { "key": "tab", "command": "editor.action.indentLines", "when": "editorFocus" },
 
-    // conflictos
+    // disable
     { "key": "ctrl+p", "command": "-extension.vim_ctrl+p" },
     { "key": "ctrl+w", "command": "-workbench.action.closeActiveEditor" },
     { "key": "ctrl+p", "command": "-workbench.action.quickOpen" },
     { "key": "ctrl+space", "command": "-workbench.action.terminal.triggerSuggest", "when": "config.terminal.integrated.suggest.enabled && terminalFocus && terminalProcessSupported && !terminalSuggestWidgetVisible" },
+    { "key": "ctrl+-", "command": "-workbench.action.zoomOut" },
+    { "key": "ctrl+=", "command": "-workbench.action.zoomIn" },
+    { "key": "enter", "command": "-acceptSelectedSuggestion", "when": "acceptSuggestionOnEnter && suggestWidgetHasFocusedSuggestion && suggestWidgetVisible && suggestionMakesTextEdit && textInputFocus" },
 
     // global
     { "key": "ctrl+e", "command": "workbench.action.terminal.toggleTerminal" },
@@ -18,6 +21,7 @@
     { "key": "ctrl+p", "command": "workbench.action.quickOpen", "when": "!terminalFocus" },
     { "key": "ctrl+tab", "command": "workbench.action.nextEditor"},
     { "key": "ctrl+shift+tab", "command": "workbench.action.previousEditor"},
+    { "key": "alt+1", "command": "toggleVim" },
 
     // suggestion
     { "key": "ctrl+y", "command": "acceptSelectedSuggestion", "when": "suggestWidgetVisible" },
@@ -45,10 +49,12 @@
     { "key": "ctrl+p", "command": "workbench.action.terminal.sendSequence", "args": { "text": "\u001b[A" }, "when": "isWindows && terminalFocus" },
     { "key": "ctrl+n", "command": "workbench.action.terminal.sendSequence", "args": { "text": "\u001b[B" }, "when": "isWindows && terminalFocus" },
     { "key": "tab", "command": "workbench.action.terminal.sendSequence", "args": { "text": "\u0009" }, "when": "isWindows && terminalFocus" },
-    { "key": "ctrl+space", "command": "workbench.action.terminal.sendSequence", "args": { "text": "\u001b[C" }, "when": "isWindows && terminalFocus" }
+    { "key": "ctrl+space", "command": "workbench.action.terminal.sendSequence", "args": { "text": "\u001b[C" }, "when": "isWindows && terminalFocus" },
 
     // git
     // { "key": "c c", "command": "git.commit", "when": "focusedView == 'workbench.scm'" },
-    // { "key": "s", "command": "git.stage", "when": "focusedView == 'workbench.scm'" },
+    // { "key": "s", "command": "git.stageChange", "when": "focusedView == 'workbench.scm'" },
+    // { "key": "u", "command": "git.unstageChange", "when": "focusedView == 'workbench.scm'" },
+    // { "key": "=", "command": "git.openChange", "when": "focusedView == 'workbench.scm'" },
 
 ]
