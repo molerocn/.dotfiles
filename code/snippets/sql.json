@@ -23,7 +23,7 @@
 	// }
 	"Select Template": {
 		"prefix": "st",
-		"body": [ "select * from ${1:table_name}" ],
+		"body": [ "select * from " ],
 		"description": "Standard SELECT statement template"
 	},
 }

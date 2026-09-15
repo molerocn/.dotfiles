@@ -16,9 +16,9 @@
     "editor.tabCompletion": "on",
 
     // startup
-    "workbench.startupEditor": "none",
-    "workbench.editor.restoreEditors": false,
-    "window.restoreWindows": "none",
+    // "window.restoreWindows": "none", // No restaura los proyectos que estaban abiertos anteriormente
+    "workbench.startupEditor": "none", // No abre ninguna pagina especial al iniciar
+    "workbench.editor.restoreEditors": false, // No restaura los archivos que estaban abiertos en cada proyecto
 
     // SHELL
     "terminal.integrated.profiles.windows": { "PowerShell 7": { "path": "C:\\Users\\juancarlos.molero\\AppData\\Local\\Programs\\powershell\\pwsh.exe" } },
@@ -59,6 +59,7 @@
         { "before": ["<leader>", "f"], "commands": [{ "command": "editor.action.formatDocument" }] },
         { "before": ["u"], "commands": [{ "command": "undo" }] },
         { "before": ["<C-r>"], "commands": [{ "command": "redo" }] },
+        { "before": ["c", "i", "o"], "after": ["_", "f", "*", "a", "<backspace>"] },
 
         { "before": ["<C-b>"], "after": [ "<nop>" ] },
         // { "before": ["k"], "commands": [{ "command": "cursorUp" }] },
@@ -73,7 +74,14 @@
     // "[latex]": { "editor.wordWrap": "on" },
     // "latex-workshop.latex.autoBuild.run": "never"
 
+    "[sql]": {
+        "editor.codeLens": false,
+        "editor.wordBasedSuggestions": "allDocuments",
+        "editor.suggest.showWords": true
+    },
     // db connections
+    "dbcode.ai.inlineCompletion": false,
+    "dbcode.enableLinting": false,
     "dbcode.resultLocation": "panel",
     "dbcode.queryRowLimit": 200,
     "dbcode.connections": [
