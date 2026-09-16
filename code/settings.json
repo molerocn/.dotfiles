@@ -62,6 +62,8 @@
         { "before": ["c", "i", "o"], "after": ["_", "f", "*", "a", "<backspace>"] },
 
         { "before": ["<C-b>"], "after": [ "<nop>" ] },
+        { "before": ["<C-w><C-c>"], "after": [ "<nop>" ] },
+        { "before": ["<C-w>", "c"], "after": [ "<nop>" ] },
         // { "before": ["k"], "commands": [{ "command": "cursorUp" }] },
         // { "before": ["j"], "commands": [{ "command": "cursorDown"}] },
 
@@ -159,6 +161,22 @@
                 "batchSize": 50,
                 "cacheTTL": 7,
                 "updateStatistics": false
+            }
+        },
+        {
+            "connectionId": "S9Vm8imWpINwSMocdYVTL",
+            "name": "CORE",
+            "driver": "duckdb",
+            "connectionType": "socket",
+            "socket": "c:\\Users\\juancarlos.molero\\work\\ETL-verisure\\new\\core.duckdb",
+            "driverOptions": {
+                "fileSearchPath": "database"
+            },
+            "readOnly": false,
+            "postConnectionSqlType": "inline",
+            "pinnedConnectionTimeout": "0",
+            "introspection": {
+                "progressive": false
             }
         }
     ],
