@@ -1,7 +1,3 @@
-__pycache__
-qtile/autostart.sh
-*.ignore
-
 code/*
 !code/settings.json
 !code/keybindings.json
