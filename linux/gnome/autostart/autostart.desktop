@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
 Name=Autostart script
-Exec=/home/carlos-molero/personal/.dotfiles/autostart/autostart.sh
+Exec=/home/molerocn/personal/.dotfiles/linux/gnome/autostart/autostart.sh
 X-GNOME-Autostart-enabled=true
 

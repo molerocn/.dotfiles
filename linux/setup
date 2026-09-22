@@ -9,7 +9,7 @@ git remote set-url origin git@github.com:molerocn/.dotfiles.git
 
 chsh
 mkdir -pv ~/.local/bin
-ln -s /usr/bin/fdfind ~/.local/bin/fd
+ln -sv /usr/bin/fdfind ~/.local/bin/fd
 
 # git credentials
 git config --global user.email "carlos.molero.n@gmail.com"
@@ -28,11 +28,13 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 mkdir -pv personal
 git clone git@github.com:molerocn/.dotfiles ~/personal/.dotfiles
 rm ~/.zshrc
-ln -s ~/personal/.dotfiles/linux/.zshrc ~
+ln -sv ~/personal/.dotfiles/linux/.zshrc ~
 sudo mkdir -pv /etc/keyd/
-sudo ln -s ~/personal/.dotfiles/linux/linux.conf /etc/keyd/default.conf
+sudo ln -sv ~/personal/.dotfiles/linux/linux.conf /etc/keyd/default.conf
 mkdir -pv ~/.config/Code
-ln -s ~/personal/.dotfiles/code ~/.config/Code/User
+ln -sv ~/personal/.dotfiles/code ~/.config/Code/User
+mkdir -pv ~/.config/autostart
+ln -sv ~/personal/.dotfiles/linux/gnome/autostart/autostart.desktop ~/.config/autostart/
 
 # keyd
 git clone https://github.com/rvaiya/keyd ~/Downloads/keyd

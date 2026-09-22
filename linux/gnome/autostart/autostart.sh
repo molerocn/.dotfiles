@@ -1,3 +1,2 @@
-echo holamundo
-# firefox &
-# code &
+google-chrome-stable &
+code &

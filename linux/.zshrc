@@ -1,7 +1,7 @@
 export ZSH="$HOME/.oh-my-zsh"
 export DOTFILES=$HOME/personal/.dotfiles
 export PATH=$HOME/.local/bin:$PATH
-export PATH=$DOTFILES/bin:$PATH
+export PATH=$DOTFILES/linux/bin:$PATH
 
 ZSH_THEME="robbyrussell"
 plugins=(git zsh-autosuggestions)
