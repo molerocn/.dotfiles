@@ -4,13 +4,20 @@ export PATH=$HOME/.local/bin:$PATH
 export PATH=$DOTFILES/linux/bin:$PATH
 
 ZSH_THEME="robbyrussell"
-plugins=(git zsh-autosuggestions)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+eval "$(zoxide init zsh)"
+
+_zi_widget() { zi; zle reset-prompt; }
+zle -N _zi_widget
+bindkey '^H' _zi_widget
+alias cde="z -"
+alias h='z'
+
 source $ZSH/oh-my-zsh.sh
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 bindkey '^ ' autosuggest-accept
 bindkey -r "^S"
 
-alias notepad="kwrite"
 alias sc="source ~/.zshrc"
 alias esc="vim ~/.zshrc"
 alias a="ls -lah"
@@ -23,7 +30,4 @@ alias open='nohup xdg-open >/dev/null 2>&1'
 alias space-in-disk="df -h"
 alias howmuch="du -ha -d 1 | sort -rh | head -n 10"
 alias get="sudo apt install"
-
-eval "$(zoxide init zsh)"
-alias n="z"
-alias cde="z -"
+alias notepad="gnome-text-editor"

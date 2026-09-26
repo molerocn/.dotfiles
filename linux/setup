@@ -23,6 +23,7 @@ firefox "https://github.com"
 # zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 # .dotfiles
 mkdir -pv personal
@@ -49,3 +50,6 @@ dconf load /org/gnome/settings-daemon/plugins/media-keys/ < ~/personal/.dotfiles
 # fastest keyboard
 gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 30
 gsettings set org.gnome.desktop.peripherals.keyboard delay 250
+
+gsettings set org.gnome.mutter center-new-windows true
+gsettings set org.gnome.desktop.input-sources xkb-options "['compose:menu']"
