@@ -1,7 +1,9 @@
 {
 
     // PREFERENCES
-    "chat.disableAIFeatures": true, // la mejor config
+    // "chat.disableAIFeatures": true, // la mejor config
+    // "editor.inlineSuggest.enabled": false,
+    "editor.quickSuggestions": { "other": "on", },
     "window.autoDetectColorScheme": true,
     "editor.fontFamily": "JetBrains Mono",
     "editor.fontLigatures": true,
@@ -13,7 +15,6 @@
     "workbench.secondarySideBar.defaultVisibility": "hidden",
     "extensions.ignoreRecommendations": true,
     "editor.tabCompletion": "on",
-
     // startup
     // "window.restoreWindows": "none", // No restaura los proyectos que estaban abiertos anteriormente
     "workbench.startupEditor": "none", // No abre ninguna pagina especial al iniciar
@@ -34,7 +35,7 @@
     "vim.leader": " ",
     "vim.useSystemClipboard": false,
     "vim.highlightedyank.enable": true,
-    "vim.highlightedyank.duration": 100,
+    "vim.highlightedyank.duration": 200,
     "extensions.experimental.affinity": { "vscodevim.vim": 1 },
     "vim.visualModeKeyBindings": [
         { "before": ["J"], "after": [ "j" ] },
@@ -81,6 +82,12 @@
         "editor.suggest.showWords": true
     },
     "breadcrumbs.enabled": false,
+    "chat.tools.terminal.autoApprove": {
+        "/^python3 -c 'import fastapi, starlette, httpx; print\\(\"fastapi\", fastapi\\.__version__, \"starlette\", starlette\\.__version__, \"httpx\", httpx\\.__version__\\); import pytest; print\\(\"pytest\", pytest\\.__version__\\)'$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    },
     // db connections
 
 }

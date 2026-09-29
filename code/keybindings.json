@@ -4,32 +4,32 @@
     { "key": "ctrl+p", "command": "-extension.vim_ctrl+p" },
     { "key": "ctrl+w", "command": "-workbench.action.closeActiveEditor" },
     { "key": "ctrl+p", "command": "-workbench.action.quickOpen" },
-    { "key": "ctrl+space", "command": "-workbench.action.terminal.triggerSuggest", "when": "config.terminal.integrated.suggest.enabled && terminalFocus && terminalProcessSupported && !terminalSuggestWidgetVisible" },
+    // { "key": "ctrl+space", "command": "-workbench.action.terminal.triggerSuggest", "when": "config.terminal.integrated.suggest.enabled && terminalFocus && terminalProcessSupported && !terminalSuggestWidgetVisible" },
     { "key": "ctrl+-", "command": "-workbench.action.zoomOut" },
-    { "key": "ctrl+=", "command": "-workbench.action.zoomIn" },
-    { "key": "enter", "command": "-acceptSelectedSuggestion", "when": "acceptSuggestionOnEnter && suggestWidgetHasFocusedSuggestion && suggestWidgetVisible && suggestionMakesTextEdit && textInputFocus" },
-    // { "key": "escape", "command": "-notebook.cell.quitEdit", "when": "inputFocus && notebookEditorFocused && vim.active && !editorHasSelection && !editorHoverVisible && vim.mode == 'Normal'" },
+    { "key": "ctrl+=", "command": "-workbench.action.zoomIn" }, { "key": "enter", "command": "-acceptSelectedSuggestion", "when": "acceptSuggestionOnEnter && suggestWidgetHasFocusedSuggestion && suggestWidgetVisible && suggestionMakesTextEdit && textInputFocus" },
+    // disable for jupyter notebooks
     { "key": "ctrl+shift+p", "command": "-workbench.action.showCommands" },
-    // { "key": "ctrl+h", "command": "-editor.action.startFindReplaceAction", "when": "editorFocus || editorIsOpen" },
-    // { "key": "ctrl+h", "command": "-extension.vim_ctrl+h", "when": "editorTextFocus && vim.active && vim.use<C-h> && !inDebugRepl" },
     { "key": "ctrl+shift+o", "command": "-workbench.action.gotoSymbol", "when": "!accessibilityHelpIsShown && !accessibleViewIsShown" },
     { "key": "ctrl+shift+m", "command": "-workbench.actions.view.problems", "when": "workbench.panel.markers.view.active" },
     { "key": "b", "command": "-notebook.cell.insertCodeCellBelowAndFocusContainer", "when": "notebookEditorFocused && !inputFocus && !notebookOutputInputFocused" },
     { "key": "a", "command": "-notebook.cell.insertCodeCellAboveAndFocusContainer", "when": "notebookEditorFocused && !inputFocus && !notebookOutputInputFocused" },
+    { "key": "tab", "command": "-editor.action.inlineSuggest.commit", "when": "inlineEditIsVisible && tabShouldAcceptInlineEdit && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible || inlineEditIsVisible && inlineSuggestionVisible && tabShouldAcceptInlineEdit && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible || inlineSuggestionHasIndentationLessThanTabSize && inlineSuggestionVisible && !editor.hasSelection && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible || inlineEditIsVisible && inlineSuggestionHasIndentationLessThanTabSize && inlineSuggestionVisible && !editor.hasSelection && !editorHoverFocused && !editorTabMovesFocus && !suggestWidgetVisible" },
 
     // global
     { "key": "ctrl+e", "command": "workbench.action.terminal.toggleTerminal" },
     { "key": "ctrl+.", "command": "runCommands", "args": { "commands": [ "workbench.action.closePanel", "workbench.action.closeSidebar" ] } },
     { "key": "ctrl+f", "command": "workbench.action.openRecent" },
     { "key": "ctrl+p", "command": "workbench.action.quickOpen", "when": "!terminalFocus" },
-    { "key": "ctrl+3", "command": "runCommands", "args": { "commands": [ "workbench.action.closePanel", "workbench.action.closeSidebar", "workbench.view.extension.dbcodePanelContainer" ] } }, { "key": "ctrl+space", "command": "workbench.action.focusFirstEditorGroup", "when": "!terminalFocus" },
+    { "key": "ctrl+3", "command": "runCommands", "args": { "commands": [ "workbench.action.closePanel", "workbench.action.closeSidebar", "workbench.view.extension.dbcodePanelContainer" ] } },
     { "key": "ctrl+shift+p", "command": "workbench.action.showCommands", "when": "!notebookEditorFocused" },
+    { "key": "tab", "command": "runCommands", "args": { "commands": [ "editor.action.inlineSuggest.commit", "extension.vim_escape"  ] }, "when": "editorTextFocus && inlineSuggestionVisible" },
 
     // editor
     { "key": "ctrl+shift+tab", "command": "workbench.action.previousEditorInGroup", "when": "editorFocus" },
     { "key": "ctrl+tab", "command": "workbench.action.nextEditorInGroup", "when": "editorFocus" },
     { "key": "ctrl+,", "command": "workbench.action.closeActiveEditor" },
     { "key": "ctrl+s", "command": "runCommands", "args": { "commands": [ "saveAll", "extension.vim_ctrl+c", ], },  "when": "editorFocus"},
+    // { "key": "ctrl+space", "command": "runCommands", "args": { "commands": [ "editor.action.inlineSuggest.commit", "extension.vim_escape"  ] }, "when": "editorTextFocus && inlineSuggestionVisible" },
 
     // suggestion
     { "key": "ctrl+y", "command": "acceptSelectedSuggestion", "when": "suggestWidgetVisible" },
@@ -45,8 +45,7 @@
     { "key": "ctrl+shift+n", "command": "workbench.action.terminal.new", "when": "terminalFocus"  },
     { "key": "ctrl+shift+tab", "command": "workbench.action.terminal.focusPrevious", "when": "terminalFocus" },
     { "key": "ctrl+tab", "command": "workbench.action.terminal.focusNext", "when": "terminalFocus"  },
-    { "key": "ctrl+g", "command": "workbench.action.focusFirstEditorGroup", "when": "terminalFocus" },
-
+    { "key": "ctrl+g", "command": "workbench.action.focusFirstEditorGroup", "when": "panelFocus" },
     // explorer
     { "key": "a", "command": "workbench.files.action.createFileFromExplorer", "when": "filesExplorerFocus && !inputFocus" },
     { "key": "d", "command": "workbench.files.action.createFolderFromExplorer", "when": "filesExplorerFocus && !inputFocus" },
@@ -61,8 +60,6 @@
     { "key": "ctrl+space", "command": "workbench.action.terminal.sendSequence", "args": { "text": "\u001b[C" }, "when": "isWindows && terminalFocus" },
 
     // notebook
-    // { "key": "ctrl+h", "command": "runCommands", "args": { "commands": [ "extension.vim_escape", "notebook.cell.quitEdit" ] }, "when": "inputFocus && notebookEditorFocused && !editorHasMultipleSelections && !editorHasSelection && !editorHoverVisible && !inlineChatFocused" },
-    // { "key": "shift+enter", "command": "runCommands", "args": { "commands": [ "extension.vim_escape", "notebook.cell.executeAndSelectBelow" ] }, "when": "notebookCellListFocused && !interactiveEditorFocused && notebookCellType == 'code' || editorTextFocus && inputFocus && notebookEditorFocused && !interactiveEditorFocused" },
     { "key": "shift+enter", "command": "runCommands", "args": { "commands": [ "notebook.cell.executeAndSelectBelow", "notebook.cell.edit" ] }, "when": "notebookEditorFocused" },
     { "key": "enter", "command": "runCommands", "args": { "commands": [ "notebook.cell.edit", "extension.vim_escape" ] }, "when": "notebookCellListFocused && !editorHoverFocused && !inputFocus && !notebookOutputInputFocused" },
     { "key": "ctrl+enter", "command": "runCommands", "args": { "commands": [ "extension.vim_escape", "notebook.cell.executeAndFocusContainer", "notebook.cell.edit" ] }, "when": "notebookCellListFocused || editorTextFocus && inputFocus && notebookEditorFocused" },
@@ -71,4 +68,5 @@
     { "key": "ctrl+shift+o", "command": "runCommands", "args": { "commands": [ "extension.vim_escape", "notebook.cell.insertCodeCellAboveAndFocusContainer", "notebook.cell.edit" ] }, "when": "notebookEditorFocused" },
     { "key": "ctrl+shift+m", "command": "runCommands", "args": { "commands": [ "notebook.cell.changeToMarkdown", "notebook.cell.edit" ] }, "when": "notebookEditorFocused && notebookCellType == 'code'" },
     { "key": "ctrl+shift+m", "command": "runCommands", "args": { "commands": [ "notebook.cell.changeToCode", "notebook.cell.edit" ] }, "when": "notebookEditorFocused && notebookCellType == 'markup'" },
+
 ]

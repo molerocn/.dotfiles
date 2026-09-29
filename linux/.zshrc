@@ -5,17 +5,12 @@ export PATH=$DOTFILES/linux/bin:$PATH
 
 ZSH_THEME="robbyrussell"
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
-eval "$(zoxide init zsh)"
-
-_zi_widget() { zi; zle reset-prompt; }
-zle -N _zi_widget
-bindkey '^H' _zi_widget
-alias cde="z -"
-alias h='z'
 
 source $ZSH/oh-my-zsh.sh
 source /usr/share/doc/fzf/examples/key-bindings.zsh
+source ~/personal/.dotfiles/linux/functions.zsh
 bindkey '^ ' autosuggest-accept
+bindkey '^H' change_dir_faster
 bindkey -r "^S"
 
 alias sc="source ~/.zshrc"
@@ -27,7 +22,8 @@ alias copy="wl-copy"
 alias paste="wl-paste"
 alias cpwd='pwd | copy'
 alias open='nohup xdg-open >/dev/null 2>&1'
-alias space-in-disk="df -h"
-alias howmuch="du -ha -d 1 | sort -rh | head -n 10"
 alias get="sudo apt install"
 alias notepad="gnome-text-editor"
+alias space-in-disk="df -h"
+alias howmuch="du -ha -d 1 | sort -rh | head -n 10"
+alias cde='cd -'
