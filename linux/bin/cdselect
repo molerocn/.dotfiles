@@ -4,4 +4,4 @@ find "$HOME" "$HOME/personal" "$HOME/work" "$HOME/Documents"  \
     -mindepth 1 -maxdepth 1 \
     -type d 2>/dev/null |
     sort -u |
-    fzf
+    fzf --height=40% --layout=reverse

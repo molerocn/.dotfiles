@@ -41,6 +41,7 @@ ln -sv ~/personal/.dotfiles/linux/gnome/autostart/autostart.desktop ~/.config/au
 git clone https://github.com/rvaiya/keyd ~/Downloads/keyd
 (cd ~/Downloads/keyd && make && sudo make install)
 sudo systemctl enable --now keyd
+ln -s ~/Downloads/keyd/data/keyd.compose ~/.XCompose  
 
 # shortcuts
 dconf load /org/gnome/shell/keybindings/ < ~/personal/.dotfiles/linux/gnome/shortcuts/shell_keybindings.dconf

@@ -2,7 +2,7 @@
 
     // PREFERENCES
     // "chat.disableAIFeatures": true, // la mejor config
-    // "editor.inlineSuggest.enabled": false,
+    "editor.inlineSuggest.enabled": false,
     "editor.quickSuggestions": { "other": "on", },
     "window.autoDetectColorScheme": true,
     "editor.fontFamily": "JetBrains Mono",
@@ -40,10 +40,11 @@
     "vim.visualModeKeyBindings": [
         { "before": ["J"], "after": [ "j" ] },
         { "before": ["<leader>", "y"], "commands": [{ "command": "editor.action.clipboardCopyAction" }, { "command": "extension.vim_escape" }] },
-        // { "before": ["<leader>", "c"], "after": ["\"", "+", "y"] },
         { "before": ["g", "j"], "commands": [{ "command": "editor.action.joinLines" }, { "command": "extension.vim_escape" }] },
-        { "before": ["M"], "commands": [{ "command": "editor.action.moveLinesDownAction" }] },
-        { "before": ["H"], "commands": [{ "command": "editor.action.moveLinesUpAction" }] },
+        { "before": ["H"], "after": [":", "m", ".", "-", "2", "<CR>"] },
+        { "before": ["M"], "after": [":", "m", ".", "+", "1", "<CR>"] },
+        // { "before": ["M"], "commands": [{ "command": "editor.action.moveLinesDownAction" }] },
+        // { "before": ["H"], "commands": [{ "command": "editor.action.moveLinesUpAction" }] },
         { "before": ["W"], "after": [ "<nop>" ] },
     ],
     "vim.normalModeKeyBindings": [
