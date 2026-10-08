@@ -27,3 +27,4 @@ alias notepad="gnome-text-editor"
 alias space-in-disk="df -h"
 alias howmuch="du -ha -d 1 | sort -rh | head -n 10"
 alias cde='cd -'
+alias eauto='nvim $DOTFILES/linux/gnome/autostart/autostart.sh'

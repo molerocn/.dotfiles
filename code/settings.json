@@ -1,25 +1,28 @@
 {
 
+    // startup
+    // "workbench.editor.restoreViewState": false, // que no recuerde donde estaba mi cursor
+    "window.restoreWindows": "one", // Solo restaura el ultimo proyecto
+    "workbench.startupEditor": "none", // No abre ninguna pagina especial al iniciar
+    "workbench.editor.restoreEditors": false, // No restaura los archivos que estaban abiertos en cada proyecto
+    "telemetry.telemetryLevel": "off",
+    "extensions.autoCheckUpdates": false,
+    "extensions.autoUpdate": "off",
+
     // PREFERENCES
-    // "chat.disableAIFeatures": true, // la mejor config
-    "editor.inlineSuggest.enabled": false,
-    "editor.quickSuggestions": { "other": "on", },
-    "window.autoDetectColorScheme": true,
+    // "editor.inlineSuggest.enabled": false, // desactivar tab completion
+    "chat.disableAIFeatures": true, // la mejor config
     "editor.fontFamily": "JetBrains Mono",
+    "window.autoDetectColorScheme": true,
     "editor.fontLigatures": true,
     "workbench.sideBar.location": "right",
-    // "editor.rulers": [80],
     "editor.lineNumbers": "relative",
     "editor.dragAndDrop": false,
     "editor.minimap.enabled": false,
-    "workbench.secondarySideBar.defaultVisibility": "hidden",
     "extensions.ignoreRecommendations": true,
-    "editor.tabCompletion": "on",
-    // startup
-    // "window.restoreWindows": "none", // No restaura los proyectos que estaban abiertos anteriormente
-    "workbench.startupEditor": "none", // No abre ninguna pagina especial al iniciar
-    "workbench.editor.restoreEditors": false, // No restaura los archivos que estaban abiertos en cada proyecto
-
+    "breadcrumbs.enabled": false,
+    "editor.quickSuggestions": { "other": "on" },
+    
     // SHELL
     "terminal.integrated.profiles.windows": { "PowerShell 7": { "path": "C:\\Users\\juancarlos.molero\\AppData\\Local\\Programs\\powershell\\pwsh.exe" } },
     "terminal.integrated.defaultProfile.windows": "PowerShell 7",
@@ -31,6 +34,13 @@
     "ruff.lint.enable": false,
     "jupyter.askForKernelRestart": false,
 
+    // sql
+    "[sql]": {
+        "editor.codeLens": false,
+        "editor.wordBasedSuggestions": "allDocuments",
+        "editor.suggest.showWords": true
+    },
+
     // VIM
     "vim.leader": " ",
     "vim.useSystemClipboard": false,
@@ -41,11 +51,9 @@
         { "before": ["J"], "after": [ "j" ] },
         { "before": ["<leader>", "y"], "commands": [{ "command": "editor.action.clipboardCopyAction" }, { "command": "extension.vim_escape" }] },
         { "before": ["g", "j"], "commands": [{ "command": "editor.action.joinLines" }, { "command": "extension.vim_escape" }] },
-        { "before": ["H"], "after": [":", "m", ".", "-", "2", "<CR>"] },
-        { "before": ["M"], "after": [":", "m", ".", "+", "1", "<CR>"] },
-        // { "before": ["M"], "commands": [{ "command": "editor.action.moveLinesDownAction" }] },
-        // { "before": ["H"], "commands": [{ "command": "editor.action.moveLinesUpAction" }] },
-        { "before": ["W"], "after": [ "<nop>" ] },
+        { "before": ["H"], "commands": [{ "command": "editor.action.moveLinesUpAction" }] },
+        { "before": ["M"], "commands": [{ "command": "editor.action.moveLinesDownAction" }] },
+        { "before": ["W"], "after": [ "<nop>" ] }
     ],
     "vim.normalModeKeyBindings": [
         { "before": ["[", "d"], "commands": [{ "command": "editor.action.marker.prev" }] },
@@ -64,31 +72,6 @@
 
         { "before": ["<C-b>"], "after": [ "<nop>" ] },
         { "before": ["<C-w><C-c>"], "after": [ "<nop>" ] },
-        { "before": ["<C-w>", "c"], "after": [ "<nop>" ] },
-        // { "before": ["k"], "commands": [{ "command": "cursorUp" }] },
-        // { "before": ["j"], "commands": [{ "command": "cursorDown"}] },
-
-        // LATEX
-        // { "before": ["j"], "after": ["g", "j"] },
-        // { "before": ["k"], "after": ["g", "k"] },
+        { "before": ["<C-w>", "c"], "after": [ "<nop>" ] }
     ],
-
-    // LATEX
-    // "[latex]": { "editor.wordWrap": "on" },
-    // "latex-workshop.latex.autoBuild.run": "never"
-
-    "[sql]": {
-        "editor.codeLens": false,
-        "editor.wordBasedSuggestions": "allDocuments",
-        "editor.suggest.showWords": true
-    },
-    "breadcrumbs.enabled": false,
-    "chat.tools.terminal.autoApprove": {
-        "/^python3 -c 'import fastapi, starlette, httpx; print\\(\"fastapi\", fastapi\\.__version__, \"starlette\", starlette\\.__version__, \"httpx\", httpx\\.__version__\\); import pytest; print\\(\"pytest\", pytest\\.__version__\\)'$/": {
-            "approve": true,
-            "matchCommandLine": true
-        }
-    },
-    // db connections
-
 }

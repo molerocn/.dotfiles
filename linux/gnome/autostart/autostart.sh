@@ -1,3 +1,3 @@
-google-chrome-stable &
-gnome-terminal &
-# code &
+firefox &
+# gnome-terminal &
+code &
