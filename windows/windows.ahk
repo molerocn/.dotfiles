@@ -33,7 +33,7 @@ RShift::z ; swipe z
 ; ^!SC02E::^j
 ; ^!SC02F::^!k
 ; LControl::Escape
-!Space::^Escape
+!Space::#s
 
 !+a::SendText("á")
 !+e::SendText("é")
